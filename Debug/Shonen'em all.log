@@ -1,0 +1,8 @@
+﻿La génération a démarré 02/06/2016 16:14:46.
+     1>Projet "D:\Theo\Boulot\Shonen'em all\Shonen'em all.vcxproj" sur le nœud 2 (Build cible(s)).
+     1>D:\Theo\Boulot\Shonen'em all\Shonen'em all.vcxproj(96,5): error : This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is ..\packages\sfml-system.redist.2.3.2.0\build\native\sfml-system.redist.targets.
+     1>Génération du projet "D:\Theo\Boulot\Shonen'em all\Shonen'em all.vcxproj" terminée (Build cible(s)) -- ÉCHEC.
+
+ÉCHEC de la build.
+
+Temps écoulé 00:00:00.12
