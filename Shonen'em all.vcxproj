@@ -45,6 +45,10 @@
     <IncludePath>.\Libraries\SFML-2.3.2\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
     <LibraryPath>.\Libraries\SFML-2.3.2\lib;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);</LibraryPath>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IncludePath>.\Libraries\SFML-2.3.2\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <LibraryPath>.\Libraries\SFML-2.3.2\lib;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);</LibraryPath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -54,6 +58,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>sfml-graphics.lib;sfml-window.lib;sfml-system.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -89,19 +94,4 @@
     <Import Project="..\packages\sfml-network.redist.2.3.2.0\build\native\sfml-network.redist.targets" Condition="Exists('..\packages\sfml-network.redist.2.3.2.0\build\native\sfml-network.redist.targets')" />
     <Import Project="..\packages\sfml-network.2.3.2.0\build\native\sfml-network.targets" Condition="Exists('..\packages\sfml-network.2.3.2.0\build\native\sfml-network.targets')" />
   </ImportGroup>
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\packages\sfml-system.redist.2.3.2.0\build\native\sfml-system.redist.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\sfml-system.redist.2.3.2.0\build\native\sfml-system.redist.targets'))" />
-    <Error Condition="!Exists('..\packages\sfml-system.2.3.2.0\build\native\sfml-system.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\sfml-system.2.3.2.0\build\native\sfml-system.targets'))" />
-    <Error Condition="!Exists('..\packages\sfml-window.redist.2.3.2.0\build\native\sfml-window.redist.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\sfml-window.redist.2.3.2.0\build\native\sfml-window.redist.targets'))" />
-    <Error Condition="!Exists('..\packages\sfml-window.2.3.2.0\build\native\sfml-window.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\sfml-window.2.3.2.0\build\native\sfml-window.targets'))" />
-    <Error Condition="!Exists('..\packages\sfml-graphics.redist.2.3.2.0\build\native\sfml-graphics.redist.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\sfml-graphics.redist.2.3.2.0\build\native\sfml-graphics.redist.targets'))" />
-    <Error Condition="!Exists('..\packages\sfml-graphics.2.3.2.0\build\native\sfml-graphics.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\sfml-graphics.2.3.2.0\build\native\sfml-graphics.targets'))" />
-    <Error Condition="!Exists('..\packages\sfml-audio.redist.2.3.2.0\build\native\sfml-audio.redist.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\sfml-audio.redist.2.3.2.0\build\native\sfml-audio.redist.targets'))" />
-    <Error Condition="!Exists('..\packages\sfml-audio.2.3.2.0\build\native\sfml-audio.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\sfml-audio.2.3.2.0\build\native\sfml-audio.targets'))" />
-    <Error Condition="!Exists('..\packages\sfml-network.redist.2.3.2.0\build\native\sfml-network.redist.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\sfml-network.redist.2.3.2.0\build\native\sfml-network.redist.targets'))" />
-    <Error Condition="!Exists('..\packages\sfml-network.2.3.2.0\build\native\sfml-network.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\sfml-network.2.3.2.0\build\native\sfml-network.targets'))" />
-  </Target>
 </Project>

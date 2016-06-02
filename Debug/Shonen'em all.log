@@ -1,8 +1,10 @@
-﻿La génération a démarré 02/06/2016 16:14:46.
+﻿La génération a démarré 02/06/2016 16:40:22.
      1>Projet "D:\Theo\Boulot\Shonen'em all\Shonen'em all.vcxproj" sur le nœud 2 (Build cible(s)).
-     1>D:\Theo\Boulot\Shonen'em all\Shonen'em all.vcxproj(96,5): error : This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is ..\packages\sfml-system.redist.2.3.2.0\build\native\sfml-system.redist.targets.
-     1>Génération du projet "D:\Theo\Boulot\Shonen'em all\Shonen'em all.vcxproj" terminée (Build cible(s)) -- ÉCHEC.
+     1>Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\Theo\Boulot\Shonen'em all\Debug\Shonen'em all.exe" /INCREMENTAL /NOLOGO "sfml-graphics.lib" "sfml-window.lib" "sfml-system.lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\Theo\Boulot\Shonen'em all\Debug\Shonen'em all.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\Theo\Boulot\Shonen'em all\Debug\Shonen'em all.lib" /MACHINE:X86 Debug\Main.obj
+         Shonen'em all.vcxproj -> D:\Theo\Boulot\Shonen'em all\Debug\Shonen'em all.exe
+     1>Génération du projet "D:\Theo\Boulot\Shonen'em all\Shonen'em all.vcxproj" terminée (Build cible(s)).
 
-ÉCHEC de la build.
+La génération a réussi.
 
-Temps écoulé 00:00:00.12
+Temps écoulé 00:00:00.37
