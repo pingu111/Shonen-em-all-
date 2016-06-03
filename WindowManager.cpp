@@ -14,3 +14,9 @@ WindowManager::~WindowManager()
 {
 
 }
+
+std::unique_ptr<WindowManager> WindowManager::clone()
+{
+	auto uniPtr = std::make_unique<WindowManager>();
+	return move(uniPtr);
+}

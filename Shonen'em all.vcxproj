@@ -82,6 +82,7 @@
     <ClCompile Include="..\Shonen%27em all\DrawableVirtual.cpp" />
     <ClCompile Include="..\Shonen%27em all\MenuPrincipal.cpp" />
     <ClCompile Include="..\Shonen%27em all\RythmNBlood.cpp" />
+    <ClCompile Include="..\Shonen%27em all\VirtualScene.cpp" />
     <ClCompile Include="..\Shonen%27em all\WindowManager.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
@@ -92,7 +93,9 @@
     <ClInclude Include="..\Shonen%27em all\DrawableFixed.h" />
     <ClInclude Include="..\Shonen%27em all\DrawableVirtual.h" />
     <ClInclude Include="..\Shonen%27em all\MenuPrincipal.h" />
+    <ClInclude Include="..\Shonen%27em all\resource.h" />
     <ClInclude Include="..\Shonen%27em all\RythmNBlood.h" />
+    <ClInclude Include="..\Shonen%27em all\VirtualScene.h" />
     <ClInclude Include="..\Shonen%27em all\WindowManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
