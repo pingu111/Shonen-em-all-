@@ -286,3 +286,6 @@ paket-files/
 *.exe
 *.out
 *.app
+
+#Debug file
+./Debug

@@ -44,10 +44,12 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <IncludePath>.\Libraries\SFML-2.3.2\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
     <LibraryPath>.\Libraries\SFML-2.3.2\lib;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);</LibraryPath>
+    <SourcePath>C:\Users\paul Turpin\Desktop\Code\Shonen-em-all-\Sources;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IncludePath>.\Libraries\SFML-2.3.2\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
     <LibraryPath>.\Libraries\SFML-2.3.2\lib;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);</LibraryPath>
+    <SourcePath>C:\Users\paul Turpin\Desktop\Code\Shonen-em-all-\Sources;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -81,21 +83,22 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\Shonen%27em all\Main.cpp" />
-    <ClCompile Include="..\Shonen%27em all\Sources\DrawableFixed.cpp" />
-    <ClCompile Include="..\Shonen%27em all\Sources\DrawableVirtual.cpp" />
-    <ClCompile Include="..\Shonen%27em all\Sources\MenuPrincipal.cpp" />
-    <ClCompile Include="..\Shonen%27em all\Sources\RythmNBlood.cpp" />
-    <ClCompile Include="..\Shonen%27em all\Sources\VirtualScene.cpp" />
-    <ClCompile Include="..\Shonen%27em all\Sources\WindowManager.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Sources\DrawableFixed.cpp" />
+    <ClCompile Include="Sources\DrawableVirtual.cpp" />
+    <ClCompile Include="Sources\MenuPrincipal.cpp" />
+    <ClCompile Include="Sources\RythmNBlood.cpp" />
+    <ClCompile Include="Sources\VirtualScene.cpp" />
+    <ClCompile Include="Sources\WindowManager.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\Shonen%27em all\Sources\DrawableFixed.h" />
-    <ClInclude Include="..\Shonen%27em all\Sources\DrawableVirtual.h" />
-    <ClInclude Include="..\Shonen%27em all\Sources\MenuPrincipal.h" />
-    <ClInclude Include="..\Shonen%27em all\Sources\RythmNBlood.h" />
-    <ClInclude Include="..\Shonen%27em all\Sources\VirtualScene.h" />
     <ClInclude Include="..\Shonen%27em all\Sources\WindowManager.h" />
+    <ClInclude Include="Sources\DrawableFixed.h" />
+    <ClInclude Include="Sources\DrawableVirtual.h" />
+    <ClInclude Include="Sources\MenuPrincipal.h" />
+    <ClInclude Include="Sources\RythmNBlood.h" />
+    <ClInclude Include="Sources\VirtualScene.h" />
+    <ClInclude Include="Sources\WindowManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

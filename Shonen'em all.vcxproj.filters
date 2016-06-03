@@ -20,46 +20,49 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\Shonen%27em all\Sources\VirtualScene.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Shonen%27em all\Sources\WindowManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Shonen%27em all\Main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Shonen%27em all\Sources\DrawableFixed.cpp">
-      <Filter>Source Files\Drawable</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Shonen%27em all\Sources\DrawableVirtual.cpp">
-      <Filter>Source Files\Drawable</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Shonen%27em all\Sources\RythmNBlood.cpp">
+    <ClCompile Include="Sources\MenuPrincipal.cpp">
       <Filter>Source Files\Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="..\Shonen%27em all\Sources\MenuPrincipal.cpp">
+    <ClCompile Include="Sources\RythmNBlood.cpp">
       <Filter>Source Files\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\VirtualScene.cpp">
+      <Filter>Source Files\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\DrawableVirtual.cpp">
+      <Filter>Source Files\Drawable</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\DrawableFixed.cpp">
+      <Filter>Source Files\Drawable</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\WindowManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Shonen%27em all\Sources\WindowManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\Shonen%27em all\Sources\DrawableFixed.h">
+    <ClInclude Include="Sources\VirtualScene.h">
+      <Filter>Source Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\RythmNBlood.h">
+      <Filter>Source Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\MenuPrincipal.h">
+      <Filter>Source Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\DrawableFixed.h">
       <Filter>Source Files\Drawable</Filter>
     </ClInclude>
-    <ClInclude Include="..\Shonen%27em all\Sources\DrawableVirtual.h">
+    <ClInclude Include="Sources\DrawableVirtual.h">
       <Filter>Source Files\Drawable</Filter>
     </ClInclude>
-    <ClInclude Include="..\Shonen%27em all\Sources\MenuPrincipal.h">
-      <Filter>Source Files\Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Shonen%27em all\Sources\RythmNBlood.h">
-      <Filter>Source Files\Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Shonen%27em all\Sources\VirtualScene.h">
-      <Filter>Source Files\Scenes</Filter>
+    <ClInclude Include="Sources\WindowManager.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
