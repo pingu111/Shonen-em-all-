@@ -1,7 +1,7 @@
 #include <memory>
-#include "MenuPrincipal.h"
-#include "RythmNBlood.h"
-#include "WindowManager.h"
+#include "Sources\MenuPrincipal.h"
+#include "Sources\RythmNBlood.h"
+#include "Sources\WindowManager.h"
 #include <SFML/Graphics.hpp>
 
 
