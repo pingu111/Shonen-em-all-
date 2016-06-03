@@ -15,6 +15,9 @@
     <Filter Include="Source Files\Drawable">
       <UniqueIdentifier>{05d733c1-19bf-4518-8060-af6a3a4a403d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Characters">
+      <UniqueIdentifier>{e8b727cb-7745-4e94-a752-178a4b4e2e7a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -41,6 +44,15 @@
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Sources\Bonhomme.cpp">
+      <Filter>Source Files\Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Player.cpp">
+      <Filter>Source Files\Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Ennemi.cpp">
+      <Filter>Source Files\Characters</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Shonen%27em all\Sources\WindowManager.h">
@@ -63,6 +75,15 @@
     </ClInclude>
     <ClInclude Include="Sources\WindowManager.h">
       <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Player.h">
+      <Filter>Source Files\Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Bonhomme.h">
+      <Filter>Source Files\Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Ennemi.h">
+      <Filter>Source Files\Characters</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

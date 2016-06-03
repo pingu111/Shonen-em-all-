@@ -84,18 +84,24 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Sources\Bonhomme.cpp" />
     <ClCompile Include="Sources\DrawableFixed.cpp" />
     <ClCompile Include="Sources\DrawableVirtual.cpp" />
+    <ClCompile Include="Sources\Ennemi.cpp" />
     <ClCompile Include="Sources\MenuPrincipal.cpp" />
+    <ClCompile Include="Sources\Player.cpp" />
     <ClCompile Include="Sources\RythmNBlood.cpp" />
     <ClCompile Include="Sources\VirtualScene.cpp" />
     <ClCompile Include="Sources\WindowManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Shonen%27em all\Sources\WindowManager.h" />
+    <ClInclude Include="Sources\Bonhomme.h" />
     <ClInclude Include="Sources\DrawableFixed.h" />
     <ClInclude Include="Sources\DrawableVirtual.h" />
+    <ClInclude Include="Sources\Ennemi.h" />
     <ClInclude Include="Sources\MenuPrincipal.h" />
+    <ClInclude Include="Sources\Player.h" />
     <ClInclude Include="Sources\RythmNBlood.h" />
     <ClInclude Include="Sources\VirtualScene.h" />
     <ClInclude Include="Sources\WindowManager.h" />
