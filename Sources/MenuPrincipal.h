@@ -16,7 +16,7 @@ private:
 	sf::Texture boutonGoToRNB;
 
 	sf::Sprite fondSprite;
-	sf::Texture boutonGoToRNBSprite;
+	sf::Sprite boutonGoToRNBSprite;
 
 	void initTextures();
 

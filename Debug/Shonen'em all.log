@@ -1,2 +1,3 @@
-﻿  Main.cpp
+﻿  MenuPrincipal.cpp
+d:\theo\boulot\shonen'em all\sources\menuprincipal.cpp(56): warning C4244: 'argument' : conversion de 'unsigned int' en 'float', perte possible de données
   Shonen'em all.vcxproj -> D:\Theo\Boulot\Shonen'em all\Debug\Shonen'em all.exe
