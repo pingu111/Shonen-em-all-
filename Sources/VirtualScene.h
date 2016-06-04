@@ -9,7 +9,7 @@ class VirtualScene
 
 protected:
 	/* La fenetre d'affichage */
-	std::unique_ptr<WindowManager> window;
+	WindowManager* window;
 
 public:
 	VirtualScene();

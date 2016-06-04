@@ -5,18 +5,21 @@ MenuPrincipal::MenuPrincipal()
 	initTextures();
 }
 
-MenuPrincipal::MenuPrincipal(WindowManager& windowArg)
+MenuPrincipal::MenuPrincipal(WindowManager* windowArg)
 {
+	window = windowArg;
 	initTextures();
-	window = windowArg.clone();
 }
 
 void MenuPrincipal::printBackgroundAndButtons()
 {
-	window->getWindow()->clear();
 
-	window->getWindow()->draw(fondSprite);
-	window->getWindow()->display();
+	// On ajoute tous les sprites qu'on veut afficher 
+	window->add(std::make_unique<sf::Sprite>(fondSprite));
+	window->add(std::make_unique<sf::Sprite>(boutonGoToRNBSprite));
+
+	// On les affiche
+	window->draw();
 }
 
 EnumChoicesUser MenuPrincipal::waitForUser()
@@ -46,6 +49,11 @@ void MenuPrincipal::initTextures()
 	fond.loadFromFile("Ressources\\Menuprincipal\\FondMenuPrincipal.jpg");
 	fondSprite.setTexture(fond);
 
+	boutonGoToRNB.loadFromFile("Ressources\\Menuprincipal\\TextBox.gif");
+	boutonGoToRNBSprite.setTexture(boutonGoToRNB);
+
+	boutonGoToRNBSprite.setPosition(window->getWindow()->getSize().x / 2	 - boutonGoToRNBSprite.getTextureRect().width / 2,
+									window->getWindow()->getSize().y * 5 / 6 - boutonGoToRNBSprite.getTextureRect().height / 2);
 }
 
 

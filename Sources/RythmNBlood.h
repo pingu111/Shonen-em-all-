@@ -15,7 +15,7 @@ public:
 
 	/* Constructeur
 	* param : WindowManager windowArg la fenetre d'affichage */
-	RythmNBlood(WindowManager& windowArg);
+	RythmNBlood(WindowManager * windowArg);
 
 	/* Destructeur */
 	~RythmNBlood();

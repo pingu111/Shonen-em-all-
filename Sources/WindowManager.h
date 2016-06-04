@@ -19,11 +19,18 @@ public:
 	/* Retourne la RenderWinow* */
 	sf::RenderWindow* getWindow();
 
-	/* Renvoie un unique pointer */
-	std::unique_ptr<WindowManager> clone();
+
+	/* Ajoute l'argument dans le vector des sprites qu'on dessinera */
+	void add(std::unique_ptr<sf::Sprite> form);
+
+	/* Dessine la liste des sprites de listSprites */
+	void draw();
 
 private:
 	/* La RenderWindow d'affichage pour tout le programme */
 	sf::RenderWindow window;
+
+	/* La liste des sprites qu'on dessinera */
+	std::vector<std::unique_ptr<sf::Sprite>> listSprites;
 };
 
