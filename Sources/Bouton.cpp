@@ -5,6 +5,11 @@ Bouton::Bouton()
 	;
 }
 
+Bouton::Bouton(sf::Sprite spriteToSet)
+{
+	sprite = spriteToSet;
+}
+
 void Bouton::setSprite(sf::Sprite spriteToSet)
 {
 	sprite = spriteToSet;
@@ -17,15 +22,8 @@ sf::Sprite Bouton::getSprite()
 
 void Bouton::setPosition(int posX, int posY)
 {
-	position.x = posX;
-	position.y = posY;
+	sprite.setPosition(posX, posY);
 }
-
-sf::Vector2i Bouton::getPosition()
-{
-	return position;
-}
-
 
 void Bouton::setOnClick(void(*function)())
 {
@@ -34,10 +32,13 @@ void Bouton::setOnClick(void(*function)())
 
 bool Bouton::isClicked(sf::Vector2i mousePosition)
 {
-	if (position.x < mousePosition.x &&
-		position.x + sprite.getTextureRect().width > mousePosition.x &&
-		position.y < mousePosition.y &&
-		position.y + sprite.getTextureRect().height > mousePosition.y)
+	//std::cout << "Sprite : " <<sprite.getPosition().x << " / " << sprite.getPosition().y << "\n";
+	//std::cout << "Mouse : " << mousePosition.x << " / " << mousePosition.x << "\n";
+
+	if (sprite.getPosition().x < mousePosition.x &&
+		sprite.getPosition().x + sprite.getTextureRect().width > mousePosition.x &&
+		sprite.getPosition().y < mousePosition.y &&
+		sprite.getPosition().y + sprite.getTextureRect().height > mousePosition.y)
 		return true;
 	else
 		return false;

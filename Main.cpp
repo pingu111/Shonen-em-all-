@@ -1,4 +1,5 @@
 #include <memory>
+#include <iostream>
 #include "Sources\MenuPrincipal.h"
 #include "Sources\RythmNBlood.h"
 #include "Sources\WindowManager.h"

@@ -2,8 +2,10 @@
 
 #include <SFML/Graphics.hpp>
 #include <vector>
+#include <iostream>
 #include "WindowManager.h"
 #include "VirtualScene.h"
+#include "Bouton.h"
 
 /* L'enum des diffreentes choix que le joueur pourra faire dans cette scene */
 enum EnumChoicesUser { QUIT, RYTHM, OPTIONS };
@@ -17,6 +19,8 @@ private:
 
 	sf::Sprite fondSprite;
 	sf::Sprite boutonGoToRNBSprite;
+
+	Bouton boutonRNB;
 
 	void initTextures();
 

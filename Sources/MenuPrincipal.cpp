@@ -1,4 +1,5 @@
 #include "MenuPrincipal.h"
+#include <iostream>
 
 MenuPrincipal::MenuPrincipal()
 {
@@ -16,7 +17,7 @@ void MenuPrincipal::printBackgroundAndButtons()
 
 	// On ajoute tous les sprites qu'on veut afficher 
 	window->add(std::make_unique<sf::Sprite>(fondSprite));
-	window->add(std::make_unique<sf::Sprite>(boutonGoToRNBSprite));
+	window->add(std::make_unique<sf::Sprite>(boutonRNB.getSprite()));
 
 	// On les affiche
 	window->draw();
@@ -34,6 +35,13 @@ EnumChoicesUser MenuPrincipal::waitForUser()
 			if (event.type == sf::Event::Closed ||
 				event.key.code == sf::Keyboard::Escape)
 				return QUIT;
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+			{
+				if (boutonRNB.isClicked(sf::Mouse::getPosition(*window->getWindow())))
+				{
+					std::cout << "Clique !\n";
+				}
+			}
 		}		
 		//if(bouton a été cliqué)
 		// return RYTHM;
@@ -54,6 +62,9 @@ void MenuPrincipal::initTextures()
 
 	boutonGoToRNBSprite.setPosition(window->getWindow()->getSize().x / 2	 - boutonGoToRNBSprite.getTextureRect().width / 2,
 									window->getWindow()->getSize().y * 5 / 6 - boutonGoToRNBSprite.getTextureRect().height / 2);
+
+	// On créé le bouton qui cible le Hack n slash
+	boutonRNB.setSprite(boutonGoToRNBSprite);
 }
 
 
