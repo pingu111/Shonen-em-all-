@@ -88,5 +88,8 @@
     <ClInclude Include="..\Shonen%27em all\Sources\Bouton.h">
       <Filter>Source Files\Drawable</Filter>
     </ClInclude>
+    <ClInclude Include="..\Shonen%27em all\Sources\WindowManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

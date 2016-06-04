@@ -1,13 +1,8 @@
-#include "Bonhomme.h"
+#include <Bonhomme.h>
 
-Bonhomme::Bonhomme() 
+Bonhomme::Bonhomme()
 {
 	lifePoint = 0;
-}
-
-Bonhomme::Bonhomme(int lpArg)
-{
-	lifePoint = lpArg;
 }
 
 int Bonhomme::getLifePoint()
@@ -15,8 +10,8 @@ int Bonhomme::getLifePoint()
 	return lifePoint;
 }
 
-void Bonhomme::setLifePoint(int newLp)
+bool Bonhomme::isDead()
 {
-	lifePoint = newLp;
+	return lifePoint <= 0;
 }
 

@@ -4,12 +4,16 @@
 MenuPrincipal::MenuPrincipal()
 {
 	initTextures();
+	printBackgroundAndButtons();
+	waitForUser();
 }
 
 MenuPrincipal::MenuPrincipal(WindowManager* windowArg)
 {
 	window = windowArg;
 	initTextures();
+	printBackgroundAndButtons();
+	waitForUser();
 }
 
 void MenuPrincipal::printBackgroundAndButtons()
