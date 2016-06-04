@@ -13,6 +13,8 @@ public:
 
 	void setSprite(sf::Sprite spriteToSet);
 	void setPosition(int posX, int posY);
+	sf::Vector2i getPosition();
+
 	void setOnClick(void(*function)());
 	sf::Sprite getSprite();
 

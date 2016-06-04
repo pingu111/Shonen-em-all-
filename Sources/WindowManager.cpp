@@ -3,6 +3,7 @@
 WindowManager::WindowManager()
 {
 	window.create(sf::VideoMode(1200, 900), "Shonen'em all");
+	window.setActive(false);
 }
 
 sf::RenderWindow* WindowManager::getWindow()
@@ -15,11 +16,18 @@ WindowManager::~WindowManager()
 
 }
 
-std::unique_ptr<WindowManager> WindowManager::clone()
+void WindowManager::add(std::unique_ptr<sf::Sprite> form)
 {
-	// On ferme la window avant de la passer 
-	window.close();
+	listSprites.push_back(move(form));
+}
 
-	auto uniPtr = std::make_unique<WindowManager>();
-	return move(uniPtr);
+void WindowManager::draw()
+{
+	window.clear();
+
+	for (auto &form : listSprites)
+	{
+		window.draw(*form);
+	}
+	window.display();
 }

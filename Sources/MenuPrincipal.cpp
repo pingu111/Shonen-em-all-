@@ -13,10 +13,12 @@ MenuPrincipal::MenuPrincipal(WindowManager& windowArg)
 
 void MenuPrincipal::printBackgroundAndButtons()
 {
-	window->getWindow()->clear();
 
-	window->getWindow()->draw(fondSprite);
-	window->getWindow()->display();
+	// On ajoute tous les sprites qu'on veut afficher 
+	window->add(std::make_unique<sf::Sprite>(fondSprite));
+
+	// On les affiche
+	window->draw();
 }
 
 EnumChoicesUser MenuPrincipal::waitForUser()

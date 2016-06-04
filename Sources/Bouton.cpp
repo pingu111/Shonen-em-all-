@@ -2,7 +2,7 @@
 
 Bouton::Bouton()
 {
-
+	;
 }
 
 void Bouton::setSprite(sf::Sprite spriteToSet)
@@ -20,6 +20,12 @@ void Bouton::setPosition(int posX, int posY)
 	position.x = posX;
 	position.y = posY;
 }
+
+sf::Vector2i Bouton::getPosition()
+{
+	return position;
+}
+
 
 void Bouton::setOnClick(void(*function)())
 {
