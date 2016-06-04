@@ -42,12 +42,12 @@
     <NuGetPackageImportStamp>ef5c2acb</NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>.\Libraries\SFML-2.3.2\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <IncludePath>C:\Users\paul Turpin\Desktop\Code\Shonen-em-all-\Sources;.\Libraries\SFML-2.3.2\include;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
     <LibraryPath>.\Libraries\SFML-2.3.2\lib;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);</LibraryPath>
     <SourcePath>C:\Users\paul Turpin\Desktop\Code\Shonen-em-all-\Sources;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>.\Libraries\SFML-2.3.2\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <IncludePath>C:\Users\paul Turpin\Desktop\Code\Shonen-em-all-\Sources;.\Libraries\SFML-2.3.2\include;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
     <LibraryPath>.\Libraries\SFML-2.3.2\lib;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);</LibraryPath>
     <SourcePath>C:\Users\paul Turpin\Desktop\Code\Shonen-em-all-\Sources;$(SourcePath)</SourcePath>
   </PropertyGroup>
