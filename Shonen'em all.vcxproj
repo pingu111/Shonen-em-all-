@@ -96,7 +96,7 @@
     <ClCompile Include="Sources\WindowManager.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\Shonen%27em all\Sources\Bouton.hpp" />
+    <ClInclude Include="..\Shonen%27em all\Sources\Bouton.h" />
     <ClInclude Include="..\Shonen%27em all\Sources\WindowManager.h" />
     <ClInclude Include="Sources\Bonhomme.h" />
     <ClInclude Include="Sources\DrawableFixed.h" />

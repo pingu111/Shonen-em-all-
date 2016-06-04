@@ -18,7 +18,7 @@ sf::Sprite Bouton::getSprite()
 void Bouton::setPosition(int posX, int posY)
 {
 	position.x = posX;
-	position.y= posY;
+	position.y = posY;
 }
 
 void Bouton::setOnClick(void(*function)())

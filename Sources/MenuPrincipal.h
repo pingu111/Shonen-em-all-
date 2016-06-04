@@ -12,7 +12,13 @@ class MenuPrincipal : VirtualScene
 {
 
 private:
-	std::vector<sf::Sprite>  listSpritesMenu;
+	sf::Texture fond;
+	sf::Texture boutonGoToRNB;
+
+	sf::Sprite fondSprite;
+	sf::Texture boutonGoToRNBSprite;
+
+	void initTextures();
 
 public:
 	/* Constructeur sans arguments */
@@ -28,6 +34,8 @@ public:
 	/* Fonction bloquante qui attend un choix du l'utilisateur
 		return : le choix de l'utilisateur	*/
 	EnumChoicesUser waitForUser();
+
+	
 
 	/* Destructeur*/
 	~MenuPrincipal();

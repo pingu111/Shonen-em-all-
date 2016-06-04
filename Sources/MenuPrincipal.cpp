@@ -2,11 +2,12 @@
 
 MenuPrincipal::MenuPrincipal()
 {
-	;
+	initTextures();
 }
 
 MenuPrincipal::MenuPrincipal(WindowManager& windowArg)
 {
+	initTextures();
 	window = windowArg.clone();
 }
 
@@ -14,18 +15,14 @@ void MenuPrincipal::printBackgroundAndButtons()
 {
 	window->getWindow()->clear();
 
-	sf::RectangleShape background(sf::Vector2f(	(float)window->getWindow()->getSize().x, 
-												(float)window->getWindow()->getSize().y));
-
-	background.setFillColor(sf::Color::Black);
-	window->getWindow()->draw(background);
+	window->getWindow()->draw(fondSprite);
 	window->getWindow()->display();
 }
 
 EnumChoicesUser MenuPrincipal::waitForUser()
 {
 	// Boucle verifiant les evenements
-	while (window->getWindow()->isOpen())
+	while (true)
 	{
 		sf::Event event;
 
@@ -38,7 +35,17 @@ EnumChoicesUser MenuPrincipal::waitForUser()
 		//if(bouton a été cliqué)
 		// return RYTHM;
 	}
+
+
+
 	return QUIT;
+}
+
+void MenuPrincipal::initTextures()
+{
+	fond.loadFromFile("Ressources\\Menuprincipal\\FondMenuPrincipal.jpg");
+	fondSprite.setTexture(fond);
+
 }
 
 
@@ -46,3 +53,4 @@ MenuPrincipal::~MenuPrincipal()
 {
 	;
 }
+
