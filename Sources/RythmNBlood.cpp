@@ -6,9 +6,9 @@ RythmNBlood::RythmNBlood()
 }
 
 
-RythmNBlood::RythmNBlood(WindowManager & windowArg)
+RythmNBlood::RythmNBlood(WindowManager* windowArg)
 {
-	window = windowArg.clone();
+	window = windowArg;
 }
 
 RythmNBlood::~RythmNBlood()

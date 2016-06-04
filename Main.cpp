@@ -9,7 +9,7 @@ int main()
 {
 	WindowManager windowManager;
 
-	MenuPrincipal menuScene(windowManager);
+	MenuPrincipal menuScene(&windowManager);
 	menuScene.printBackgroundAndButtons();
 
 	EnumChoicesUser choice = menuScene.waitForUser();
@@ -23,7 +23,7 @@ int main()
 		case RYTHM:
 		{
 			// TODO partir sur la scene RNB
-			RythmNBlood rnbScene(windowManager);
+			RythmNBlood rnbScene(&windowManager);
 			break;
 		}
 		default :

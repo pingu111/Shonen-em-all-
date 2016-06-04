@@ -31,3 +31,4 @@ void WindowManager::draw()
 	}
 	window.display();
 }
+

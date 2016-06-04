@@ -5,10 +5,10 @@ MenuPrincipal::MenuPrincipal()
 	initTextures();
 }
 
-MenuPrincipal::MenuPrincipal(WindowManager& windowArg)
+MenuPrincipal::MenuPrincipal(WindowManager* windowArg)
 {
 	initTextures();
-	window = windowArg.clone();
+	window = windowArg;
 }
 
 void MenuPrincipal::printBackgroundAndButtons()

@@ -26,7 +26,7 @@ public:
 
 	/* Constructeur  
 	* param : WindowManager windowArg la fenetre d'affichage */
-	MenuPrincipal(WindowManager& windowArg);
+	MenuPrincipal(WindowManager* windowArg);
 
 	/* Fonction qui affiche et dessine le fond et les boutons du menu principal */
 	void printBackgroundAndButtons();
