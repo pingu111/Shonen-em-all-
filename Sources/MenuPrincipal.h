@@ -1,6 +1,7 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include <vector>
 #include "WindowManager.h"
 #include "VirtualScene.h"
 
@@ -10,7 +11,8 @@ enum EnumChoicesUser { QUIT, RYTHM, OPTIONS };
 class MenuPrincipal : VirtualScene
 {
 
-
+private:
+	std::vector<sf::Sprite>  listSpritesMenu;
 
 public:
 	/* Constructeur sans arguments */
