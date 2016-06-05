@@ -4,14 +4,16 @@ class Bonhomme
 {
 
 protected :
+	float position;
 	/*le nombre de points de vie*/
 	int lifePoint;
 	/*les degats infliges a caque coups*/
 	int strenght;
 	/*une valeur qui reduit les degats reçus*/
 	int armor;
-
-public:
+private:
+	virtual void destroy() = 0;
+public :
 	/* Constructeur 
 	* Param : lpArg, le nombre de points de vie de ce bonhomme */
 	Bonhomme();
@@ -21,6 +23,8 @@ public:
 
 	bool isDead();
 
-	void virtual takeHit(int strenght) = 0;
+	int takeHit(int strenght);
+
+
 };
 
