@@ -20,8 +20,8 @@ void Player::destroy()
 {
 	//TODO fonction
 }
-/*
-void Player::hit(bool isHitLeft, Ennemi enn)
+
+void Player::hit(bool isHitLeft, Ennemi &enn)
 {
 	assert(cooldownTime <= 0);
 	//TODO changer le sprite (gauche/droite)
@@ -32,4 +32,3 @@ void Player::hit(bool isHitLeft, Ennemi enn)
 	if (enn.isDead())
 		score += scoreForKill*scoreMult;
 }
-*/
