@@ -4,7 +4,7 @@
 #include <Bonhomme.h>
 #include <assert.h>
 
-float hitDistance = 5;
+static float hitDistance = 5;
 
 class Ennemi : public Bonhomme
 {
@@ -23,11 +23,13 @@ public :
 	 */
 	void initSpeed(float speed);
 
-	/* update la position de l'ennemi et tappe le player si suffisament proche */
+	/* update la position de l'ennemi */
 	void update();
 
-	void takeHit(float strenght) override;
+	void takeHit(int strenght) override;
 
 	void hitPlayer(Player player);
+
+	bool isHitable();
 
 };

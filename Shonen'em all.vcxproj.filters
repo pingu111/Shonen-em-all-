@@ -53,7 +53,7 @@
     <ClCompile Include="Sources\Ennemi.cpp">
       <Filter>Source Files\Characters</Filter>
     </ClCompile>
-    <ClCompile Include="..\Shonen%27em all\Sources\Bouton.cpp">
+    <ClCompile Include="Sources\Bouton.cpp">
       <Filter>Source Files\Drawable</Filter>
     </ClCompile>
   </ItemGroup>
@@ -85,11 +85,11 @@
     <ClInclude Include="Sources\Ennemi.h">
       <Filter>Source Files\Characters</Filter>
     </ClInclude>
-    <ClInclude Include="..\Shonen%27em all\Sources\Bouton.h">
-      <Filter>Source Files\Drawable</Filter>
-    </ClInclude>
     <ClInclude Include="..\Shonen%27em all\Sources\WindowManager.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Bouton.h">
+      <Filter>Source Files\Drawable</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

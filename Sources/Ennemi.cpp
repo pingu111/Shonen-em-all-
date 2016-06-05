@@ -26,10 +26,16 @@ void Ennemi::makeSuper()
 	//TODO definir un super ennemi
 }
 
-
-void Ennemi::takeHit(float strenght)
+bool Ennemi::isHitable()
 {
-	lifePoint -= (int)(strenght / armor);
+	if (isLeft)
+		return position >= playerPosition - playerHitDistance;
+	return position <= playerPosition + playerHitDistance;
+}
+
+void Ennemi::takeHit(int strenght)
+{
+	lifePoint -= strenght - armor;
 	//TODO potentiellement modifier le sprite
 }
 
@@ -46,18 +52,18 @@ void Ennemi::update()
 	if (isLeft)
 	{
 		position += speed;
-		if (position >= 50 - hitDistance)
+		if (position >= playerPosition - hitDistance)
 		{
-			position = 50 - hitDistance;
+			position = playerPosition - hitDistance;
 		}
 
 	}
 	else
 	{
 		position -= speed;
-		if (position <= 50 + hitDistance)
+		if (position <= playerPosition + hitDistance)
 		{
-			position = 50 + hitDistance;
+			position = playerPosition + hitDistance;
 		}
 	}
 

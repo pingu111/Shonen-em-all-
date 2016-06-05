@@ -7,9 +7,9 @@ protected :
 	/*le nombre de points de vie*/
 	int lifePoint;
 	/*les degats infliges a caque coups*/
-	float strenght;
-	/*une valuer qui divise les degats reçus*/
-	float armor;
+	int strenght;
+	/*une valeur qui reduit les degats reçus*/
+	int armor;
 
 public:
 	/* Constructeur 
@@ -21,6 +21,6 @@ public:
 
 	bool isDead();
 
-	void virtual takeHit(float strenght) = 0;
+	void virtual takeHit(int strenght) = 0;
 };
 
