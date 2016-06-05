@@ -3,9 +3,10 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include <iostream>
-#include "WindowManager.h"
-#include "VirtualScene.h"
-#include "Bouton.h"
+#include <assert.h>
+#include <WindowManager.h>
+#include <VirtualScene.h>
+#include <Bouton.h>
 
 /* L'enum des diffreentes choix que le joueur pourra faire dans cette scene */
 enum EnumChoicesUser { QUIT, RYTHM, OPTIONS };

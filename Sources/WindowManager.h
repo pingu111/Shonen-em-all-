@@ -19,7 +19,6 @@ public:
 	/* Retourne la RenderWinow* */
 	sf::RenderWindow* getWindow();
 
-
 	/* Ajoute l'argument dans le vector des sprites qu'on dessinera */
 	void add(std::unique_ptr<sf::Sprite> form);
 
