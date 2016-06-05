@@ -1,4 +1,4 @@
-#include "MenuPrincipal.h"
+#include <MenuPrincipal.h>
 #include <iostream>
 
 MenuPrincipal::MenuPrincipal()
@@ -58,10 +58,10 @@ EnumChoicesUser MenuPrincipal::waitForUser()
 
 void MenuPrincipal::initTextures()
 {
-	fond.loadFromFile("Ressources\\Menuprincipal\\FondMenuPrincipal.jpg");
+	assert(fond.loadFromFile("Ressources\\Menuprincipal\\FondMenuPrincipal.jpg") == true);
 	fondSprite.setTexture(fond);
 
-	boutonGoToRNB.loadFromFile("Ressources\\Menuprincipal\\TextBox.gif");
+	assert(boutonGoToRNB.loadFromFile("Ressources\\Menuprincipal\\TextBox.gif") == true);
 	boutonGoToRNBSprite.setTexture(boutonGoToRNB);
 
 	boutonGoToRNBSprite.setPosition(window->getWindow()->getSize().x / 2	 - boutonGoToRNBSprite.getTextureRect().width / 2,
