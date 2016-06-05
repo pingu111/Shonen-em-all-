@@ -19,20 +19,17 @@ Ennemi::Ennemi(bool isSpawLeft)
 
 void Ennemi::initSprites()
 {
-	int i = 1;
-	sf::Texture fond;
-	std::string placeFile = "Ressources\\RNB\\EnnemiCours\\EnnemiCours (";
-	placeFile += std::to_string(i);
-	placeFile += ").png";
-	std::cout << i << "\n";
-
-	while (fond.loadFromFile(placeFile))
+	for (int i = 1; i < 14; i++)
 	{
-		std::cout << i << "\n";
-		i++;
-		placeFile = "Ressources\\RNB\\EnnemiCours\\EnnemiCours (";
+		sf::Texture texture;
+		sf::Sprite sprite;
+		std::string placeFile = "Ressources\\RNB\\EnnemiCours\\EnnemiCours (";
 		placeFile += std::to_string(i);
 		placeFile += ").png";
+
+		assert(texture.loadFromFile(placeFile) == true);
+		sprite.setTexture(texture);
+		listSpriteEnnemyMoving.push_back(sprite);
 	}
 }
 
