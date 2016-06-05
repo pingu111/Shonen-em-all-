@@ -11,8 +11,12 @@ class RythmNBlood : VirtualScene
 {
 
 private:
+	/* La liste d'ennemis */
 	std::vector<Ennemi> ennemis;
+
 	static Player player;
+
+	std::unique_ptr<Bouton> buttonQuit;
 
 	/* Lance la scene : appelé par le consytructeur */
 	void launchScene();
@@ -20,8 +24,9 @@ private:
 	/* Charge les images */
 	void initTextures();
 
-	/* Met à jour la scene, les ennemis, ... */
-	void updateScene();
+	/* Met à jour la scene, les ennemis, ... 
+		Est bloquant */
+	void waitForUser();
 
 	/* Affiche les images de fond et les boutons initiaux de la scene */
 	void printBackgroundAndButtons();

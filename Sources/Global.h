@@ -1,0 +1,22 @@
+#pragma once
+
+#include <MenuPrincipal.h>
+#include <RythmNBlood.h>
+#include <WindowManager.h>
+#include <SFML/Graphics.hpp>
+
+enum SceneNames
+{
+	MENU,
+	RNB,
+	VILAIN,
+	WIN,
+	DEFEAT
+};
+
+class Global
+{
+public:
+	static void moveToScene(SceneNames name, WindowManager* window);
+
+};
