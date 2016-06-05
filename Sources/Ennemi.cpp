@@ -13,6 +13,26 @@ Ennemi::Ennemi(bool isSpawLeft)
 		position = 0;
 	else
 		position = 100;
+
+	initSprites();
+}
+
+void Ennemi::initSprites()
+{
+	int i = 1;
+	sf::Texture fond;
+	std::string placeFile = "Ressources\\RNB\\EnnemiCours\\EnnemisCours(";
+	placeFile += std::to_string(i);
+	placeFile += ")";
+	while (fond.loadFromFile(placeFile))
+	{
+			std::cout << i << "\n";
+
+		i++;
+		placeFile = "Ressources\\RNB\\EnnemiCours\\EnnemisCours(";
+		placeFile += std::to_string(i);
+		placeFile += ")";
+	}
 }
 
 void Ennemi::initSpeed(float speed_)
@@ -34,20 +54,13 @@ bool Ennemi::isHitable()
 	return position <= playerPosition + playerHitDistance;
 }
 
-void Ennemi::hitPlayer(Player player)
-{
-	//TODO annimation de degat
-	player.takeHit(strenght);
-	takeHit(armor+lifePoint);
-}
-
 void Ennemi::destroy()
 {
 	isHittable = false;
 	//TODO annimation de mort + clean
 }
 
-void Ennemi::update(Player player)
+void Ennemi::update()
 {
 	assert(!isDead());
 	//deplacement de l'ennemi
@@ -58,7 +71,6 @@ void Ennemi::update(Player player)
 		if (position >= playerPosition - hitDistance)
 		{
 			position = playerPosition - hitDistance;
-			hitPlayer(player);
 		}
 
 	}
@@ -69,7 +81,6 @@ void Ennemi::update(Player player)
 		if (position <= playerPosition + hitDistance)
 		{
 			position = playerPosition + hitDistance;
-			hitPlayer(player);
 		}
 	}
 }

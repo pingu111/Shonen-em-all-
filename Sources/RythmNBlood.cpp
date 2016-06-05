@@ -1,4 +1,4 @@
-#include "RythmNBlood.h"
+#include <RythmNBlood.h>
 
 RythmNBlood::RythmNBlood(WindowManager* windowArg)
 {
@@ -39,8 +39,8 @@ void RythmNBlood::waitForUser()
 		sf::Event event;
 		while (window->getWindow()->pollEvent(event))
 		{
-			for (Ennemi enn : ennemis)
-				enn.update(player);
+/*			for (Ennemi enn : ennemis)
+				enn.update();*/
 
 			if (event.type == sf::Event::Closed ||
 				event.key.code == sf::Keyboard::Escape)

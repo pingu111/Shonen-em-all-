@@ -1,8 +1,11 @@
 #pragma once
-
-#include <Player.h>
 #include <Bonhomme.h>
+#include <Global.h>
 #include <assert.h>
+#include <vector>
+#include <iostream>
+#include <string>
+
 
 static float hitDistance = 5;
 
@@ -13,9 +16,14 @@ private :
 	float speed;
 	bool isSuper;
 	bool isLeft;
-	/*hit the player and commit suicide*/
-	void hitPlayer(Player player);
+
 	void destroy();
+
+	/* La liste des sprites contenant l'ennmi en train de courir */
+	std::vector<sf::Sprite> listSpriteEnnemyMoving;
+
+	void initSprites();
+	
 public :
 	Ennemi(bool isSpawnLeft);
 
@@ -27,7 +35,7 @@ public :
 	void initSpeed(float speed);
 
 	/* update la position de l'ennemi et frappe l'ennemi si necessaire*/
-	void update(Player player);
+	void update();
 
 	/*l'ennemi est-il assez proche pour se prendre un coup*/
 	bool isHitable();

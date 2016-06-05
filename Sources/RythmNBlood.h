@@ -3,7 +3,9 @@
 #include <Global.h>
 #include <memory>
 #include <VirtualScene.h>
+#include <Player.h>
 #include <Ennemi.h>
+
 #include <Bouton.h>
 
 
@@ -13,9 +15,9 @@ class RythmNBlood : VirtualScene
 
 private:
 	/* La liste d'ennemis */
-	std::vector<Ennemi> ennemis;
+	//std::vector<Ennemi> ennemis;
 
-	static Player player;
+	//static Player player;
 
 	std::unique_ptr<Bouton> buttonQuit;
 
