@@ -23,7 +23,7 @@ void RythmNBlood::launchScene()
 
 void RythmNBlood::initTextures()
 {
-	assert(fond.loadFromFile("Ressources\\RNB\\Background.png") == true);
+	assert(fond.loadFromFile("Ressources\\RNB\\Fond.png") == true);
 	fondSprite.setTexture(fond);
 }
 
