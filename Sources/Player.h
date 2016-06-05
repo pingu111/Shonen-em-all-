@@ -1,11 +1,9 @@
 #pragma once
 
 #include <Bonhomme.h>
-#include <Ennemi.h>
 #include <assert.h>
+#include <Global.h>
 
-
-class Ennemi;
 class Player : public Bonhomme
 {
 private:
@@ -20,5 +18,5 @@ public :
 	Player();
 
 	/*frappe un ennemi hitable et ajuste le score*/
-	void hit(bool isHitLeft, Ennemi &enn);
+	void hit(bool isHitLeft, Bonhomme &enn);
 };

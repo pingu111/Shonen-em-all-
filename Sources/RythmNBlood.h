@@ -2,10 +2,10 @@
 
 #include <Global.h>
 #include <memory>
+#include <vector>
 #include <VirtualScene.h>
-#include <Player.h>
 #include <Ennemi.h>
-
+#include <Player.h>
 #include <Bouton.h>
 
 
@@ -17,7 +17,7 @@ private:
 	/* La liste d'ennemis */
 	std::vector<Ennemi> ennemis;
 
-	//static Player player;
+	Player player;
 
 	std::unique_ptr<Bouton> buttonQuit;
 

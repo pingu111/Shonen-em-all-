@@ -21,12 +21,11 @@ void Player::destroy()
 	//TODO fonction
 }
 
-void Player::hit(bool isHitLeft, Ennemi &enn)
+void Player::hit(bool isHitLeft, Bonhomme &enn)
 {
 	assert(cooldownTime <= 0);
 	//TODO changer le sprite (gauche/droite)
 	cooldownTime = cooldown;
-	assert(enn.isHitable());
 	//TODO afficher le score sur l'ecran
 	int hitValue = enn.takeHit(strenght*damageMult);
 	if (enn.isDead())

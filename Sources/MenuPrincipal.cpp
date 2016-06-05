@@ -14,6 +14,7 @@ MenuPrincipal::MenuPrincipal(WindowManager* windowArg)
 	initTextures();
 	printBackgroundAndButtons();
 	waitForUser();
+	boutonRNB = std::make_unique<Bouton>();
 }
 
 void MenuPrincipal::printBackgroundAndButtons()
@@ -21,7 +22,7 @@ void MenuPrincipal::printBackgroundAndButtons()
 
 	// On ajoute tous les sprites qu'on veut afficher 
 	window->add(std::make_unique<sf::Sprite>(fondSprite));
-	window->add(std::make_unique<sf::Sprite>(boutonRNB.getSprite()));
+//	window->add(std::make_unique<sf::Sprite>(boutonRNB->getSprite()));
 
 	// On les affiche
 	window->draw();
@@ -41,7 +42,7 @@ EnumChoicesUser MenuPrincipal::waitForUser()
 				return QUIT;
 			if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 			{
-				if (boutonRNB.isClicked(sf::Mouse::getPosition(*window->getWindow())))
+				if (boutonRNB->isClicked(sf::Mouse::getPosition(*window->getWindow())))
 				{
 					std::cout << "Clique !\n";
 					Global::moveToScene(SceneNames::RNB, window);
@@ -64,11 +65,11 @@ void MenuPrincipal::initTextures()
 	assert(boutonGoToRNB.loadFromFile("Ressources\\Menuprincipal\\TextBox.gif") == true);
 	boutonGoToRNBSprite.setTexture(boutonGoToRNB);
 
-	boutonGoToRNBSprite.setPosition((float) window->getWindow()->getSize().x / 2	 - boutonGoToRNBSprite.getTextureRect().width / 2,
+	boutonGoToRNBSprite.setPosition((float) window->getWindow()->getSize().x / 2	 - boutonGoToRNBSprite.getTextureRect().width  / 2,
 									(float) window->getWindow()->getSize().y * 5 / 6 - boutonGoToRNBSprite.getTextureRect().height / 2);
 
 	// On créé le bouton qui cible le Hack n slash
-	boutonRNB.setSprite(boutonGoToRNBSprite);
+	boutonRNB->setSprite(boutonGoToRNBSprite);
 }
 
 
