@@ -23,12 +23,13 @@ void WindowManager::add(std::unique_ptr<sf::Sprite> form)
 
 void WindowManager::draw()
 {
-	window.clear();
+	window.clear(sf::Color::White);
 
 	for (auto &form : listSprites)
 	{
 		window.draw(*form);
 	}
 	window.display();
+	listSprites.clear();
 }
 

@@ -30,7 +30,7 @@ void MenuPrincipal::printBackgroundAndButtons()
 EnumChoicesUser MenuPrincipal::waitForUser()
 {
 	// Boucle verifiant les evenements
-	while (true)
+	while (window->getWindow()->isOpen())
 	{
 		sf::Event event;
 
@@ -44,14 +44,14 @@ EnumChoicesUser MenuPrincipal::waitForUser()
 				if (boutonRNB.isClicked(sf::Mouse::getPosition(*window->getWindow())))
 				{
 					std::cout << "Clique !\n";
+					Global::moveToScene(SceneNames::RNB, window);
+					return RYTHM;
 				}
 			}
 		}		
 		//if(bouton a été cliqué)
 		// return RYTHM;
 	}
-
-
 
 	return QUIT;
 }
@@ -64,8 +64,8 @@ void MenuPrincipal::initTextures()
 	assert(boutonGoToRNB.loadFromFile("Ressources\\Menuprincipal\\TextBox.gif") == true);
 	boutonGoToRNBSprite.setTexture(boutonGoToRNB);
 
-	boutonGoToRNBSprite.setPosition(window->getWindow()->getSize().x / 2	 - boutonGoToRNBSprite.getTextureRect().width / 2,
-									window->getWindow()->getSize().y * 5 / 6 - boutonGoToRNBSprite.getTextureRect().height / 2);
+	boutonGoToRNBSprite.setPosition((float) window->getWindow()->getSize().x / 2	 - boutonGoToRNBSprite.getTextureRect().width / 2,
+									(float) window->getWindow()->getSize().y * 5 / 6 - boutonGoToRNBSprite.getTextureRect().height / 2);
 
 	// On créé le bouton qui cible le Hack n slash
 	boutonRNB.setSprite(boutonGoToRNBSprite);

@@ -22,7 +22,8 @@ public:
 	/* Ajoute l'argument dans le vector des sprites qu'on dessinera */
 	void add(std::unique_ptr<sf::Sprite> form);
 
-	/* Dessine la liste des sprites de listSprites */
+	/* Dessine la liste des sprites de listSprites 
+	 Et vide la liste des sprites à dessiner */
 	void draw();
 
 private:

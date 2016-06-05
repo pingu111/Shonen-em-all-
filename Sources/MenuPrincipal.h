@@ -1,10 +1,9 @@
 #pragma once
 
-#include <SFML/Graphics.hpp>
+#include <Global.h>
 #include <vector>
 #include <iostream>
 #include <assert.h>
-#include <WindowManager.h>
 #include <VirtualScene.h>
 #include <Bouton.h>
 
