@@ -33,20 +33,18 @@ bool Ennemi::isHitable()
 	return position <= playerPosition + playerHitDistance;
 }
 
-void Ennemi::takeHit(int strenght)
-{
-	lifePoint -= strenght - armor;
-	//TODO potentiellement modifier le sprite
-}
-
 void Ennemi::hitPlayer(Player player)
 {
 	player.takeHit(strenght);
-	takeHit(armor*lifePoint);
+	takeHit(armor+lifePoint);
 }
 
+void Ennemi::destroy()
+{
+	//TODO annimation de mort + clean
+}
 
-void Ennemi::update()
+void Ennemi::update(Player player)
 {
 	//deplacement de l'ennemi
 	if (isLeft)
@@ -55,6 +53,7 @@ void Ennemi::update()
 		if (position >= playerPosition - hitDistance)
 		{
 			position = playerPosition - hitDistance;
+			hitPlayer(player);
 		}
 
 	}
@@ -64,8 +63,7 @@ void Ennemi::update()
 		if (position <= playerPosition + hitDistance)
 		{
 			position = playerPosition + hitDistance;
+			hitPlayer(player);
 		}
 	}
-
-
 }

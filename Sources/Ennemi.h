@@ -9,10 +9,12 @@ static float hitDistance = 5;
 class Ennemi : public Bonhomme
 {
 private :
-	float position;
 	float speed;
 	bool isSuper;
 	bool isLeft;
+	/*hit the player and commit suicide*/
+	void hitPlayer(Player player);
+	void destroy();
 public :
 	Ennemi(bool isSpawnLeft);
 
@@ -23,13 +25,10 @@ public :
 	 */
 	void initSpeed(float speed);
 
-	/* update la position de l'ennemi */
-	void update();
+	/* update la position de l'ennemi et frappe l'ennemi si necessaire*/
+	void update(Player player);
 
-	void takeHit(int strenght) override;
-
-	void hitPlayer(Player player);
-
+	/*l'ennemi est-il assez proche pour se prendre un coup*/
 	bool isHitable();
 
 };
