@@ -20,7 +20,7 @@ private:
 	sf::Sprite fondSprite;
 	sf::Sprite boutonGoToRNBSprite;
 
-	std::unique_ptr<Bouton> boutonRNB;
+	Bouton boutonRNB;
 
 	void initTextures();
 

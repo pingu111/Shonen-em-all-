@@ -21,17 +21,18 @@ void Ennemi::initSprites()
 {
 	int i = 1;
 	sf::Texture fond;
-	std::string placeFile = "Ressources\\RNB\\EnnemiCours\\EnnemisCours(";
+	std::string placeFile = "Ressources\\RNB\\EnnemiCours\\EnnemiCours(";
 	placeFile += std::to_string(i);
-	placeFile += ")";
+	placeFile += ").png";
+	std::cout << i << "\n";
+
 	while (fond.loadFromFile(placeFile))
 	{
-			std::cout << i << "\n";
-
+		std::cout << i << "\n";
 		i++;
-		placeFile = "Ressources\\RNB\\EnnemiCours\\EnnemisCours(";
+		placeFile = "Ressources\\RNB\\EnnemiCours\\EnnemiCours(";
 		placeFile += std::to_string(i);
-		placeFile += ")";
+		placeFile += ").png";
 	}
 }
 

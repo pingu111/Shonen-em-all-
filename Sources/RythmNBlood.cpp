@@ -21,6 +21,8 @@ void RythmNBlood::initTextures()
 {
 	assert(fond.loadFromFile("Ressources\\RNB\\Fond.png") == true);
 	fondSprite.setTexture(fond);
+	Ennemi lol(false);
+
 }
 
 void RythmNBlood::printBackgroundAndButtons()
