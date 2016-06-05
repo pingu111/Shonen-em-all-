@@ -9,6 +9,7 @@ static float hitDistance = 5;
 class Ennemi : public Bonhomme
 {
 private :
+	bool isHittable;
 	float speed;
 	bool isSuper;
 	bool isLeft;
