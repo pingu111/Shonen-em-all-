@@ -4,6 +4,7 @@
 #include <memory>
 #include <VirtualScene.h>
 #include <Ennemi.h>
+#include <Bouton.h>
 
 
 

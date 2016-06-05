@@ -59,7 +59,7 @@
     <ClCompile Include="Sources\Bouton.cpp">
       <Filter>Source Files\Drawable</Filter>
     </ClCompile>
-    <ClCompile Include="..\Shonen%27em all\Sources\Global.cpp">
+    <ClCompile Include="Sources\Global.cpp">
       <Filter>Source Files\Utils</Filter>
     </ClCompile>
   </ItemGroup>
@@ -97,7 +97,7 @@
     <ClInclude Include="Sources\Bouton.h">
       <Filter>Source Files\Drawable</Filter>
     </ClInclude>
-    <ClInclude Include="..\Shonen%27em all\Sources\Global.h">
+    <ClInclude Include="Sources\Global.h">
       <Filter>Source Files\Utils</Filter>
     </ClInclude>
   </ItemGroup>

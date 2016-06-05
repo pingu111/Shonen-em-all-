@@ -16,10 +16,10 @@ private:
 	void destroy();
 	bool isSpriteLeft;
 	float cooldownTime;
-	float damageMult;
-	float scoreMult;
-	float score;
-	float maxHit;
+	int damageMult;
+	int scoreMult;
+	int score;
+	int maxHit;
 public :
 	Player();
 
