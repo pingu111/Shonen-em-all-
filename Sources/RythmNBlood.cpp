@@ -14,11 +14,7 @@ void RythmNBlood::launchScene()
 {
 	initTextures();
 	printBackgroundAndButtons();
-	while (true)
-	{
-		updateScene();
-
-	}
+	waitForUser();
 }
 
 void RythmNBlood::initTextures()
@@ -36,8 +32,28 @@ void RythmNBlood::printBackgroundAndButtons()
 	window->draw();
 }
 
-void RythmNBlood::updateScene()
+void RythmNBlood::waitForUser()
 {
-	for (Ennemi enn : ennemis)
-		enn.update();
+	while (window->getWindow()->isOpen())
+	{
+		sf::Event event;
+		while (window->getWindow()->pollEvent(event))
+		{
+			for (Ennemi enn : ennemis)
+				enn.update(player);
+
+			if (event.type == sf::Event::Closed ||
+				event.key.code == sf::Keyboard::Escape)
+				;
+			if (event.key.code == sf::Keyboard::Left)
+				;
+			if (event.key.code == sf::Keyboard::Right)
+				;
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+			{
+				//On parcours les boutons et on verifie s'ils sont cliqués
+			}
+			
+		}
+	}
 }
