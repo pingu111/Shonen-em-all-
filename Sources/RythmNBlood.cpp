@@ -94,18 +94,18 @@ void RythmNBlood::initSprite()
 	assert(fond.loadFromFile("Ressources\\RNB\\Fond.png") == true);
 	fondSprite.setTexture(fond);
 
-	for (int i = 1; i < 19; i++)
+	for (int i = 0; i < 18; i++)
 	{
 		sf::Image image;
 		sf::Texture texture;
 		sf::Sprite sprite;
 
-		std::string placeFile = "Ressources\\RNB\\PlayerTape\\Tape (";
+		std::string placeFile = "Ressources\\RNB\\PlayerTape\\frame_";
 		placeFile += std::to_string(i);
-		placeFile += ").png";
+		placeFile += "_delay-0.03s.gif";
 
 		assert(image.loadFromFile(placeFile) == true);
-		image.createMaskFromColor(sf::Color::Green);
+		image.createMaskFromColor(sf::Color(0,255,0));
 		
 		texture.loadFromImage(image);
 		sprite.setTexture(texture);
@@ -124,15 +124,15 @@ void RythmNBlood::initSprite()
 		}
 	}
 
-	for (int i = 1; i < 14; i++)
+	for (int i = 0; i < 13; i++)
 	{
 		sf::Image image;
 		sf::Texture texture;
 		sf::Sprite sprite;
 
-		std::string placeFile = "Ressources\\RNB\\EnnemiCours\\EnnemiCours (";
+		std::string placeFile = "Ressources\\RNB\\EnnemiCours\\frame_";
 		placeFile += std::to_string(i);
-		placeFile += ").png";
+		placeFile += "_delay-0.03s.gif";
 
 		assert(image.loadFromFile(placeFile) == true);
 		image.createMaskFromColor(sf::Color::Green);
