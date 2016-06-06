@@ -23,11 +23,6 @@ private :
 	bool isLeft;
 
 	void destroy();
-
-	/* La liste des sprites contenant l'ennmi en train de courir */
-	std::vector<sf::Sprite> listSpriteEnnemyMoving;
-
-	void initSprites();
 	
 public :
 	Ennemi(bool isSpawnLeft);
@@ -47,5 +42,7 @@ public :
 
 	bool isDead();
 	int takeHit(int strenght);
+
+	float getXPosition();
 
 };

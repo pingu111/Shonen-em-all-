@@ -13,24 +13,6 @@ Ennemi::Ennemi(bool isSpawLeft)
 		position = 0;
 	else
 		position = 100;
-
-	initSprites();
-}
-
-void Ennemi::initSprites()
-{
-	for (int i = 1; i < 14; i++)
-	{
-		sf::Texture texture;
-		sf::Sprite sprite;
-		std::string placeFile = "Ressources\\RNB\\EnnemiCours\\EnnemiCours (";
-		placeFile += std::to_string(i);
-		placeFile += ").png";
-
-		assert(texture.loadFromFile(placeFile) == true);
-		sprite.setTexture(texture);
-		listSpriteEnnemyMoving.push_back(sprite);
-	}
 }
 
 void Ennemi::initSpeed(float speed_)
@@ -91,4 +73,9 @@ void Ennemi::update()
 			position = playerPosition + hitDistance;
 		}
 	}
+}
+
+float Ennemi::getXPosition()
+{
+	return position;
 }

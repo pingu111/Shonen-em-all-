@@ -20,6 +20,8 @@ void Player::destroy()
 	//TODO fonction
 }
 
+
+
 void Player::hit(bool isHitLeft, Ennemi &enn)
 {
 	assert(cooldownTime <= 0);
@@ -29,4 +31,9 @@ void Player::hit(bool isHitLeft, Ennemi &enn)
 	int hitValue = enn.takeHit(strenght*damageMult);
 	if (enn.isDead())
 		score += scoreForKill*scoreMult;
+}
+
+float Player::getXPosition()
+{
+	return position;
 }

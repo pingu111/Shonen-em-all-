@@ -14,9 +14,20 @@ private:
 	/* La liste d'ennemis */
 	std::vector<Ennemi> ennemis;
 
-	Player player;
+	/* La liste des sprites contenant l'ennmi en train de courir */
+	std::vector<sf::Sprite> listSpriteEnnemyMoving;
+
+	/* La liste des sprites du joueur en train de taper */
+	std::vector<sf::Sprite> listSpritePlayerHitting;
+
+	sf::Sprite playerWaitingSprite;
+
+	static Player player;
 
 	Bouton buttonQuit;
+
+	/* Initialise les sprites du joueur et des ennemis*/
+	void initSprite();
 
 	/* Lance la scene : appelé par le consytructeur */
 	void launchScene();

@@ -18,8 +18,12 @@ private:
 	int scoreMult;
 	int score;
 	int maxHit;
+
+
 public :
 	Player();
+
+	float getXPosition();
 
 	/*frappe un ennemi hitable et ajuste le score*/
 	void hit(bool isHitLeft, Ennemi &enn);
