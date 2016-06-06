@@ -6,3 +6,5 @@ static const float playerPosition = 50;
 static const float cooldown = 10;
 static const int startingLifePoints = 5;
 static const int scoreForKill = 1;
+static const int ennemiSpeed = 1;
+

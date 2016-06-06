@@ -4,7 +4,6 @@
 Player::Player()
 {
 	lifePoint = startingLifePoints;
-	position = playerPosition;
 	score = 0;
 	isSpriteLeft = true;
 	cooldownTime = 0;
@@ -31,9 +30,4 @@ void Player::hit(bool isHitLeft, Ennemi &enn)
 	int hitValue = enn.takeHit(strenght*damageMult);
 	if (enn.isDead())
 		score += scoreForKill*scoreMult;
-}
-
-float Player::getXPosition()
-{
-	return position;
 }

@@ -8,7 +8,6 @@
 class Player
 {
 private:
-	float position;
 	int lifePoint;
 	int strenght;
 	void destroy();
@@ -22,8 +21,6 @@ private:
 
 public :
 	Player();
-
-	float getXPosition();
 
 	/*frappe un ennemi hitable et ajuste le score*/
 	void hit(bool isHitLeft, Ennemi &enn);

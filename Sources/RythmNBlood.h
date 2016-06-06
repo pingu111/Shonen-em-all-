@@ -3,6 +3,8 @@
 #include <Global.h>
 #include <memory>
 #include <vector>
+#include <map>
+
 #include <VirtualScene.h>
 #include <Player.h>
 #include <Bouton.h>
@@ -11,6 +13,8 @@ class RythmNBlood : VirtualScene
 {
 
 private:
+
+	int idEnnemi;
 	/* La liste d'ennemis */
 	std::vector<Ennemi> ennemis;
 
@@ -19,6 +23,9 @@ private:
 
 	/* La liste des sprites du joueur en train de taper */
 	std::vector<sf::Sprite> listSpritePlayerHitting;
+
+	/* La map faisant correspondre un ennemi à un sprite */
+	std::map<Ennemi, sf::Sprite> mapSpriteEnnemi;
 
 	sf::Sprite playerWaitingSprite;
 
@@ -32,8 +39,6 @@ private:
 	/* Lance la scene : appelé par le consytructeur */
 	void launchScene();
 
-	/* Charge les images */
-	void initTextures();
 
 	/* Met à jour la scene, les ennemis, ... 
 		Est bloquant */
@@ -41,6 +46,10 @@ private:
 
 	/* Affiche les images de fond et les boutons initiaux de la scene */
 	void printBackgroundAndButtons();
+
+	/* Ajoute des ennemis 
+	   Retourne le nouveau timer */
+	std::time_t addEnnemies(std::time_t timeLastCall);
 
 
 	/* Les sprites et textures pour le background */

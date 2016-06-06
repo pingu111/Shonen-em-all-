@@ -21,11 +21,10 @@ private :
 	float speed;
 	bool isSuper;
 	bool isLeft;
-
 	void destroy();
 	
 public :
-	Ennemi(bool isSpawnLeft);
+	Ennemi(bool isSpawnLeft , int idEnnemi);
 
 	/* transforme un ennemi en super ennemi */
 	void makeSuper();
@@ -45,4 +44,7 @@ public :
 
 	float getXPosition();
 
+	int id;
 };
+
+bool  operator< (const  Ennemi a, const Ennemi b);

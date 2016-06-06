@@ -1,7 +1,8 @@
 #include <Ennemi.h>
 
-Ennemi::Ennemi(bool isSpawLeft)
+Ennemi::Ennemi(bool isSpawLeft , int idEnnemi)
 {
+	id = idEnnemi;
 	lifePoint = 1;
 	isHittable = false;
 	speed = 0;
@@ -36,7 +37,7 @@ bool Ennemi::isHitable()
 
 bool Ennemi::isDead()
 {
-	return false;
+	return lifePoint <= 0;
 }
 
 int Ennemi::takeHit(int strenght)
@@ -78,4 +79,10 @@ void Ennemi::update()
 float Ennemi::getXPosition()
 {
 	return position;
+}
+
+
+bool operator< (const  Ennemi a, const Ennemi b)
+{
+	return (a.id < b.id);
 }
