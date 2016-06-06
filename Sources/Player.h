@@ -1,12 +1,16 @@
 #pragma once
 
-#include <Bonhomme.h>
+//les includes servent quand on se sert de fonctions ou bien permettent de creer des membres de la classe
 #include <assert.h>
 #include <Global.h>
+#include <Ennemi.h>
 
-class Player : public Bonhomme
+class Player
 {
 private:
+	float position;
+	int lifePoint;
+	int strenght;
 	void destroy();
 	bool isSpriteLeft;
 	float cooldownTime;
@@ -18,5 +22,5 @@ public :
 	Player();
 
 	/*frappe un ennemi hitable et ajuste le score*/
-	void hit(bool isHitLeft, Bonhomme &enn);
+	void hit(bool isHitLeft, Ennemi &enn);
 };

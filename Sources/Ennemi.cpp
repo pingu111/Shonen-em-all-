@@ -52,6 +52,16 @@ bool Ennemi::isHitable()
 	return position <= playerPosition + playerHitDistance;
 }
 
+bool Ennemi::isDead()
+{
+	return false;
+}
+
+int Ennemi::takeHit(int strenght)
+{
+	return 0;
+}
+
 void Ennemi::destroy()
 {
 	isHittable = false;

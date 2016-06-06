@@ -4,22 +4,19 @@
 #include <memory>
 #include <vector>
 #include <VirtualScene.h>
-#include <Ennemi.h>
 #include <Player.h>
 #include <Bouton.h>
-
-
 
 class RythmNBlood : VirtualScene
 {
 
 private:
 	/* La liste d'ennemis */
-	std::vector<Ennemi> ennemis;
+	//std::vector<Ennemi> ennemis;
 
 	Player player;
 
-	std::unique_ptr<Bouton> buttonQuit;
+	Bouton buttonQuit;
 
 	/* Lance la scene : appelé par le consytructeur */
 	void launchScene();
@@ -42,7 +39,7 @@ private:
 public:
 	/* Constructeur
 	* param : WindowManager windowArg la fenetre d'affichage */
-	RythmNBlood(WindowManager * windowArg);
+	RythmNBlood(WindowManager *windowArg);
 
 	/* Destructeur */
 	~RythmNBlood();

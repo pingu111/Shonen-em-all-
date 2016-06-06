@@ -1,5 +1,5 @@
 #pragma once
-#include <Bonhomme.h>
+
 #include <Global.h>
 #include <assert.h>
 #include <vector>
@@ -9,9 +9,13 @@
 
 static float hitDistance = 5;
 
-class Ennemi : public Bonhomme
+class Ennemi
 {
 private :
+	float position;
+	int lifePoint;
+	int strenght;
+	int armor;
 	bool isHittable;
 	float speed;
 	bool isSuper;
@@ -39,5 +43,8 @@ public :
 
 	/*l'ennemi est-il assez proche pour se prendre un coup*/
 	bool isHitable();
+
+	bool isDead();
+	int takeHit(int strenght);
 
 };

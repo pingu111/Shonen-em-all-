@@ -5,7 +5,6 @@ Player::Player()
 {
 	lifePoint = startingLifePoints;
 	position = playerPosition;
-	armor = 0;
 	score = 0;
 	isSpriteLeft = true;
 	cooldownTime = 0;
@@ -21,7 +20,7 @@ void Player::destroy()
 	//TODO fonction
 }
 
-void Player::hit(bool isHitLeft, Bonhomme &enn)
+void Player::hit(bool isHitLeft, Ennemi &enn)
 {
 	assert(cooldownTime <= 0);
 	//TODO changer le sprite (gauche/droite)
