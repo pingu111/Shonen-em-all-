@@ -36,7 +36,7 @@ void RythmNBlood::waitForUser()
 	while (window->getWindow()->isOpen())
 	{
 		printBackgroundAndButtons();
-
+		window->add(std::make_unique<sf::Sprite>(playerWaitingSprite));
 		timeLastAdd = addEnnemies(timeLastAdd);
 
 		std::vector<Ennemi> ennemiesHittables;
@@ -48,8 +48,10 @@ void RythmNBlood::waitForUser()
 			if (!enn.isDead())
 			{
 				mapSpriteEnnemi.at(enn).setPosition(
-					(float)window->getWindow()->getSize().x * enn.getXPosition() / 100,
-					(float)window->getWindow()->getSize().y * 3 / 4);
+					 (float)window->getWindow()->getSize().x * enn.getXPosition() / 100 
+					- mapSpriteEnnemi.at(enn).getTextureRect().width / 2,
+					+ (float)window->getWindow()->getSize().y * 3 / 4 
+					- mapSpriteEnnemi.at(enn).getTextureRect().height / 2);
 				window->add(std::make_unique<sf::Sprite>(mapSpriteEnnemi.at(enn)));
 			}
 		}
@@ -94,9 +96,9 @@ void RythmNBlood::initSprite()
 
 	for (int i = 1; i < 19; i++)
 	{
+		sf::Image image;
 		sf::Texture texture;
 		sf::Sprite sprite;
-		sf::Image image;
 
 		std::string placeFile = "Ressources\\RNB\\PlayerTape\\Tape (";
 		placeFile += std::to_string(i);
@@ -108,8 +110,8 @@ void RythmNBlood::initSprite()
 		texture.loadFromImage(image);
 		sprite.setTexture(texture);
 
-		sprite.setPosition((float)window->getWindow()->getSize().x * playerPosition / 100,
-						   (float)window->getWindow()->getSize().y * 3 / 4);
+		sprite.setPosition( (float)window->getWindow()->getSize().x * playerPosition / 100 - sprite.getTextureRect().width / 2,
+										+ (float)window->getWindow()->getSize().y * 3 / 4 - sprite.getTextureRect().height / 2);
 
 		listSpritePlayerHitting.push_back(sprite);
 		if (i == 1)
@@ -118,9 +120,9 @@ void RythmNBlood::initSprite()
 
 	for (int i = 1; i < 14; i++)
 	{
+		sf::Image image;
 		sf::Texture texture;
 		sf::Sprite sprite;
-		sf::Image image;
 
 		std::string placeFile = "Ressources\\RNB\\EnnemiCours\\EnnemiCours (";
 		placeFile += std::to_string(i);
