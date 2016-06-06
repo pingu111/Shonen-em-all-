@@ -1,14 +1,11 @@
 #include <memory>
 #include <iostream>
-#include <Global.h>
-
-
-
+#include <SceneManager.h>
 
 
 int main()
 {
 	WindowManager windowManager;
-	Global::moveToScene(SceneNames::MENU , &windowManager);
+	SceneManager::moveToScene(SceneNames::MENU , &windowManager);
 	return 0;
 }

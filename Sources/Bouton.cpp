@@ -8,10 +8,12 @@ Bouton::Bouton()
 Bouton::Bouton(sf::Sprite spriteToSet)
 {
 	setSprite(spriteToSet);
+
 }
 
 void Bouton::setSprite(sf::Sprite spriteToSet)
 {
+	sf::Sprite spriteBis = spriteToSet;
 	sprite = spriteToSet;
 }
 

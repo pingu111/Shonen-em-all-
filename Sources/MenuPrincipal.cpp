@@ -1,5 +1,4 @@
 #include <MenuPrincipal.h>
-#include <iostream>
 
 MenuPrincipal::MenuPrincipal()
 {
@@ -45,7 +44,7 @@ EnumChoicesUser MenuPrincipal::waitForUser()
 				if (boutonRNB->isClicked(sf::Mouse::getPosition(*window->getWindow())))
 				{
 					std::cout << "Clique !\n";
-					Global::moveToScene(SceneNames::RNB, window);
+					SceneManager::moveToScene(SceneNames::RNB, window);
 					return RYTHM;
 				}
 			}

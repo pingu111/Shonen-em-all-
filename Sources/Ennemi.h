@@ -1,7 +1,8 @@
 #pragma once
 
-#include <Global.h>
 #include <assert.h>
+#include <SFML\Graphics.hpp>
+#include <Global.h>
 #include <vector>
 #include <iostream>
 #include <string>

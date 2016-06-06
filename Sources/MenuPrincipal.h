@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Global.h>
+#include <SceneManager.h>
 #include <vector>
 #include <iostream>
 #include <assert.h>
