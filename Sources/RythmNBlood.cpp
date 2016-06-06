@@ -59,26 +59,33 @@ void RythmNBlood::waitForUser()
 		sf::Event event;
 		while (window->getWindow()->pollEvent(event))
 		{
-			if (event.type == sf::Event::Closed ||
-				event.key.code == sf::Keyboard::Escape)
+			if (event.type == sf::Event::Closed )
 			{
 				//TODO QUITTER PROPREMENT CAPSLOCKMAGGLE;
 			}
-			if (event.key.code == sf::Keyboard::Left)
+			else if (event.type == sf::Event::KeyPressed)
+			{
+				if (event.key.code == sf::Keyboard::Escape)
+				{
+					std::cout << " sf::Keyboard::Escape\n";
+					system("pause");
+				}
+			}
+			else if (event.key.code == sf::Keyboard::Left)
 			{
 				for (auto &enn : ennemiesHittables)
 				{
 					player.hit(true, *enn);
 				}
 			}
-			if (event.key.code == sf::Keyboard::Right)
+			else if (event.key.code == sf::Keyboard::Right)
 			{
 				for (auto &enn : ennemiesHittables)
 				{
 					player.hit(false, *enn);
 				}
 			}
-			if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+			else if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 			{
 				//On parcours les boutons et on verifie s'ils sont cliqués
 			}

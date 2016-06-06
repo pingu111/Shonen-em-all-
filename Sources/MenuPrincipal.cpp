@@ -36,10 +36,22 @@ EnumChoicesUser MenuPrincipal::waitForUser()
 
 		while (window->getWindow()->pollEvent(event))
 		{
-			if (event.type == sf::Event::Closed ||
-				event.key.code == sf::Keyboard::Escape)
+			if (event.type == sf::Event::Closed)
+			{
+				std::cout << "sf::Event::Closed\n";
+				system("pause");
 				return QUIT;
-			if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+			}
+			else if (event.type == sf::Event::KeyPressed)
+			{
+				if (event.key.code == sf::Keyboard::Escape)
+				{
+					std::cout << " sf::Keyboard::Escape\n";
+					system("pause");
+					return QUIT;
+				}
+			}
+			else if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 			{
 				if (boutonRNB.isClicked(sf::Mouse::getPosition(*window->getWindow())))
 				{
