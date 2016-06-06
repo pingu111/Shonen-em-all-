@@ -113,7 +113,7 @@ void RythmNBlood::initSprite()
 		sprite.setPosition( (float)window->getWindow()->getSize().x * playerPosition / 100 - sprite.getTextureRect().width / 2,
 										+ (float)window->getWindow()->getSize().y * 3 / 4 - sprite.getTextureRect().height / 2);
 
-		listSpritePlayerHitting.push_back(sprite);
+		listSpritePlayerHitting.push_back(std::pair<sf::Sprite,std::unique_ptr<sf::Texture>>(sprite,std::make_unique<sf::Texture>(texture)));
 		if (i == 1)
 			playerWaitingSprite = sprite;
 	}
@@ -133,7 +133,7 @@ void RythmNBlood::initSprite()
 		texture.loadFromImage(image);
 
 		sprite.setTexture(texture);
-		listSpriteEnnemyMoving.push_back(sprite);
+		listSpriteEnnemyMoving.push_back(std::pair<sf::Sprite, std::unique_ptr<sf::Texture>>(sprite, std::make_unique<sf::Texture>(texture)));
 	}
 
 }
@@ -150,7 +150,7 @@ std::time_t RythmNBlood::addEnnemies(std::time_t timeLastAdd)
 		std::shared_ptr<Ennemi> newEnn = std::make_shared<Ennemi>(newEnnemi);
 		
 		mapSpriteEnnemi.insert(std::pair<std::shared_ptr<Ennemi>, sf::Sprite>
-							(newEnn, listSpriteEnnemyMoving[0]));
+							(newEnn, listSpriteEnnemyMoving[0].first));
 		ennemis.push_back(newEnn);
 		std::cout << " ennemi ajoute \n";
 	}
