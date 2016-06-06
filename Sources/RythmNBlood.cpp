@@ -96,11 +96,16 @@ void RythmNBlood::initSprite()
 	{
 		sf::Texture texture;
 		sf::Sprite sprite;
+		sf::Image image;
+
 		std::string placeFile = "Ressources\\RNB\\PlayerTape\\Tape (";
 		placeFile += std::to_string(i);
 		placeFile += ").png";
 
-		assert(texture.loadFromFile(placeFile) == true);
+		assert(image.loadFromFile(placeFile) == true);
+		image.createMaskFromColor(sf::Color::Green);
+		
+		texture.loadFromImage(image);
 		sprite.setTexture(texture);
 
 		sprite.setPosition((float)window->getWindow()->getSize().x * playerPosition / 100,
@@ -115,11 +120,16 @@ void RythmNBlood::initSprite()
 	{
 		sf::Texture texture;
 		sf::Sprite sprite;
+		sf::Image image;
+
 		std::string placeFile = "Ressources\\RNB\\EnnemiCours\\EnnemiCours (";
 		placeFile += std::to_string(i);
 		placeFile += ").png";
 
-		assert(texture.loadFromFile(placeFile) == true);
+		assert(image.loadFromFile(placeFile) == true);
+		image.createMaskFromColor(sf::Color::Green);
+		texture.loadFromImage(image);
+
 		sprite.setTexture(texture);
 		listSpriteEnnemyMoving.push_back(sprite);
 	}
