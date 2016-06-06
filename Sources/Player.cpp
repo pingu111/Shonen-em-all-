@@ -24,9 +24,7 @@ void Player::destroy()
 void Player::hit(bool isHitLeft, Ennemi &enn)
 {
 	assert(cooldownTime <= 0);
-	//TODO changer le sprite (gauche/droite)
 	cooldownTime = cooldown;
-	//TODO afficher le score sur l'ecran
 	int hitValue = enn.takeHit(strenght*damageMult);
 	if (enn.isDead())
 		score += scoreForKill*scoreMult;

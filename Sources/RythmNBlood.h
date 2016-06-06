@@ -16,7 +16,7 @@ private:
 
 	int idEnnemi;
 	/* La liste d'ennemis */
-	std::vector<Ennemi> ennemis;
+	std::vector<std::shared_ptr<Ennemi>> ennemis;
 
 	/* La liste des sprites contenant l'ennmi en train de courir */
 	std::vector<sf::Sprite> listSpriteEnnemyMoving;
@@ -25,7 +25,7 @@ private:
 	std::vector<sf::Sprite> listSpritePlayerHitting;
 
 	/* La map faisant correspondre un ennemi à un sprite */
-	std::map<Ennemi, sf::Sprite> mapSpriteEnnemi;
+	std::map<std::shared_ptr<Ennemi>, sf::Sprite> mapSpriteEnnemi;
 
 	sf::Sprite playerWaitingSprite;
 

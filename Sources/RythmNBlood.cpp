@@ -39,16 +39,16 @@ void RythmNBlood::waitForUser()
 		window->add(std::make_unique<sf::Sprite>(playerWaitingSprite));
 		timeLastAdd = addEnnemies(timeLastAdd);
 
-		std::vector<Ennemi> ennemiesHittables;
-		for (Ennemi enn : ennemis)
+		std::vector<std::shared_ptr<Ennemi>> ennemiesHittables;
+		for (auto &enn : ennemis)
 		{
-			enn.update();
-			if (enn.isHitable())
+			enn->update();
+			if (enn->isHitable())
 				ennemiesHittables.push_back(enn);
-			if (!enn.isDead())
+			if (!enn->isDead())
 			{
 				mapSpriteEnnemi.at(enn).setPosition(
-					 (float)window->getWindow()->getSize().x * enn.getXPosition() / 100 
+					 (float)window->getWindow()->getSize().x * enn->getXPosition() / 100 
 					- mapSpriteEnnemi.at(enn).getTextureRect().width / 2,
 					+ (float)window->getWindow()->getSize().y * 3 / 4 
 					- mapSpriteEnnemi.at(enn).getTextureRect().height / 2);
@@ -66,16 +66,16 @@ void RythmNBlood::waitForUser()
 			}
 			if (event.key.code == sf::Keyboard::Left)
 			{
-				for (Ennemi enn : ennemiesHittables)
+				for (auto &enn : ennemiesHittables)
 				{
-					player.hit(true, enn);
+					player.hit(true, *enn);
 				}
 			}
 			if (event.key.code == sf::Keyboard::Right)
 			{
-				for (Ennemi enn : ennemiesHittables)
+				for (auto &enn : ennemiesHittables)
 				{
-					player.hit(false, enn);
+					player.hit(false, *enn);
 				}
 			}
 			if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
@@ -145,12 +145,13 @@ std::time_t RythmNBlood::addEnnemies(std::time_t timeLastAdd)
 	{
 		timeLastAdd = std::time(nullptr);
 
-		Ennemi newEnnemi(timeLastAdd % 2 == 1 , ++idEnnemi);
-		
+		Ennemi newEnnemi(timeLastAdd % 2 == 1, ++idEnnemi);
 		newEnnemi.initSpeed((float)ennemiSpeed);
-		mapSpriteEnnemi.insert(std::pair<Ennemi, sf::Sprite>
-							(newEnnemi, listSpriteEnnemyMoving[0]));
-		ennemis.push_back(newEnnemi);
+		std::shared_ptr<Ennemi> newEnn = std::make_shared<Ennemi>(newEnnemi);
+		
+		mapSpriteEnnemi.insert(std::pair<std::shared_ptr<Ennemi>, sf::Sprite>
+							(newEnn, listSpriteEnnemyMoving[0]));
+		ennemis.push_back(newEnn);
 		std::cout << " ennemi ajoute \n";
 	}
 	return timeLastAdd;
