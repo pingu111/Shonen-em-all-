@@ -27,7 +27,7 @@ private:
 	/* La map faisant correspondre un ennemi à un sprite */
 	std::map<std::shared_ptr<Ennemi>, sf::Sprite> mapSpriteEnnemi;
 
-	sf::Sprite playerWaitingSprite;
+	std::pair<sf::Sprite, std::unique_ptr<sf::Texture>> playerWaitingSprite;
 
 	static Player player;
 
