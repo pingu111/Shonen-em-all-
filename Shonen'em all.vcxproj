@@ -83,7 +83,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\Shonen%27em all\Sources\Global.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Sources\Bouton.cpp" />
     <ClCompile Include="Sources\DrawableFixed.cpp" />

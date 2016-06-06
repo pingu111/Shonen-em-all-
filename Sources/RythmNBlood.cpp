@@ -13,8 +13,6 @@ RythmNBlood::~RythmNBlood()
 
 void RythmNBlood::launchScene()
 {
-
-
 	initTextures();
 	printBackgroundAndButtons();
 	waitForUser();
@@ -42,8 +40,8 @@ void RythmNBlood::waitForUser()
 		sf::Event event;
 		while (window->getWindow()->pollEvent(event))
 		{
-		//for (Ennemi enn : ennemis)
-			//	enn.update();
+			for (Ennemi enn : ennemis)
+				enn.update();
 
 			if (event.type == sf::Event::Closed ||
 				event.key.code == sf::Keyboard::Escape)

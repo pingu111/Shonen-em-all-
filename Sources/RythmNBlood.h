@@ -12,7 +12,7 @@ class RythmNBlood : VirtualScene
 
 private:
 	/* La liste d'ennemis */
-	//std::vector<Ennemi> ennemis;
+	std::vector<Ennemi> ennemis;
 
 	Player player;
 

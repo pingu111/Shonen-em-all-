@@ -59,9 +59,6 @@
     <ClCompile Include="Sources\SceneManager.cpp">
       <Filter>Source Files\Utils</Filter>
     </ClCompile>
-    <ClCompile Include="..\Shonen%27em all\Sources\Global.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\VirtualScene.h">
