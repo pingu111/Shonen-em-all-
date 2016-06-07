@@ -6,6 +6,7 @@
 #include <Bouton.h>
 #include <Random.h>
 #include <assert.h>
+#include <Player.h>
 
 class SceneBoss : VirtualScene
 {
@@ -18,6 +19,7 @@ private:
 	std::vector<Replique> randReplique();
 	/* attend l'appuie sur un bouton */
 	void waitForUser();
+	Player& player;
 public :
 	/* Le constructeur de la scene */
 	SceneBoss(WindowManager *windowArg);

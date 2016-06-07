@@ -4,6 +4,7 @@ Player Player::m_instance = Player();
 
 Player::Player()
 {
+	hasSomethingToSay = false;
 	lifePoint = startingLifePoints;
 	score = 0;
 	isSpriteLeft = true;
@@ -43,12 +44,22 @@ void Player::hit(bool isHitLeft, Ennemi &enn)
 	if (hitValue > maxHit)
 		maxHit = hitValue;
 	if (enn.isDead())
-		score += std::round(scoreForKill*scoreMult);
+		score += scoreForKill*scoreMult;
 }
 
 void Player::update(Replique replique)
 {
-	damageMult = replique.damageMult;
-	scoreMult = replique.scoreMult;
+	assert(!hasSomethingToSay);
+	repWaiting = replique;
+	hasSomethingToSay = true;
+}
+
+std::string Player::sayReplique()
+{
+	assert(hasSomethingToSay);
+	damageMult = repWaiting.damageMult;
+	scoreMult = repWaiting.scoreMult;
 	increaseStrenght();
+	hasSomethingToSay = false;
+	return repWaiting.text;
 }

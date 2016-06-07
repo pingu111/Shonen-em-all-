@@ -25,10 +25,10 @@ std::vector<Replique> SceneBoss::randReplique()
 void SceneBoss::waitForUser()
 {
 	//au clic :
-
+	player.update(/*replique choisie*/*repliques[0]);
 }
 /* Le constructeur de la scene */
-SceneBoss::SceneBoss(WindowManager *windowArg)
+SceneBoss::SceneBoss(WindowManager *windowArg) : player(Player::Instance())
 {
 
 }
