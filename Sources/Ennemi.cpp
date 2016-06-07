@@ -8,7 +8,7 @@ Ennemi::Ennemi(bool isSpawLeft , int idEnnemi)
 	speed = 0;
 	isSuper = false;
 	strenght = 1;
-	armor = 1;
+	armor = 0;
 	isLeft = isSpawLeft;
 	if (isSpawLeft)
 		position = 0;
@@ -45,7 +45,11 @@ bool Ennemi::isDead()
 float Ennemi::takeHit(float strenght)
 {
 	float hit = strenght - armor;
+	if (hit < 0)
+		hit = 0;
 	lifePoint -= std::round(hit);
+	std::cout << "Ennemi a pris un hit " << strenght << " reste " << lifePoint << " pv \n";
+
 	return hit;
 }
 

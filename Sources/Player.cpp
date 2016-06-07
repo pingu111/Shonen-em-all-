@@ -45,6 +45,7 @@ void Player::hit(Ennemi &enn)
 		maxHit = hitValue;
 	if (enn.isDead())
 		score += scoreForKill*scoreMult;
+
 }
 
 void Player::update(Replique replique)

@@ -231,10 +231,13 @@ std::vector<std::shared_ptr<Ennemi>> RythmNBlood::eventManager(std::vector<std::
 			// taper !
 			playerHittingAnimation = true;
 			isLastHitLeft = true;
+			std::cout << ennemiesHittables.size() << "\n";
+
 			for (auto &enn : ennemiesHittables)
 			{
 				if (enn->getIsLeft())
 					player.first.hit(*enn);
+
 			}
 		}
 		else if (event.key.code == sf::Keyboard::Right && !playerHittingAnimation)
@@ -242,6 +245,7 @@ std::vector<std::shared_ptr<Ennemi>> RythmNBlood::eventManager(std::vector<std::
 			// taper !
 			playerHittingAnimation = true;
 			isLastHitLeft = false;
+			std::cout << ennemiesHittables.size() << "\n";
 			for (auto &enn : ennemiesHittables)
 			{
 				if(!enn->getIsLeft())
@@ -250,7 +254,7 @@ std::vector<std::shared_ptr<Ennemi>> RythmNBlood::eventManager(std::vector<std::
 		}
 		else if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && !playerHittingAnimation)
 		{
-			playerHittingAnimation = true;
+			//playerHittingAnimation = true;
 
 			//On parcours les boutons et on verifie s'ils sont cliqués
 		}
