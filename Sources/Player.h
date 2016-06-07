@@ -2,6 +2,7 @@
 
 //les includes servent quand on se sert de fonctions ou bien permettent de creer des membres de la classe
 #include <assert.h>
+#include <Replique.h>
 #include <Global.h>
 #include <Ennemi.h>
 
@@ -24,4 +25,5 @@ public :
 
 	/*frappe un ennemi hitable et ajuste le score*/
 	void hit(bool isHitLeft, Ennemi &enn);
+	void update(Replique rep);
 };
