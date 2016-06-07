@@ -59,8 +59,11 @@
     <ClCompile Include="Sources\SceneManager.cpp">
       <Filter>Source Files\Utils</Filter>
     </ClCompile>
-    <ClCompile Include="SceneBoss.cpp">
+    <ClCompile Include="Sources\SceneBoss.cpp">
       <Filter>Source Files\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Random.cpp">
+      <Filter>Source Files\Utils</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -100,10 +103,13 @@
     <ClInclude Include="..\Shonen%27em all\Sources\Global.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="SceneBoss.h">
+    <ClInclude Include="Sources\SceneBoss.h">
       <Filter>Source Files\Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="Replique.h">
+    <ClInclude Include="Sources\Replique.h">
+      <Filter>Source Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Random.h">
       <Filter>Source Files\Utils</Filter>
     </ClInclude>
   </ItemGroup>

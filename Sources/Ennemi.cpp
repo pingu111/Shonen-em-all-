@@ -40,7 +40,7 @@ bool Ennemi::isDead()
 	return lifePoint <= 0;
 }
 
-int Ennemi::takeHit(int strenght)
+float Ennemi::takeHit(float strenght)
 {
 	return 0;
 }

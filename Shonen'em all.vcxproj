@@ -84,11 +84,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="SceneBoss.cpp" />
     <ClCompile Include="Sources\Bouton.cpp" />
     <ClCompile Include="Sources\DrawableFixed.cpp" />
     <ClCompile Include="Sources\DrawableVirtual.cpp" />
     <ClCompile Include="Sources\Ennemi.cpp" />
+    <ClCompile Include="Sources\Random.cpp" />
+    <ClCompile Include="Sources\SceneBoss.cpp" />
     <ClCompile Include="Sources\SceneManager.cpp" />
     <ClCompile Include="Sources\MenuPrincipal.cpp" />
     <ClCompile Include="Sources\Player.cpp" />
@@ -99,12 +100,13 @@
   <ItemGroup>
     <ClInclude Include="..\Shonen%27em all\Sources\Global.h" />
     <ClInclude Include="..\Shonen%27em all\Sources\WindowManager.h" />
-    <ClInclude Include="Replique.h" />
-    <ClInclude Include="SceneBoss.h" />
     <ClInclude Include="Sources\Bouton.h" />
     <ClInclude Include="Sources\DrawableFixed.h" />
     <ClInclude Include="Sources\DrawableVirtual.h" />
     <ClInclude Include="Sources\Ennemi.h" />
+    <ClInclude Include="Sources\Random.h" />
+    <ClInclude Include="Sources\Replique.h" />
+    <ClInclude Include="Sources\SceneBoss.h" />
     <ClInclude Include="Sources\SceneManager.h" />
     <ClInclude Include="Sources\MenuPrincipal.h" />
     <ClInclude Include="Sources\Player.h" />
