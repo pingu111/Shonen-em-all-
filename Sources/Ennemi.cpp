@@ -30,6 +30,8 @@ void Ennemi::makeSuper()
 
 bool Ennemi::isHitable()
 {
+	if (isDead())
+		return false;
 	if (isLeft)
 		return position >= playerPosition - playerHitDistance;
 	return position <= playerPosition + playerHitDistance;
@@ -42,7 +44,9 @@ bool Ennemi::isDead()
 
 float Ennemi::takeHit(float strenght)
 {
-	return 0;
+	float hit = strenght - armor;
+	lifePoint -= std::round(hit);
+	return hit;
 }
 
 void Ennemi::destroy()
