@@ -84,6 +84,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="SceneBoss.cpp" />
     <ClCompile Include="Sources\Bouton.cpp" />
     <ClCompile Include="Sources\DrawableFixed.cpp" />
     <ClCompile Include="Sources\DrawableVirtual.cpp" />
@@ -98,6 +99,8 @@
   <ItemGroup>
     <ClInclude Include="..\Shonen%27em all\Sources\Global.h" />
     <ClInclude Include="..\Shonen%27em all\Sources\WindowManager.h" />
+    <ClInclude Include="Replique.h" />
+    <ClInclude Include="SceneBoss.h" />
     <ClInclude Include="Sources\Bouton.h" />
     <ClInclude Include="Sources\DrawableFixed.h" />
     <ClInclude Include="Sources\DrawableVirtual.h" />

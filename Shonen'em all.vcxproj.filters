@@ -59,6 +59,9 @@
     <ClCompile Include="Sources\SceneManager.cpp">
       <Filter>Source Files\Utils</Filter>
     </ClCompile>
+    <ClCompile Include="SceneBoss.cpp">
+      <Filter>Source Files\Scenes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\VirtualScene.h">
@@ -96,6 +99,12 @@
     </ClInclude>
     <ClInclude Include="..\Shonen%27em all\Sources\Global.h">
       <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneBoss.h">
+      <Filter>Source Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Replique.h">
+      <Filter>Source Files\Utils</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
