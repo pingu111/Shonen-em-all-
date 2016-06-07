@@ -14,12 +14,12 @@ void SceneManager::moveToScene(SceneNames name, WindowManager* window)
 	}
 	case RNB1:
 	{
-		RythmNBlood scene(window , 2 , 0.5f , 0.5f);
+		RythmNBlood scene(window , 2 , 0.1f , 0.5f);
 		break;
 	}
 	case RNB2:
 	{
-		RythmNBlood scene(window, 20 , 0.6f , 0.3f);
+		RythmNBlood scene(window, 20 , 0.2f , 0.3f);
 		break;
 	}
 	case VILAIN:

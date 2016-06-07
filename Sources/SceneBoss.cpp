@@ -23,11 +23,17 @@ void SceneBoss::printBackground()
 {
 	// On ajoute tous les sprites qu'on veut afficher 
 	window->add(std::make_unique<sf::Sprite>(fondSprite));
+
+	for (int i = 0; i < 4; i++)
+	{
+		window->add(std::make_unique<sf::Sprite>(listSpritesButtonChoice[i].first));
+	}
+	window->draw();
 }
 
 void SceneBoss::initSprite()
 {
-	assert(fond.loadFromFile("Ressources\\Boss\\fond.jpg") == true);
+	assert(fond.loadFromFile("Ressources\\Boss\\FondNuit.jpg") == true);
 	fondSprite.setTexture(fond);
 	window->add(std::make_unique<sf::Sprite>(fondSprite));
 
@@ -50,51 +56,43 @@ void SceneBoss::initSprite()
 			case 0:
 			{
 				boutonSpriteTmp.setPosition(
-					0,
-					0);
+					sizeBetweenButtonsX,
+					(float)window->getWindow()->getSize().y - 2.02f * boutonSpriteTmp.getTextureRect().height);
 				break;
 			}
 			case 1:
 			{
 				boutonSpriteTmp.setPosition(
-					100,
-					0);
+					(float)window->getWindow()->getSize().x - sizeBetweenButtonsX - boutonSpriteTmp.getTextureRect().width,
+					(float)window->getWindow()->getSize().y - 2.02f * boutonSpriteTmp.getTextureRect().height);
 				break;
 			}
 			case 2:
 			{
 				boutonSpriteTmp.setPosition(
-					200,
-					0);
+					sizeBetweenButtonsX,
+					(float)window->getWindow()->getSize().y - 1.01f * boutonSpriteTmp.getTextureRect().height);
 				break;
 			}
 			case 3:
 			{
 				boutonSpriteTmp.setPosition(
-					300,
-					0);
+					(float)window->getWindow()->getSize().x - sizeBetweenButtonsX - boutonSpriteTmp.getTextureRect().width,
+					(float)window->getWindow()->getSize().y - 1.01f * boutonSpriteTmp.getTextureRect().height);
 				break;
 			}
 		}
 
-
-		std::cout << boutonSpriteTmp.getPosition().x << "/" << boutonSpriteTmp.getPosition().y << " . "<< i << "\n";
-
-
 		listSpritesButtonChoice.push_back(std::pair<sf::Sprite, std::unique_ptr<sf::Texture>>(boutonSpriteTmp, std::make_unique<sf::Texture>(boutonTextTmp)));
 		listSpritesButtonChoice.back().first.setTexture(*listSpritesButtonChoice.back().second);
+
+		std::cout << listSpritesButtonChoice[i].first.getPosition().x << "/" << listSpritesButtonChoice[i].first.getPosition().y << "\n";
 
 		boutonTmp.setSprite(boutonSpriteTmp);
 		listButtonsChoices.push_back(boutonTmp);
 	}
 
-	for (int i = 0; i < 4; i++)
-	{
-		std::cout << listSpritesButtonChoice[i].first.getPosition().x << "/" << listSpritesButtonChoice[i].first.getPosition().y << "\n";
-		window->add(std::make_unique<sf::Sprite>(listSpritesButtonChoice[i].first));
-	}
-	window->draw();
-	system("pause");
+
 }
 
 void SceneBoss::initFonts()
