@@ -35,71 +35,16 @@ void RythmNBlood::waitForUser()
 	while (window->getWindow()->isOpen())
 	{
 		printBackgroundAndButtons();
-		// On gere l'animation du joueur
-		if (playerHittingAnimation)
-		{
-			if (player.second + 1 < listSpritePlayerHitting.size())
-			{
-				player.second++;
-			}
-			else
-			{
-				player.second = 0;
-				playerHittingAnimation = false;
-			}
-			if (!isLastHitLeft)
-				window->add(std::make_unique<sf::Sprite>(flipSprite(listSpritePlayerHitting[player.second].first)));
-			else
-				window->add(std::make_unique<sf::Sprite>(listSpritePlayerHitting[player.second].first));
-		}
-		else if (!isLastHitLeft)
-			window->add(std::make_unique<sf::Sprite>(flipSprite(playerWaitingSprite.first)));
-		else
-			window->add(std::make_unique<sf::Sprite>(playerWaitingSprite.first));
 
+		animationPlayer();
 
 		timeLastAdd = addEnnemies(timeLastAdd);
 
 		// Parcours des listes d'ennemis en vie ou morts
-		for (int i = 0; i < ennemisAlive.size(); i++)
-		{
-			if (ennemisAlive[i]->isDead())
-			{
-				ennemisDead.push_back(ennemisAlive[i]);
-				ennemisAlive.erase(ennemisAlive.begin() + i);
-			}
-		}
+		listDeadAlive();
 
-		std::vector<std::shared_ptr<Ennemi>> ennemiesHittables;
-		for (auto &enn : ennemisAlive)
-		{
-			enn->update();
-			if (enn->isHitable())
-				ennemiesHittables.push_back(enn);
 
-			// On change le sprite de l'ennemi 
-			if (mapSpriteEnnemi.at(enn).first + 1 < listSpriteEnnemyMoving.size())
-				mapSpriteEnnemi.at(enn).first++;
-			else
-				mapSpriteEnnemi.at(enn).first = 0;
-			mapSpriteEnnemi.at(enn).second = listSpriteEnnemyMoving[mapSpriteEnnemi.at(enn).first].first;
-
-			// On retourne les sprites si necessaire
-			if (!enn->getIsLeft())
-			{
-				mapSpriteEnnemi.at(enn).second = flipSprite(mapSpriteEnnemi.at(enn).second);
-			}
-
-			// On le deplace
-			mapSpriteEnnemi.at(enn).second.setPosition(
-				(float)window->getWindow()->getSize().x * enn->getXPosition() / 100
-				- mapSpriteEnnemi.at(enn).second.getTextureRect().width / 2,
-				(float)window->getWindow()->getSize().y * 3 / 4
-				- mapSpriteEnnemi.at(enn).second.getTextureRect().height / 2);
-
-			window->add(std::make_unique<sf::Sprite>(mapSpriteEnnemi.at(enn).second));
-
-		}
+		std::vector<std::shared_ptr<Ennemi>> ennemiesHittables = animations();
 
 		// On gere les evenements et leurs consequences
 		ennemiesHittables = eventManager(ennemiesHittables);
@@ -176,7 +121,7 @@ std::time_t RythmNBlood::addEnnemies(std::time_t timeLastAdd)
 	//std::cout << " addEnnemies "<< timeLastAdd << " vs "<< std::time(nullptr) << "\n";
 	if (std::time(nullptr) - timeLastAdd > 1)
 	{
-		timeLastAdd = std::time(nullptr) + 100000000;
+		timeLastAdd = std::time(nullptr) ;
 
 		// Cree un ennemi
 		Random rand;
@@ -201,12 +146,73 @@ std::time_t RythmNBlood::addEnnemies(std::time_t timeLastAdd)
 	return timeLastAdd;
 }
 
-
 sf::Sprite RythmNBlood::flipSprite(sf::Sprite spriteToFlip)
 {
 	spriteToFlip.setOrigin({ spriteToFlip.getLocalBounds().width, 0 });
 	spriteToFlip.scale(-1.f, 1.f);
 	return spriteToFlip;
+}
+
+std::vector<std::shared_ptr<Ennemi>> RythmNBlood::animations()
+{
+
+	std::vector<std::shared_ptr<Ennemi>> ennemiesHittables;
+	for (auto &enn : ennemisAlive)
+	{
+		enn->update();
+		if (enn->isHitable())
+			ennemiesHittables.push_back(enn);
+
+		// On change le sprite de l'ennemi 
+		if (mapSpriteEnnemi.at(enn).first + 1 < listSpriteEnnemyMoving.size())
+			mapSpriteEnnemi.at(enn).first++;
+		else
+			mapSpriteEnnemi.at(enn).first = 0;
+		mapSpriteEnnemi.at(enn).second = listSpriteEnnemyMoving[mapSpriteEnnemi.at(enn).first].first;
+
+		// On retourne les sprites si necessaire
+		if (!enn->getIsLeft())
+		{
+			mapSpriteEnnemi.at(enn).second = flipSprite(mapSpriteEnnemi.at(enn).second);
+		}
+
+		// On le deplace
+		mapSpriteEnnemi.at(enn).second.setPosition(
+			(float)window->getWindow()->getSize().x * enn->getXPosition() / 100
+			- mapSpriteEnnemi.at(enn).second.getTextureRect().width / 2,
+			(float)window->getWindow()->getSize().y * 3 / 4
+			- mapSpriteEnnemi.at(enn).second.getTextureRect().height / 2);
+
+		window->add(std::make_unique<sf::Sprite>(mapSpriteEnnemi.at(enn).second));
+
+	}
+	return ennemiesHittables;
+}
+
+void RythmNBlood::listDeadAlive()
+{
+	std::vector<int> listEnnemiesDeadPosition;
+	for (int i = 0; i < ennemisAlive.size(); i++)
+	{
+		if (ennemisAlive[i]->isDead())
+		{
+			ennemisDead.push_back(ennemisAlive[i]);
+			listEnnemiesDeadPosition.push_back(i);
+		}
+	}
+	for (int i = listEnnemiesDeadPosition.size() - 1; i >= 0; i--)
+	{
+		ennemisAlive.erase(ennemisAlive.begin() + listEnnemiesDeadPosition[i]);
+	}
+
+	for (int i = 0; i < ennemisAlive.size(); i++)
+	{
+		std::cout << "ennemi vivant a la position " << i << "\n";
+	}
+	for (int i = 0; i < ennemisDead.size(); i++)
+	{
+		std::cout << "ennemi mort a la position " << i << "\n";
+	}
 }
 
 std::vector<std::shared_ptr<Ennemi>> RythmNBlood::eventManager(std::vector<std::shared_ptr<Ennemi>> ennemiesHittables)
@@ -253,4 +259,29 @@ std::vector<std::shared_ptr<Ennemi>> RythmNBlood::eventManager(std::vector<std::
 	}
 
 	return ennemiesHittables;
+}
+
+void RythmNBlood::animationPlayer()
+{
+	// On gere l'animation du joueur
+	if (playerHittingAnimation)
+	{
+		if (player.second + 1 < listSpritePlayerHitting.size())
+		{
+			player.second++;
+		}
+		else
+		{
+			player.second = 0;
+			playerHittingAnimation = false;
+		}
+		if (!isLastHitLeft)
+			window->add(std::make_unique<sf::Sprite>(flipSprite(listSpritePlayerHitting[player.second].first)));
+		else
+			window->add(std::make_unique<sf::Sprite>(listSpritePlayerHitting[player.second].first));
+	}
+	else if (!isLastHitLeft)
+		window->add(std::make_unique<sf::Sprite>(flipSprite(playerWaitingSprite.first)));
+	else
+		window->add(std::make_unique<sf::Sprite>(playerWaitingSprite.first));
 }

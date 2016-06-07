@@ -63,6 +63,15 @@ private:
 	/* Retourne un sprite, comme un miroir */
 	sf::Sprite flipSprite(sf::Sprite spriteToFlip);
 
+	/* Gere les animations et renvoie la liste des ennemis touchables */
+	std::vector<std::shared_ptr<Ennemi>> animations();
+
+	/* Gere la liste des ennemis morts et vivants, et la met à jour */
+	void listDeadAlive();
+
+	/* Gere les animations du joueur */
+	void animationPlayer();
+
 
 	/* Les sprites et textures pour le background */
 	sf::Sprite fondSprite;
