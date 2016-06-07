@@ -18,8 +18,11 @@ private:
 	bool isLastHitLeft;
 
 	int idEnnemi;
-	/* La liste d'ennemis */
-	std::vector<std::shared_ptr<Ennemi>> ennemis;
+	/* La liste d'ennemis en vie */
+	std::vector<std::shared_ptr<Ennemi>> ennemisAlive;
+
+	/* La liste d'ennemis mourants, en cours d'animation de mort */
+	std::vector<std::shared_ptr<Ennemi>> ennemisDead;
 
 	/* La liste des sprites contenant l'ennmi en train de courir */
 	std::vector<std::pair<sf::Sprite,std::unique_ptr<sf::Texture>>> listSpriteEnnemyMoving;
@@ -43,6 +46,8 @@ private:
 	/* Lance la scene : appelé par le consytructeur */
 	void launchScene();
 
+	/* Gere les inputs */
+	std::vector<std::shared_ptr<Ennemi>> eventManager(std::vector<std::shared_ptr<Ennemi>> ennemiesHittables);
 
 	/* Met à jour la scene, les ennemis, ... 
 		Est bloquant */

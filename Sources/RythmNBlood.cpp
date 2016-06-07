@@ -60,80 +60,50 @@ void RythmNBlood::waitForUser()
 
 		timeLastAdd = addEnnemies(timeLastAdd);
 
+		// Parcours des listes d'ennemis en vie ou morts
+		for (int i = 0; i < ennemisAlive.size(); i++)
+		{
+			if (ennemisAlive[i]->isDead())
+			{
+				ennemisDead.push_back(ennemisAlive[i]);
+				ennemisAlive.erase(ennemisAlive.begin() + i);
+			}
+		}
+
 		std::vector<std::shared_ptr<Ennemi>> ennemiesHittables;
-		for (auto &enn : ennemis)
+		for (auto &enn : ennemisAlive)
 		{
 			enn->update();
 			if (enn->isHitable())
 				ennemiesHittables.push_back(enn);
-			if (!enn->isDead())
+
+			// On change le sprite de l'ennemi 
+			if (mapSpriteEnnemi.at(enn).first + 1 < listSpriteEnnemyMoving.size())
+				mapSpriteEnnemi.at(enn).first++;
+			else
+				mapSpriteEnnemi.at(enn).first = 0;
+			mapSpriteEnnemi.at(enn).second = listSpriteEnnemyMoving[mapSpriteEnnemi.at(enn).first].first;
+
+			// On retourne les sprites si necessaire
+			if (!enn->getIsLeft())
 			{
-			
-				// On change le sprite de l'ennemi 
-				if (mapSpriteEnnemi.at(enn).first + 1 < listSpriteEnnemyMoving.size())
-					mapSpriteEnnemi.at(enn).first++;
-				else
-					mapSpriteEnnemi.at(enn).first = 0;
-				mapSpriteEnnemi.at(enn).second = listSpriteEnnemyMoving[mapSpriteEnnemi.at(enn).first].first;
-
-				// On retourne les sprites si necessaire
-				if (!enn->getIsLeft())
-				{
-					mapSpriteEnnemi.at(enn).second = flipSprite(mapSpriteEnnemi.at(enn).second);
-				}
-
-				// On le deplace
-				mapSpriteEnnemi.at(enn).second.setPosition(
-					(float)window->getWindow()->getSize().x * enn->getXPosition() / 100
-					- mapSpriteEnnemi.at(enn).second.getTextureRect().width / 2,
-					(float)window->getWindow()->getSize().y * 3 / 4
-					- mapSpriteEnnemi.at(enn).second.getTextureRect().height / 2);
-
-				window->add(std::make_unique<sf::Sprite>(mapSpriteEnnemi.at(enn).second));
+				mapSpriteEnnemi.at(enn).second = flipSprite(mapSpriteEnnemi.at(enn).second);
 			}
+
+			// On le deplace
+			mapSpriteEnnemi.at(enn).second.setPosition(
+				(float)window->getWindow()->getSize().x * enn->getXPosition() / 100
+				- mapSpriteEnnemi.at(enn).second.getTextureRect().width / 2,
+				(float)window->getWindow()->getSize().y * 3 / 4
+				- mapSpriteEnnemi.at(enn).second.getTextureRect().height / 2);
+
+			window->add(std::make_unique<sf::Sprite>(mapSpriteEnnemi.at(enn).second));
+
 		}
 
+		// On gere les evenements et leurs consequences
+		ennemiesHittables = eventManager(ennemiesHittables);
 		
-		sf::Event event;
-		while (window->getWindow()->pollEvent(event))
-		{
-			if (event.type == sf::Event::Closed )
-			{
-				//TODO QUITTER PROPREMENT CAPSLOCKMAGGLE;
-			}
-			else if (event.type == sf::Event::KeyPressed)
-			{
-				if (event.key.code == sf::Keyboard::Escape)
-				{
-					std::cout << " sf::Keyboard::Escape\n";
-					system("pause");
-				}
-			}
-			else if (event.key.code == sf::Keyboard::Left && !playerHittingAnimation)
-			{
-				playerHittingAnimation = true;
-				isLastHitLeft = true;
-				for (auto &enn : ennemiesHittables)
-				{
-					player.first.hit(true, *enn);
-				}
-			}
-			else if (event.key.code == sf::Keyboard::Right && !playerHittingAnimation)
-			{
-				playerHittingAnimation = true;
-				isLastHitLeft = false;
-				for (auto &enn : ennemiesHittables)
-				{
-					player.first.hit(false, *enn);
-				}
-			}
-			else if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && !playerHittingAnimation)
-			{
-				playerHittingAnimation = true;
-
-				//On parcours les boutons et on verifie s'ils sont cliqués
-			}
-		}
 		window->draw();
 
 	}
@@ -226,7 +196,7 @@ std::time_t RythmNBlood::addEnnemies(std::time_t timeLastAdd)
 		mapSpriteEnnemi.insert(std::pair<std::shared_ptr<Ennemi>, std::pair<int, sf::Sprite>>
 								(newEnn, pair));
 
-		ennemis.push_back(newEnn);
+		ennemisAlive.push_back(newEnn);
 	}
 	return timeLastAdd;
 }
@@ -237,4 +207,50 @@ sf::Sprite RythmNBlood::flipSprite(sf::Sprite spriteToFlip)
 	spriteToFlip.setOrigin({ spriteToFlip.getLocalBounds().width, 0 });
 	spriteToFlip.scale(-1.f, 1.f);
 	return spriteToFlip;
+}
+
+std::vector<std::shared_ptr<Ennemi>> RythmNBlood::eventManager(std::vector<std::shared_ptr<Ennemi>> ennemiesHittables)
+{
+	sf::Event event;
+	while (window->getWindow()->pollEvent(event))
+	{
+		if (event.type == sf::Event::Closed)
+		{
+			//TODO QUITTER PROPREMENT CAPSLOCKMAGGLE;
+		}
+		else if (event.type == sf::Event::KeyPressed)
+		{
+			if (event.key.code == sf::Keyboard::Escape)
+			{
+				std::cout << " sf::Keyboard::Escape\n";
+				system("pause");
+			}
+		}
+		else if (event.key.code == sf::Keyboard::Left && !playerHittingAnimation)
+		{
+			playerHittingAnimation = true;
+			isLastHitLeft = true;
+			for (auto &enn : ennemiesHittables)
+			{
+				player.first.hit(true, *enn);
+			}
+		}
+		else if (event.key.code == sf::Keyboard::Right && !playerHittingAnimation)
+		{
+			playerHittingAnimation = true;
+			isLastHitLeft = false;
+			for (auto &enn : ennemiesHittables)
+			{
+				player.first.hit(false, *enn);
+			}
+		}
+		else if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && !playerHittingAnimation)
+		{
+			playerHittingAnimation = true;
+
+			//On parcours les boutons et on verifie s'ils sont cliqués
+		}
+	}
+
+	return ennemiesHittables;
 }
