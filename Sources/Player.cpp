@@ -33,7 +33,7 @@ void Player::increaseStrenght()
 
 
 
-void Player::hit(bool isHitLeft, Ennemi &enn)
+void Player::hit(Ennemi &enn)
 {
 	//assert(cooldownTime <= 0);
 	cooldownTime = cooldown;
