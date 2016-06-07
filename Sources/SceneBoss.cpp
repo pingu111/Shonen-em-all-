@@ -86,9 +86,11 @@ void SceneBoss::initSprite()
 		listSpritesButtonChoice.push_back(std::pair<sf::Sprite, std::unique_ptr<sf::Texture>>(boutonSpriteTmp, std::make_unique<sf::Texture>(boutonTextTmp)));
 		listSpritesButtonChoice.back().first.setTexture(*listSpritesButtonChoice.back().second);
 
-		std::cout << listSpritesButtonChoice[i].first.getPosition().x << "/" << listSpritesButtonChoice[i].first.getPosition().y << "\n";
+		//std::cout << listSpritesButtonChoice[i].first.getPosition().x << "/" << listSpritesButtonChoice[i].first.getPosition().y << "\n";
 
 		boutonTmp.setSprite(boutonSpriteTmp);
+		//boutonTmp.setText("lol");
+
 		listButtonsChoices.push_back(boutonTmp);
 	}
 
