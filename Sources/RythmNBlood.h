@@ -14,6 +14,8 @@ class RythmNBlood : VirtualScene
 
 private:
 
+	bool playerHittingAnimation;
+
 	int idEnnemi;
 	/* La liste d'ennemis */
 	std::vector<std::shared_ptr<Ennemi>> ennemis;
@@ -29,7 +31,8 @@ private:
 
 	std::pair<sf::Sprite, std::unique_ptr<sf::Texture>> playerWaitingSprite;
 
-	Player& player;
+	/* Le joueur et son numero actuel de sprite */
+	std::pair<Player&, int> player;
 
 	Bouton buttonQuit;
 

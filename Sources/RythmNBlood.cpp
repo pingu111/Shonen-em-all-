@@ -1,12 +1,12 @@
 #include <RythmNBlood.h>
 
 
-RythmNBlood::RythmNBlood(WindowManager* windowArg) : player(Player::Instance())
+RythmNBlood::RythmNBlood(WindowManager* windowArg) : player(Player::Instance(), 0)
 {
 	//ennemis = std::vector<Ennemi>();
 	idEnnemi = 0;
 	window = windowArg;
-
+	playerHittingAnimation = false;
 	launchScene();
 }
 
@@ -34,7 +34,23 @@ void RythmNBlood::waitForUser()
 	while (window->getWindow()->isOpen())
 	{
 		printBackgroundAndButtons();
-		window->add(std::make_unique<sf::Sprite>(playerWaitingSprite.first));
+		// On gere l'animation du joueur
+		if (playerHittingAnimation)
+		{
+			if (player.second + 1 < listSpritePlayerHitting.size())
+			{
+				player.second++;
+			}
+			else
+			{
+				player.second = 0;
+				playerHittingAnimation = false;
+			}
+			window->add(std::make_unique<sf::Sprite>(listSpritePlayerHitting[player.second].first));
+		}
+		else
+			window->add(std::make_unique<sf::Sprite>(playerWaitingSprite.first));
+
 		timeLastAdd = addEnnemies(timeLastAdd);
 
 		std::vector<std::shared_ptr<Ennemi>> ennemiesHittables;
@@ -71,6 +87,7 @@ void RythmNBlood::waitForUser()
 			}
 		}
 
+		
 		sf::Event event;
 		while (window->getWindow()->pollEvent(event))
 		{
@@ -86,22 +103,27 @@ void RythmNBlood::waitForUser()
 					system("pause");
 				}
 			}
-			else if (event.key.code == sf::Keyboard::Left)
+			else if (event.key.code == sf::Keyboard::Left && !playerHittingAnimation)
 			{
+				playerHittingAnimation = true;
+
 				for (auto &enn : ennemiesHittables)
 				{
-					player.hit(true, *enn);
+					player.first.hit(true, *enn);
 				}
 			}
-			else if (event.key.code == sf::Keyboard::Right)
+			else if (event.key.code == sf::Keyboard::Right && !playerHittingAnimation)
 			{
+				playerHittingAnimation = true;
 				for (auto &enn : ennemiesHittables)
 				{
-					player.hit(false, *enn);
+					player.first.hit(false, *enn);
 				}
 			}
-			else if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+			else if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && !playerHittingAnimation)
 			{
+				playerHittingAnimation = true;
+
 				//On parcours les boutons et on verifie s'ils sont cliqués
 			}
 		}
@@ -177,7 +199,7 @@ std::time_t RythmNBlood::addEnnemies(std::time_t timeLastAdd)
 	//std::cout << " addEnnemies "<< timeLastAdd << " vs "<< std::time(nullptr) << "\n";
 	if (std::time(nullptr) - timeLastAdd > 1)
 	{
-		timeLastAdd = std::time(nullptr);
+		timeLastAdd = std::time(nullptr) + 100000000;
 
 		// Cree un ennemi
 		Random rand;

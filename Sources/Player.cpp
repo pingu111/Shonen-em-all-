@@ -35,7 +35,7 @@ void Player::increaseStrenght()
 
 void Player::hit(bool isHitLeft, Ennemi &enn)
 {
-	assert(cooldownTime <= 0);
+	//assert(cooldownTime <= 0);
 	cooldownTime = cooldown;
 
 	float bonus = Random::randFloat(0, 2);
