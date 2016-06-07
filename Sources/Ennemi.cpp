@@ -81,8 +81,14 @@ float Ennemi::getXPosition()
 	return position;
 }
 
+bool Ennemi::getIsLeft()
+{
+	return isLeft;
+}
 
 bool operator< (const  Ennemi a, const Ennemi b)
 {
 	return (a.id < b.id);
 }
+
+

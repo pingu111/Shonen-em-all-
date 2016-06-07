@@ -44,6 +44,8 @@ public :
 
 	float getXPosition();
 
+	bool getIsLeft();
+
 	int id;
 };
 

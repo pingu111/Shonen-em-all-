@@ -45,12 +45,29 @@ void RythmNBlood::waitForUser()
 				ennemiesHittables.push_back(enn);
 			if (!enn->isDead())
 			{
-				mapSpriteEnnemi.at(enn).setPosition(
-					 (float)window->getWindow()->getSize().x * enn->getXPosition() / 100 
-					- mapSpriteEnnemi.at(enn).getTextureRect().width / 2,
-					+ (float)window->getWindow()->getSize().y * 3 / 4 
-					- mapSpriteEnnemi.at(enn).getTextureRect().height / 2);
-				window->add(std::make_unique<sf::Sprite>(mapSpriteEnnemi.at(enn)));
+			
+				// On change le sprite de l'ennemi 
+				if (mapSpriteEnnemi.at(enn).first + 1 < listSpriteEnnemyMoving.size())
+					mapSpriteEnnemi.at(enn).first++;
+				else
+					mapSpriteEnnemi.at(enn).first = 0;
+				mapSpriteEnnemi.at(enn).second = listSpriteEnnemyMoving[mapSpriteEnnemi.at(enn).first].first;
+
+				// On retourne les sprites si necessaire
+				if (!enn->getIsLeft())
+				{
+					mapSpriteEnnemi.at(enn).second.setOrigin({ mapSpriteEnnemi.at(enn).second.getLocalBounds().width, 0 });
+					mapSpriteEnnemi.at(enn).second.scale(-1.f, 1.f);
+				}
+
+				// On le deplace
+				mapSpriteEnnemi.at(enn).second.setPosition(
+					(float)window->getWindow()->getSize().x * enn->getXPosition() / 100
+					- mapSpriteEnnemi.at(enn).second.getTextureRect().width / 2,
+					(float)window->getWindow()->getSize().y * 3 / 4
+					- mapSpriteEnnemi.at(enn).second.getTextureRect().height / 2);
+
+				window->add(std::make_unique<sf::Sprite>(mapSpriteEnnemi.at(enn).second));
 			}
 		}
 
@@ -101,6 +118,7 @@ void RythmNBlood::initSprite()
 
 	for (int i = 0; i < 18; i++)
 	{
+		// On charge les images du joueur qui tape 
 		sf::Image image;
 		sf::Texture texture;
 		sf::Sprite sprite;
@@ -115,15 +133,18 @@ void RythmNBlood::initSprite()
 		texture.loadFromImage(image);
 		sprite.setTexture(texture);
 
-		sprite.setPosition( (float)window->getWindow()->getSize().x * playerPosition / 100 - sprite.getTextureRect().width / 2,
-										+ (float)window->getWindow()->getSize().y * 3 / 4 - sprite.getTextureRect().height / 2);
+		sprite.setPosition((float)window->getWindow()->getSize().x * playerPosition / 100
+							- (float)sprite.getTextureRect().width / 2,
+							(float)window->getWindow()->getSize().y *0.715
+							- (float)sprite.getTextureRect().height / 2);
 
-		
+		// On les stocke
 		listSpritePlayerHitting.push_back(std::pair<sf::Sprite, std::unique_ptr<sf::Texture>>(sprite, std::make_unique<sf::Texture>(texture)));
 		listSpritePlayerHitting.back().first.setTexture(*listSpritePlayerHitting.back().second);
 		
 		if (i == 1)
 		{
+			// On stocke l'image du joueur qui attend
 			playerWaitingSprite = (std::pair<sf::Sprite, std::unique_ptr<sf::Texture>>(sprite, std::make_unique<sf::Texture>(texture)));
 			playerWaitingSprite.first.setTexture(*playerWaitingSprite.second);
 		}
@@ -131,6 +152,7 @@ void RythmNBlood::initSprite()
 
 	for (int i = 0; i < 13; i++)
 	{
+		// On charge les images des ennemis qui courent
 		sf::Image image;
 		sf::Texture texture;
 		sf::Sprite sprite;
@@ -142,7 +164,8 @@ void RythmNBlood::initSprite()
 		assert(image.loadFromFile(placeFile) == true);
 		image.createMaskFromColor(sf::Color::Green);
 		texture.loadFromImage(image);
-
+		
+		// On les stocke
 		listSpriteEnnemyMoving.push_back(std::pair<sf::Sprite, std::unique_ptr<sf::Texture>>(sprite, std::make_unique<sf::Texture>(texture)));
 		listSpriteEnnemyMoving.back().first.setTexture(*listSpriteEnnemyMoving.back().second);
 	}
@@ -156,12 +179,25 @@ std::time_t RythmNBlood::addEnnemies(std::time_t timeLastAdd)
 	{
 		timeLastAdd = std::time(nullptr);
 
-		Ennemi newEnnemi(timeLastAdd % 2 == 1, ++idEnnemi);
+		// Cree un ennemi
+		Random rand;
+		Ennemi newEnnemi(rand.randInt(0, 1) == 1, ++idEnnemi);
 		newEnnemi.initSpeed((float)ennemiSpeed);
 		std::shared_ptr<Ennemi> newEnn = std::make_shared<Ennemi>(newEnnemi);
 		
-		mapSpriteEnnemi.insert(std::pair<std::shared_ptr<Ennemi>, sf::Sprite>
-							(newEnn, listSpriteEnnemyMoving[0].first));
+		// Cree son sprite
+	
+
+		sf::Sprite spriteNewEnnemi = listSpriteEnnemyMoving[0].first;
+		if (!newEnnemi.getIsLeft())
+		{
+			spriteNewEnnemi.setOrigin({ spriteNewEnnemi.getLocalBounds().width, 0 });
+			spriteNewEnnemi.scale(-1.f, 1.f);
+		}
+		std::pair<int, sf::Sprite> pair(0, spriteNewEnnemi);
+		mapSpriteEnnemi.insert(std::pair<std::shared_ptr<Ennemi>, std::pair<int, sf::Sprite>>
+								(newEnn, pair));
+
 		ennemis.push_back(newEnn);
 	}
 	return timeLastAdd;

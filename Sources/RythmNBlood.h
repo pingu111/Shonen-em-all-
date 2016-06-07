@@ -25,7 +25,7 @@ private:
 	std::vector<std::pair<sf::Sprite, std::unique_ptr<sf::Texture>>> listSpritePlayerHitting;
 
 	/* La map faisant correspondre un ennemi à un sprite */
-	std::map<std::shared_ptr<Ennemi>, sf::Sprite> mapSpriteEnnemi;
+	std::map<std::shared_ptr<Ennemi>, std::pair<int, sf::Sprite>> mapSpriteEnnemi;
 
 	std::pair<sf::Sprite, std::unique_ptr<sf::Texture>> playerWaitingSprite;
 
