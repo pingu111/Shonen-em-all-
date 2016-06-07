@@ -7,6 +7,7 @@ RythmNBlood::RythmNBlood(WindowManager* windowArg) : player(Player::Instance(), 
 	idEnnemi = 0;
 	window = windowArg;
 	playerHittingAnimation = false;
+	isLastHitLeft = false;
 	launchScene();
 }
 
@@ -46,10 +47,16 @@ void RythmNBlood::waitForUser()
 				player.second = 0;
 				playerHittingAnimation = false;
 			}
-			window->add(std::make_unique<sf::Sprite>(listSpritePlayerHitting[player.second].first));
+			if (!isLastHitLeft)
+				window->add(std::make_unique<sf::Sprite>(flipSprite(listSpritePlayerHitting[player.second].first)));
+			else
+				window->add(std::make_unique<sf::Sprite>(listSpritePlayerHitting[player.second].first));
 		}
+		else if (!isLastHitLeft)
+			window->add(std::make_unique<sf::Sprite>(flipSprite(playerWaitingSprite.first)));
 		else
 			window->add(std::make_unique<sf::Sprite>(playerWaitingSprite.first));
+
 
 		timeLastAdd = addEnnemies(timeLastAdd);
 
@@ -72,8 +79,7 @@ void RythmNBlood::waitForUser()
 				// On retourne les sprites si necessaire
 				if (!enn->getIsLeft())
 				{
-					mapSpriteEnnemi.at(enn).second.setOrigin({ mapSpriteEnnemi.at(enn).second.getLocalBounds().width, 0 });
-					mapSpriteEnnemi.at(enn).second.scale(-1.f, 1.f);
+					mapSpriteEnnemi.at(enn).second = flipSprite(mapSpriteEnnemi.at(enn).second);
 				}
 
 				// On le deplace
@@ -106,7 +112,7 @@ void RythmNBlood::waitForUser()
 			else if (event.key.code == sf::Keyboard::Left && !playerHittingAnimation)
 			{
 				playerHittingAnimation = true;
-
+				isLastHitLeft = true;
 				for (auto &enn : ennemiesHittables)
 				{
 					player.first.hit(true, *enn);
@@ -115,6 +121,7 @@ void RythmNBlood::waitForUser()
 			else if (event.key.code == sf::Keyboard::Right && !playerHittingAnimation)
 			{
 				playerHittingAnimation = true;
+				isLastHitLeft = false;
 				for (auto &enn : ennemiesHittables)
 				{
 					player.first.hit(false, *enn);
@@ -213,8 +220,7 @@ std::time_t RythmNBlood::addEnnemies(std::time_t timeLastAdd)
 		sf::Sprite spriteNewEnnemi = listSpriteEnnemyMoving[0].first;
 		if (!newEnnemi.getIsLeft())
 		{
-			spriteNewEnnemi.setOrigin({ spriteNewEnnemi.getLocalBounds().width, 0 });
-			spriteNewEnnemi.scale(-1.f, 1.f);
+			spriteNewEnnemi = flipSprite(spriteNewEnnemi);
 		}
 		std::pair<int, sf::Sprite> pair(0, spriteNewEnnemi);
 		mapSpriteEnnemi.insert(std::pair<std::shared_ptr<Ennemi>, std::pair<int, sf::Sprite>>
@@ -223,4 +229,12 @@ std::time_t RythmNBlood::addEnnemies(std::time_t timeLastAdd)
 		ennemis.push_back(newEnn);
 	}
 	return timeLastAdd;
+}
+
+
+sf::Sprite RythmNBlood::flipSprite(sf::Sprite spriteToFlip)
+{
+	spriteToFlip.setOrigin({ spriteToFlip.getLocalBounds().width, 0 });
+	spriteToFlip.scale(-1.f, 1.f);
+	return spriteToFlip;
 }

@@ -15,6 +15,7 @@ class RythmNBlood : VirtualScene
 private:
 
 	bool playerHittingAnimation;
+	bool isLastHitLeft;
 
 	int idEnnemi;
 	/* La liste d'ennemis */
@@ -53,6 +54,9 @@ private:
 	/* Ajoute des ennemis 
 	   Retourne le nouveau timer */
 	std::time_t addEnnemies(std::time_t timeLastCall);
+
+	/* Retourne un sprite, comme un miroir */
+	sf::Sprite flipSprite(sf::Sprite spriteToFlip);
 
 
 	/* Les sprites et textures pour le background */
