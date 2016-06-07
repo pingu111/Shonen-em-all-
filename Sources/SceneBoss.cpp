@@ -11,6 +11,7 @@ void SceneBoss::launchScene()
 {
 	initSprite();
 	initFonts();
+	// Boucle principale 
 	while (window->getWindow()->isOpen())
 	{
 		printBackground();
@@ -34,37 +35,50 @@ void SceneBoss::initSprite()
 	for (int i = 0; i < 4; i++)
 	{
 		sf::Texture boutonTextTmp;
-		sf::Sprite boutonSpriteTmp;
 		Bouton boutonTmp;
 
 		assert(boutonTextTmp.loadFromFile("Ressources\\Boss\\TextBoxBlank.gif") == true);
-		boutonSpriteTmp.setTexture(boutonTextTmp);
+		sf::Sprite boutonSpriteTmp(boutonTextTmp);
 
-		float sizeBetweenButtonsX = (float)(window->getWindow()->getSize().x - 2 * boutonSpriteTmp.getTextureRect().width) / 3;
+		float sizeBetweenButtonsX = ((float)window->getWindow()->getSize().x -
+									(float)(2 * boutonSpriteTmp.getTextureRect().width)) / 3;
+		std::cout << sizeBetweenButtonsX << "\n";
+
 		switch (i)
 		{
 			// Placement des 4 boutons de choix 
 			case 0:
-				boutonSpriteTmp.setPosition((float) sizeBetweenButtonsX + 
-											boutonSpriteTmp.getTextureRect().width/2,
-											(float) window->getWindow()->getSize().y 
-											- boutonSpriteTmp.getTextureRect().height / 2);
+			{
+				boutonSpriteTmp.setPosition(
+					0,
+					0);
+				break;
+			}
 			case 1:
-				boutonSpriteTmp.setPosition((float)window->getWindow()->getSize().x -sizeBetweenButtonsX ,
-											(float)window->getWindow()->getSize().y
-											- boutonSpriteTmp.getTextureRect().height / 2);
+			{
+				boutonSpriteTmp.setPosition(
+					100,
+					0);
+				break;
+			}
 			case 2:
-				boutonSpriteTmp.setPosition((float)sizeBetweenButtonsX +
-											boutonSpriteTmp.getTextureRect().width / 2,
-											(float)window->getWindow()->getSize().y
-											+ boutonSpriteTmp.getTextureRect().height / 2);
+			{
+				boutonSpriteTmp.setPosition(
+					200,
+					0);
+				break;
+			}
 			case 3:
-				boutonSpriteTmp.setPosition((float)window->getWindow()->getSize().x - sizeBetweenButtonsX ,
-											(float)window->getWindow()->getSize().y
-											+ boutonSpriteTmp.getTextureRect().height / 2);
+			{
+				boutonSpriteTmp.setPosition(
+					300,
+					0);
+				break;
+			}
 		}
-		
-		std::cout << boutonSpriteTmp.getPosition().x << "/" << boutonSpriteTmp.getPosition().y << "\n";
+
+
+		std::cout << boutonSpriteTmp.getPosition().x << "/" << boutonSpriteTmp.getPosition().y << " . "<< i << "\n";
 
 
 		listSpritesButtonChoice.push_back(std::pair<sf::Sprite, std::unique_ptr<sf::Texture>>(boutonSpriteTmp, std::make_unique<sf::Texture>(boutonTextTmp)));
