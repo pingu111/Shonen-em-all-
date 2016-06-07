@@ -1,8 +1,12 @@
 #include <RythmNBlood.h>
 
 
-RythmNBlood::RythmNBlood(WindowManager* windowArg) : player(Player::Instance(), 0)
+RythmNBlood::RythmNBlood(WindowManager* windowArg, int nbEnnemies , float ennemySpeedArg, float durationBetweenEnnemiesArg) : player(Player::Instance(), 0)
 {
+	nbEnnemiesMax = nbEnnemies;
+	durationBetweenEnnemies = durationBetweenEnnemiesArg;
+	ennemiSpeed = ennemySpeedArg;
+
 	//ennemis = std::vector<Ennemi>();
 	idEnnemi = 0;
 	window = windowArg;
@@ -14,7 +18,6 @@ RythmNBlood::RythmNBlood(WindowManager* windowArg) : player(Player::Instance(), 
 RythmNBlood::~RythmNBlood()
 {
 }
-
 
 void RythmNBlood::launchScene()
 {
@@ -33,23 +36,34 @@ void RythmNBlood::waitForUser()
 {
 	std::time_t timeLastAdd = std::time(nullptr);
 
-	while (window->getWindow()->isOpen())
+	while (window->getWindow()->isOpen() )
 	{
 		printBackgroundAndButtons();
 
 		animationPlayer();
 
 		timeLastAdd = addEnnemies(timeLastAdd);
+		if (idEnnemi <= nbEnnemiesMax)
+		{
+			// Parcours des listes d'ennemis en vie ou morts
+			listDeadAlive();
 
-		// Parcours des listes d'ennemis en vie ou morts
-		listDeadAlive();
+			std::vector<std::shared_ptr<Ennemi>> ennemiesHittables = animationsEnnemies();
 
-		std::vector<std::shared_ptr<Ennemi>> ennemiesHittables = animationsEnnemies();
+			// On gere les evenements et leurs consequences
+			ennemiesHittables = eventManager(ennemiesHittables);
 
-		// On gere les evenements et leurs consequences
-		ennemiesHittables = eventManager(ennemiesHittables);
-		
-		window->draw();
+			window->draw();
+		}
+		else
+		{
+			// Alors, fin de la scene
+			window->clearText();
+			window->draw();
+
+			SceneManager::moveToScene(SceneNames::VILAIN, window);
+			return;
+		}
 	}
 }
 
@@ -141,8 +155,9 @@ void RythmNBlood::initFonts()
 
 std::time_t RythmNBlood::addEnnemies(std::time_t timeLastAdd)
 {
+
 	//std::cout << " addEnnemies "<< timeLastAdd << " vs "<< std::time(nullptr) << "\n";
-	if (std::time(nullptr) - timeLastAdd > 1)
+	if (std::time(nullptr) - timeLastAdd > durationBetweenEnnemies)
 	{
 		timeLastAdd = std::time(nullptr);
 
@@ -150,18 +165,18 @@ std::time_t RythmNBlood::addEnnemies(std::time_t timeLastAdd)
 		Ennemi newEnnemi(Random::randInt(0, 1) == 1, ++idEnnemi);
 		newEnnemi.initSpeed((float)ennemiSpeed);
 		std::shared_ptr<Ennemi> newEnn = std::make_shared<Ennemi>(newEnnemi);
-		
+
 		// Cree son sprite
-	
+
 
 		sf::Sprite spriteNewEnnemi = listSpriteEnnemyMoving[0].first;
 		if (!newEnnemi.getIsLeft())
 		{
 			spriteNewEnnemi = flipSprite(spriteNewEnnemi);
 		}
-		std::pair<int, sf::Sprite> pair(Random::randInt(0,10), spriteNewEnnemi);
+		std::pair<int, sf::Sprite> pair(Random::randInt(0, 10), spriteNewEnnemi);
 		mapSpriteEnnemi.insert(std::pair<std::shared_ptr<Ennemi>, std::pair<int, sf::Sprite>>
-								(newEnn, pair));
+			(newEnn, pair));
 
 		ennemisAlive.push_back(newEnn);
 	}

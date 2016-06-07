@@ -8,6 +8,8 @@
 #include <VirtualScene.h>
 #include <Player.h>
 #include <Bouton.h>
+#include <SceneManager.h>
+
 
 class RythmNBlood : VirtualScene
 {
@@ -93,12 +95,19 @@ private:
 	/* Affiche un texte lorsque le joueur tape */
 	void printText(float hitValue);
 
-	
+	/* Le nombre d'ennemis dans cette scene */
+	int nbEnnemiesMax;
+
+	/* La vitesse des ennemis */
+	float ennemiSpeed;
+
+	/* Le temps entre 2 ennemis  */
+	float durationBetweenEnnemies;
 
 public:
 	/* Constructeur
 	* param : WindowManager windowArg la fenetre d'affichage */
-	RythmNBlood(WindowManager *windowArg);
+	RythmNBlood(WindowManager *windowArg, int nbEnnemies, float ennemySpeed, float durationBetweenEnnemies);
 
 	/* Destructeur */
 	~RythmNBlood();

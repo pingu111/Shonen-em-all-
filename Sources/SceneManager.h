@@ -8,7 +8,8 @@
 enum SceneNames
 {
 	MENU,
-	RNB,
+	RNB1,
+	RNB2,
 	VILAIN,
 	WIN,
 	DEFEAT

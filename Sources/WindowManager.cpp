@@ -34,6 +34,7 @@ void WindowManager::addWithPeremption(std::unique_ptr<sf::Text> form , int perem
 void WindowManager::clearText()
 {
 	listText.clear();
+	listTextWithPeremption.clear();
 }
 
 

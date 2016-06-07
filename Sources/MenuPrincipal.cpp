@@ -56,7 +56,7 @@ EnumChoicesUser MenuPrincipal::waitForUser()
 				if (boutonRNB.isClicked(sf::Mouse::getPosition(*window->getWindow())))
 				{
 					std::cout << "Clique !\n";
-					SceneManager::moveToScene(SceneNames::RNB, window);
+					SceneManager::moveToScene(SceneNames::RNB1, window);
 					return RYTHM;
 				}
 			}

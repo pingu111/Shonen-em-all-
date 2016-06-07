@@ -3,6 +3,8 @@
 void SceneManager::moveToScene(SceneNames name, WindowManager* window)
 {
 	//TODO a faire avant de quitter une scene
+	
+
 	switch (name)
 	{
 	case MENU:
@@ -10,9 +12,14 @@ void SceneManager::moveToScene(SceneNames name, WindowManager* window)
 		MenuPrincipal scene(window);
 		break;
 	}
-	case RNB:
+	case RNB1:
 	{
-		RythmNBlood scene(window);
+		RythmNBlood scene(window , 2 , 1.0f , 0.5f);
+		break;
+	}
+	case RNB2:
+	{
+		RythmNBlood scene(window, 20 , 1.0f , 0.3f);
 		break;
 	}
 	case VILAIN:
