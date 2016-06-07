@@ -31,9 +31,8 @@ private:
 public :
 	static Player& Instance();
 
-
 	/*frappe un ennemi hitable et ajuste le score*/
-	void hit(Ennemi &enn);
+	float hit(Ennemi &enn);
 	/* apres une replique, le hero garde sa super replique en memoire */
 	void update(Replique rep);
 	/* une fois la scene de combat chargee, stocke les nouvelles capacités de hero. Et augmente sa force */

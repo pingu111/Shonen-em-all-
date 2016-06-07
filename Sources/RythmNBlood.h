@@ -79,7 +79,7 @@ private:
 	sf::Sprite flipSprite(sf::Sprite spriteToFlip);
 
 	/* Gere les animations et renvoie la liste des ennemis touchables */
-	std::vector<std::shared_ptr<Ennemi>> animations();
+	std::vector<std::shared_ptr<Ennemi>> animationsEnnemies();
 
 	/* Gere la liste des ennemis morts et vivants, et la met à jour */
 	void listDeadAlive();
@@ -89,6 +89,10 @@ private:
 
 	/* Charge les .tff */
 	void initFonts();
+
+	/* Affiche un texte lorsque le joueur tape */
+	void printText(float hitValue);
+
 	
 
 public:

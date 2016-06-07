@@ -33,7 +33,7 @@ void Player::increaseStrenght()
 
 
 
-void Player::hit(Ennemi &enn)
+float Player::hit(Ennemi &enn)
 {
 	//assert(cooldownTime <= 0);
 	cooldownTime = cooldown;
@@ -45,6 +45,7 @@ void Player::hit(Ennemi &enn)
 		maxHit = hitValue;
 	if (enn.isDead())
 		score += scoreForKill*scoreMult;
+	return hitValue;
 
 }
 
