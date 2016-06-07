@@ -98,12 +98,12 @@
     <ClCompile Include="Sources\WindowManager.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\Shonen%27em all\Sources\Global.h" />
     <ClInclude Include="..\Shonen%27em all\Sources\WindowManager.h" />
     <ClInclude Include="Sources\Bouton.h" />
     <ClInclude Include="Sources\DrawableFixed.h" />
     <ClInclude Include="Sources\DrawableVirtual.h" />
     <ClInclude Include="Sources\Ennemi.h" />
+    <ClInclude Include="Sources\Global.h" />
     <ClInclude Include="Sources\Random.h" />
     <ClInclude Include="Sources\Replique.h" />
     <ClInclude Include="Sources\SceneBoss.h" />

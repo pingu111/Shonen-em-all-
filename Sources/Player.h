@@ -21,10 +21,12 @@ private:
 	float maxHit;
 	/* augment la force du hero apres sa rencontre avec le grand mechant */
 	void increaseStrenght();
-
+	Player();
+	static Player m_instance;
 
 public :
-	Player();
+	static Player& Instance();
+
 
 	/*frappe un ennemi hitable et ajuste le score*/
 	void hit(bool isHitLeft, Ennemi &enn);

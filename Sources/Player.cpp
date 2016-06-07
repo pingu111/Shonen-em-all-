@@ -1,5 +1,6 @@
 #include <Player.h>
 
+Player Player::m_instance = Player();
 
 Player::Player()
 {
@@ -12,6 +13,11 @@ Player::Player()
 	score = 0;
 	strenght = 1;
 	maxHit = 0;
+}
+
+Player& Player::Instance()
+{
+	return m_instance;
 }
 
 void Player::destroy()

@@ -1,9 +1,7 @@
 #include <RythmNBlood.h>
 
 
-Player RythmNBlood::player;
-
-RythmNBlood::RythmNBlood(WindowManager* windowArg)
+RythmNBlood::RythmNBlood(WindowManager* windowArg) : player(Player::Instance())
 {
 	//ennemis = std::vector<Ennemi>();
 	idEnnemi = 0;

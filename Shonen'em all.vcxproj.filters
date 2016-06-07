@@ -100,9 +100,6 @@
     <ClInclude Include="Sources\SceneManager.h">
       <Filter>Source Files\Utils</Filter>
     </ClInclude>
-    <ClInclude Include="..\Shonen%27em all\Sources\Global.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="Sources\SceneBoss.h">
       <Filter>Source Files\Scenes</Filter>
     </ClInclude>
@@ -111,6 +108,9 @@
     </ClInclude>
     <ClInclude Include="Sources\Random.h">
       <Filter>Source Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Global.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

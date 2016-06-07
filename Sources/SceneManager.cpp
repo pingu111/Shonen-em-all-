@@ -16,7 +16,10 @@ void SceneManager::moveToScene(SceneNames name, WindowManager* window)
 		break;
 	}
 	case VILAIN:
+	{
+		SceneBoss scene(window);
 		break;
+	}
 	case WIN:
 		break;
 	case DEFEAT:

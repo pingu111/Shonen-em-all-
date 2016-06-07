@@ -3,7 +3,7 @@
 #include <MenuPrincipal.h>
 #include <RythmNBlood.h>
 #include <WindowManager.h>
-#include <SFML/Graphics.hpp>
+#include <SceneBoss.h>
 
 enum SceneNames
 {

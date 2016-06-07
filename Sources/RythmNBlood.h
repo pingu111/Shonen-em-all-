@@ -29,7 +29,7 @@ private:
 
 	std::pair<sf::Sprite, std::unique_ptr<sf::Texture>> playerWaitingSprite;
 
-	static Player player;
+	Player& player;
 
 	Bouton buttonQuit;
 
