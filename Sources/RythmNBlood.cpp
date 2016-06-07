@@ -6,7 +6,7 @@ RythmNBlood::RythmNBlood(WindowManager* windowArg) : player(Player::Instance(), 
 	//ennemis = std::vector<Ennemi>();
 	idEnnemi = 0;
 	window = windowArg;
-	playerHittingAnimation = false;
+	isPlayerInHitAnimation = false;
 	isLastHitLeft = false;
 	launchScene();
 }
@@ -18,6 +18,7 @@ RythmNBlood::~RythmNBlood()
 void RythmNBlood::launchScene()
 {
 	initSprite();
+	initFonts();
 	waitForUser();
 }
 
@@ -83,9 +84,13 @@ void RythmNBlood::initSprite()
 							- (float)sprite.getTextureRect().height / 2);
 
 		// On les stocke
-		listSpritePlayerHitting.push_back(std::pair<sf::Sprite, std::unique_ptr<sf::Texture>>(sprite, std::make_unique<sf::Texture>(texture)));
-		listSpritePlayerHitting.back().first.setTexture(*listSpritePlayerHitting.back().second);
+		for (int i = 0; i < 3; i++)
+		{
+			listSpritePlayerHitting.push_back(std::pair<sf::Sprite, std::unique_ptr<sf::Texture>>(sprite, std::make_unique<sf::Texture>(texture)));
+			listSpritePlayerHitting.back().first.setTexture(*listSpritePlayerHitting.back().second);
+		}
 		
+
 		if (i == 1)
 		{
 			// On stocke l'image du joueur qui attend
@@ -110,10 +115,24 @@ void RythmNBlood::initSprite()
 		texture.loadFromImage(image);
 		
 		// On les stocke
-		listSpriteEnnemyMoving.push_back(std::pair<sf::Sprite, std::unique_ptr<sf::Texture>>(sprite, std::make_unique<sf::Texture>(texture)));
-		listSpriteEnnemyMoving.back().first.setTexture(*listSpriteEnnemyMoving.back().second);
+		for (int i = 0; i < 10; i++)
+		{
+			listSpriteEnnemyMoving.push_back(std::pair<sf::Sprite, std::unique_ptr<sf::Texture>>(sprite, std::make_unique<sf::Texture>(texture)));
+			listSpriteEnnemyMoving.back().first.setTexture(*listSpriteEnnemyMoving.back().second);
+		}
 	}
 
+}
+
+void RythmNBlood::initFonts()
+{
+	assert(comicFont.loadFromFile("Ressources\\ComicSansMS.ttf") == true);
+
+	textDamages.setFont(comicFont);
+	textDamages.setString("");
+	textDamages.setCharacterSize(24);
+	textDamages.setColor(sf::Color::Red);
+	textDamages.setStyle(sf::Text::Bold);
 }
 
 std::time_t RythmNBlood::addEnnemies(std::time_t timeLastAdd)
@@ -136,7 +155,7 @@ std::time_t RythmNBlood::addEnnemies(std::time_t timeLastAdd)
 		{
 			spriteNewEnnemi = flipSprite(spriteNewEnnemi);
 		}
-		std::pair<int, sf::Sprite> pair(0, spriteNewEnnemi);
+		std::pair<int, sf::Sprite> pair(Random::randInt(0,10), spriteNewEnnemi);
 		mapSpriteEnnemi.insert(std::pair<std::shared_ptr<Ennemi>, std::pair<int, sf::Sprite>>
 								(newEnn, pair));
 
@@ -226,10 +245,10 @@ std::vector<std::shared_ptr<Ennemi>> RythmNBlood::eventManager(std::vector<std::
 				system("pause");
 			}
 		}
-		else if (event.key.code == sf::Keyboard::Left && !playerHittingAnimation)
+		else if (event.key.code == sf::Keyboard::Left && !isPlayerInHitAnimation)
 		{
 			// taper !
-			playerHittingAnimation = true;
+			isPlayerInHitAnimation = true;
 			isLastHitLeft = true;
 			std::cout << ennemiesHittables.size() << "\n";
 
@@ -240,10 +259,10 @@ std::vector<std::shared_ptr<Ennemi>> RythmNBlood::eventManager(std::vector<std::
 
 			}
 		}
-		else if (event.key.code == sf::Keyboard::Right && !playerHittingAnimation)
+		else if (event.key.code == sf::Keyboard::Right && !isPlayerInHitAnimation)
 		{
 			// taper !
-			playerHittingAnimation = true;
+			isPlayerInHitAnimation = true;
 			isLastHitLeft = false;
 			std::cout << ennemiesHittables.size() << "\n";
 			for (auto &enn : ennemiesHittables)
@@ -252,7 +271,7 @@ std::vector<std::shared_ptr<Ennemi>> RythmNBlood::eventManager(std::vector<std::
 					player.first.hit(*enn);
 			}
 		}
-		else if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && !playerHittingAnimation)
+		else if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && !isPlayerInHitAnimation)
 		{
 			//playerHittingAnimation = true;
 
@@ -266,7 +285,7 @@ std::vector<std::shared_ptr<Ennemi>> RythmNBlood::eventManager(std::vector<std::
 void RythmNBlood::animationPlayer()
 {
 	// On gere l'animation du joueur
-	if (playerHittingAnimation)
+	if (isPlayerInHitAnimation)
 	{
 		if (player.second + 1 < (int)listSpritePlayerHitting.size())
 		{
@@ -275,7 +294,7 @@ void RythmNBlood::animationPlayer()
 		else
 		{
 			player.second = 0;
-			playerHittingAnimation = false;
+			isPlayerInHitAnimation = false;
 		}
 		if (!isLastHitLeft)
 			window->add(std::make_unique<sf::Sprite>(flipSprite(listSpritePlayerHitting[player.second].first)));

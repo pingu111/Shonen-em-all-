@@ -70,6 +70,7 @@ EnumChoicesUser MenuPrincipal::waitForUser()
 
 void MenuPrincipal::initTextures()
 {
+	// On charge les differentes images 
 	assert(fond.loadFromFile("Ressources\\Menuprincipal\\FondMenuPrincipal.jpg") == true);
 	fondSprite.setTexture(fond);
 

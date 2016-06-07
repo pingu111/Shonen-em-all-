@@ -21,11 +21,20 @@ void WindowManager::add(std::unique_ptr<sf::Sprite> form)
 	listSprites.push_back(move(form));
 }
 
+void WindowManager::add(std::unique_ptr<sf::Text> form)
+{
+	listText.push_back(move(form));
+}
+
 void WindowManager::draw()
 {
 	window.clear(sf::Color::White);
 
 	for (auto &form : listSprites)
+	{
+		window.draw(*form);
+	}
+	for (auto &form : listText)
 	{
 		window.draw(*form);
 	}

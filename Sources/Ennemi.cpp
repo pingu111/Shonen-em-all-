@@ -47,7 +47,7 @@ float Ennemi::takeHit(float strenght)
 	float hit = strenght - armor;
 	if (hit < 0)
 		hit = 0;
-	lifePoint -= std::round(hit);
+	lifePoint -= (int)std::round(hit);
 	std::cout << "Ennemi a pris un hit " << strenght << " reste " << lifePoint << " pv \n";
 
 	return hit;

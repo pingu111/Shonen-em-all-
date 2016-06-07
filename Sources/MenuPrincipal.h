@@ -7,17 +7,13 @@
 #include <VirtualScene.h>
 #include <Bouton.h>
 
-/* L'enum des diffreentes choix que le joueur pourra faire dans cette scene */
-enum EnumChoicesUser { QUIT, RYTHM, OPTIONS };
+
 
 class MenuPrincipal : VirtualScene
 {
 
 private:
-	sf::Texture fond;
 	sf::Texture boutonGoToRNB;
-
-	sf::Sprite fondSprite;
 	sf::Sprite boutonGoToRNBSprite;
 
 	Bouton boutonRNB;

@@ -14,10 +14,18 @@ class RythmNBlood : VirtualScene
 
 private:
 
-	bool playerHittingAnimation;
+	/************ Variables ************/
+
+
+	/* Booleen explicitant si le joueur est en cours d'animation de frappe*/
+	bool isPlayerInHitAnimation;
+
+	/* Booleen : true si la derniere frappe est à gauche false si à droite */
 	bool isLastHitLeft;
 
+	/* Le numero de l'ennemi, et donc, le nombre */
 	int idEnnemi;
+
 	/* La liste d'ennemis en vie */
 	std::vector<std::shared_ptr<Ennemi>> ennemisAlive;
 
@@ -38,7 +46,14 @@ private:
 	/* Le joueur et son numero actuel de sprite */
 	std::pair<Player&, int> player;
 
-	Bouton buttonQuit;
+	/* La meilleure police possible */
+	sf::Font comicFont;
+
+	/* Le texte des degats faits par le joueur */
+	sf::Text textDamages;
+
+
+	/************ Fonctions ************/
 
 	/* Initialise les sprites du joueur et des ennemis*/
 	void initSprite();
@@ -72,10 +87,9 @@ private:
 	/* Gere les animations du joueur */
 	void animationPlayer();
 
-
-	/* Les sprites et textures pour le background */
-	sf::Sprite fondSprite;
-	sf::Texture fond;
+	/* Charge les .tff */
+	void initFonts();
+	
 
 public:
 	/* Constructeur

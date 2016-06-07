@@ -8,7 +8,7 @@ int Random::randInt(int left, int right)
 
 	std::uniform_int_distribution<> dist(left, right);
 
-	return std::round(dist(e2));
+	return (float)std::round(dist(e2));
 }
 
 float Random::randFloat(float left, float right)
@@ -19,5 +19,5 @@ float Random::randFloat(float left, float right)
 
 	std::uniform_real_distribution<> dist(left, right);
 
-	return std::round(dist(e2));
+	return (float)std::round(dist(e2));
 }
