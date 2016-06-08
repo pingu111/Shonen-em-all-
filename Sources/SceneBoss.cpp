@@ -85,7 +85,7 @@ void SceneBoss::initSprite()
 		//std::cout << listSpritesButtonChoice[i].first.getPosition().x << "/" << listSpritesButtonChoice[i].first.getPosition().y << "\n";
 
 		boutonTmp.setSprite(boutonSpriteTmp , move(ptrTexture));
-		boutonTmp.defaultText();
+		std::cout << "Copie ";
 		boutonTmp.setText("lol" , comicFont);
 
 		listButtonsChoices.push_back(boutonTmp);

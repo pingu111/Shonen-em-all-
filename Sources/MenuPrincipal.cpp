@@ -73,7 +73,7 @@ void MenuPrincipal::initTextures()
 	assert(fond.loadFromFile("Ressources\\Menuprincipal\\FondMenuPrincipal.jpg") == true);
 	fondSprite.setTexture(fond);
 
-	assert(boutonGoToRNB.loadFromFile("Ressources\\Menuprincipal\\TextBox.gif") == true);
+	assert(boutonGoToRNB.loadFromFile("Ressources\\Menuprincipal\\TextBoxBlank.gif") == true);
 	boutonGoToRNBSprite.setTexture(boutonGoToRNB);
 
 	boutonGoToRNBSprite.setPosition((float) window->getWindow()->getSize().x / 2	 - boutonGoToRNBSprite.getTextureRect().width  / 2,
@@ -81,6 +81,12 @@ void MenuPrincipal::initTextures()
 
 	// On créé le bouton qui cible le Hack n slash
 	boutonRNB.setSprite(boutonGoToRNBSprite , std::make_unique<sf::Texture>(boutonGoToRNB));
+
+	sf::Font font;
+	font.loadFromFile("Ressources\\ComicSansMS.ttf");
+	std::cout << "Copie par set";
+	boutonRNB.setText("Commencer le jeu !", font);
+
 }
 
 

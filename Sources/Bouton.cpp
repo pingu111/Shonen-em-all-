@@ -8,8 +8,8 @@ Bouton::Bouton()
 Bouton::Bouton(const Bouton &buttonCopy)
 {
 	setSprite(buttonCopy.spriteTexture.first, std::make_unique<sf::Texture>(*buttonCopy.spriteTexture.second));
+	std::cout << "Copie par constructeur --> ";
 	setText(buttonCopy.textFont.first.getString(), buttonCopy.textFont.second);
-
 }
 
 Bouton::Bouton(sf::Sprite spriteToSet, std::unique_ptr<sf::Texture> textureToSet)
@@ -26,22 +26,38 @@ void Bouton::setSprite(sf::Sprite spriteToSet , std::unique_ptr<sf::Texture> tex
 
 void Bouton::setText(std::string message , sf::Font font)
 {
+	std::cout << font.getInfo().family << "\n";
+	if (font.getInfo().family == "")
+	{
+		std::cout << "FONT VIDE !";
+		font = comicFont;
+	}
 	textFont.second = font;
 	textFont.first.setFont(textFont.second);
+	textFont.first.setCharacterSize(100);
 	textFont.first.setString(message);
-	std::cout << "Texte = " << message << "\n";
+
+	// On centre
+	
+	textFont.first.setColor(sf::Color::Red);
+
 
 	// Si on depasse le sprite, on diminue la taille
-	while (textFont.first.getLocalBounds().width > spriteTexture.first.getTextureRect().width
-		&& textFont.first.getLocalBounds().height >  spriteTexture.first.getTextureRect().height)
+	while (textFont.first.getGlobalBounds().width >= spriteTexture.first.getTextureRect().width
+		| textFont.first.getGlobalBounds().height >=  spriteTexture.first.getTextureRect().height)
 	{
-		textFont.first.setCharacterSize(textFont.first.getCharacterSize() - 1);
+		textFont.first.setCharacterSize(textFont.first.getCharacterSize() - 5);
 	}
+
+	textFont.first.setPosition(
+		spriteTexture.first.getPosition().x + spriteTexture.first.getTextureRect().width / 2 - textFont.first.getGlobalBounds().width / 2,
+		spriteTexture.first.getPosition().y + spriteTexture.first.getTextureRect().height / 2 - textFont.first.getGlobalBounds().height / 2);
 }
 
 void Bouton::setFont(sf::Font font)
 {
-	textFont.first.setFont(font);
+	textFont.second = font;
+	textFont.first.setFont(textFont.second);
 }
 
 sf::Sprite Bouton::getSprite()
@@ -51,6 +67,7 @@ sf::Sprite Bouton::getSprite()
 
 std::pair<std::unique_ptr<sf::Sprite>, std::unique_ptr<sf::Text>> Bouton::getSpriteAndMessage()
 {
+	textFont.first.setFont(textFont.second);
 	return std::pair<std::unique_ptr<sf::Sprite>, std::unique_ptr<sf::Text>>
 		(std::make_unique<sf::Sprite>(spriteTexture.first), std::make_unique<sf::Text>(textFont.first));
 }
@@ -68,8 +85,6 @@ void Bouton::setOnClick(void(*function)())
 
 bool Bouton::isClicked(sf::Vector2i mousePosition)
 {
-	//std::cout << "Sprite : " <<sprite.getPosition().x << " / " << sprite.getPosition().y << "\n";
-	//std::cout << "Mouse : " << mousePosition.x << " / " << mousePosition.x << "\n";
 
 	if ((int)spriteTexture.first.getPosition().x < mousePosition.x &&
 		(int) (spriteTexture.first.getPosition().x + spriteTexture.first.getTextureRect().width) > mousePosition.x &&
