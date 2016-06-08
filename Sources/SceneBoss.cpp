@@ -135,6 +135,9 @@ std::vector<Replique*> SceneBoss::randReplique()
 {
 	int rand1, rand2, rand3, rand4;
 	assert(repliques.size() > 4);
+
+	//ici on suppose qu'on beaucoup de repliques donc la probabilite de tomber sur une deja choisie est faible.
+	//on aurai aussi pu creer un liste de uint et la melanger. Ensuite prendre les 4 premiers elements de la liste (qui correspondront aux indices des repliques choisies)
 	rand1 = Random::randInt(0, repliques.size());
 	do 
 	{
