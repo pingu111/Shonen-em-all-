@@ -15,10 +15,10 @@ private:
 	std::vector<std::unique_ptr<Replique>> repliques;
 
 	/* la liste des 4 repliqes courantes et leur bouton */
-	std::vector<std::pair<Replique&,std::unique_ptr<Bouton>>> SeletedRepliques;
+	std::vector<std::pair<Replique*,Bouton*>> SeletedRepliques;
 
-	/* selectionne aleatoirement 4 repliqes parmis toutes celles connues. Il doit y en avoirp plus de 4 */
-	std::vector<Replique> randReplique();
+	/* selectionne aleatoirement 4 repliqes parmis toutes celles connues. Il doit y en avoir plus de 4 */
+	std::vector<Replique*> randReplique();
 
 	/* attend l'appuie sur un bouton */
 	void waitForUser();
@@ -26,8 +26,8 @@ private:
 	Player& player;
 
 	/* La liste des boutons */
-	std::vector<Bouton> listButtonsChoices;
-	std::vector<std::pair<sf::Sprite, std::unique_ptr<sf::Texture>>> listSpritesButtonChoice;
+	std::vector<std::unique_ptr<Bouton>> listButtonsChoices;
+	std::vector<std::pair<std::unique_ptr<sf::Sprite>, std::unique_ptr<sf::Texture>>> listSpritesButtonChoice;
 
 	/* Affiche le fond */
 	void printBackground();

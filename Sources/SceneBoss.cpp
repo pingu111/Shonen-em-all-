@@ -83,15 +83,15 @@ void SceneBoss::initSprite()
 			}
 		}
 
-		listSpritesButtonChoice.push_back(std::pair<sf::Sprite, std::unique_ptr<sf::Texture>>(boutonSpriteTmp, std::make_unique<sf::Texture>(boutonTextTmp)));
-		listSpritesButtonChoice.back().first.setTexture(*listSpritesButtonChoice.back().second);
+		listSpritesButtonChoice.push_back(std::pair<std::unique_ptr<sf::Sprite>, std::unique_ptr<sf::Texture>>(std::make_unique<sf::Sprite>(boutonSpriteTmp), std::make_unique<sf::Texture>(boutonTextTmp)));
+		listSpritesButtonChoice.back().first->setTexture(*listSpritesButtonChoice.back().second);
 
 		//std::cout << listSpritesButtonChoice[i].first.getPosition().x << "/" << listSpritesButtonChoice[i].first.getPosition().y << "\n";
 
 		boutonTmp.setSprite(boutonSpriteTmp);
 		//boutonTmp.setText("lol");
 
-		listButtonsChoices.push_back(boutonTmp);
+		listButtonsChoices.push_back(std::make_unique<Bouton>(boutonTmp));
 	}
 
 
@@ -123,9 +123,9 @@ void SceneBoss::waitForUser()
 		else if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 		{
 			//On parcours les boutons et on verifie s'ils sont cliqués
-			for (Bouton button : listButtonsChoices)
+			for (std::unique_ptr<Bouton> &button : listButtonsChoices)
 			{
-				if (button.isClicked(sf::Mouse::getPosition(*window->getWindow())))
+				if (button->isClicked(sf::Mouse::getPosition(*window->getWindow())))
 				{
 					//player.update(/*replique choisie*/*repliques[0]);
 				}
@@ -136,7 +136,7 @@ void SceneBoss::waitForUser()
 }
 
 /* selectionne aleatoirement 4 repliqes parmis toutes celles connues */
-std::vector<Replique> SceneBoss::randReplique()
+std::vector<Replique*> SceneBoss::randReplique()
 {
 	int rand1, rand2, rand3, rand4;
 	assert(repliques.size() > 4);
@@ -151,7 +151,7 @@ std::vector<Replique> SceneBoss::randReplique()
 		rand4 = Random::randInt(0, repliques.size());
 	} while (rand4 == rand1 || rand4 == rand2 || rand4 == rand3);
 
-	std::vector<Replique> vec(4);
-	vec = { *repliques[rand1],*repliques[rand2],*repliques[rand3],*repliques[rand4] };
+	std::vector<Replique*> vec(4);
+	vec = { repliques[rand1].get(),repliques[rand2].get(),repliques[rand3].get(),repliques[rand4].get() };
 	return vec;
 }
