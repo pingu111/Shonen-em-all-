@@ -26,7 +26,9 @@ void SceneBoss::printBackground()
 
 	for (int i = 0; i < 4; i++)
 	{
-		window->add(std::make_unique<sf::Sprite>(listSpritesButtonChoice[i].first));
+		std::cout << listButtonsChoices[i].getSpriteAndMessage().first->getTexture()->getSize().x << "\n";
+		window->add(std::make_unique<Bouton>(listButtonsChoices[i]));
+
 	}
 	window->draw();
 }
@@ -42,56 +44,52 @@ void SceneBoss::initSprite()
 	{
 		sf::Texture boutonTextTmp;
 		Bouton boutonTmp;
+		sf::Sprite boutonSpriteTmp;
 
 		assert(boutonTextTmp.loadFromFile("Ressources\\Boss\\TextBoxBlank.gif") == true);
-		sf::Sprite boutonSpriteTmp(boutonTextTmp);
+		boutonSpriteTmp.setTexture(boutonTextTmp);
 
 		float sizeBetweenButtonsX = ((float)window->getWindow()->getSize().x -
 									(float)(2 * boutonSpriteTmp.getTextureRect().width)) / 3;
-		std::cout << sizeBetweenButtonsX << "\n";
+		//std::cout << sizeBetweenButtonsX << "\n";
 
 		switch (i)
 		{
 			// Placement des 4 boutons de choix 
 			case 0:
-			{
 				boutonSpriteTmp.setPosition(
 					sizeBetweenButtonsX,
 					(float)window->getWindow()->getSize().y - 2.02f * boutonSpriteTmp.getTextureRect().height);
 				break;
-			}
 			case 1:
-			{
 				boutonSpriteTmp.setPosition(
 					(float)window->getWindow()->getSize().x - sizeBetweenButtonsX - boutonSpriteTmp.getTextureRect().width,
 					(float)window->getWindow()->getSize().y - 2.02f * boutonSpriteTmp.getTextureRect().height);
 				break;
-			}
 			case 2:
-			{
 				boutonSpriteTmp.setPosition(
 					sizeBetweenButtonsX,
 					(float)window->getWindow()->getSize().y - 1.01f * boutonSpriteTmp.getTextureRect().height);
 				break;
-			}
 			case 3:
-			{
 				boutonSpriteTmp.setPosition(
 					(float)window->getWindow()->getSize().x - sizeBetweenButtonsX - boutonSpriteTmp.getTextureRect().width,
 					(float)window->getWindow()->getSize().y - 1.01f * boutonSpriteTmp.getTextureRect().height);
 				break;
-			}
 		}
 
 		listSpritesButtonChoice.push_back(std::pair<std::unique_ptr<sf::Sprite>, std::unique_ptr<sf::Texture>>(std::make_unique<sf::Sprite>(boutonSpriteTmp), std::make_unique<sf::Texture>(boutonTextTmp)));
 		listSpritesButtonChoice.back().first->setTexture(*listSpritesButtonChoice.back().second);
 
+
 		//std::cout << listSpritesButtonChoice[i].first.getPosition().x << "/" << listSpritesButtonChoice[i].first.getPosition().y << "\n";
 
-		boutonTmp.setSprite(boutonSpriteTmp);
-		//boutonTmp.setText("lol");
+		boutonTmp.setSprite(boutonSpriteTmp , boutonTextTmp);
+		boutonTmp.defaultText();
+		boutonTmp.setText("lol" , comicFont);
 
-		listButtonsChoices.push_back(std::make_unique<Bouton>(boutonTmp));
+		listButtonsChoices.push_back(boutonTmp);
+
 	}
 
 
@@ -123,9 +121,9 @@ void SceneBoss::waitForUser()
 		else if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 		{
 			//On parcours les boutons et on verifie s'ils sont cliqués
-			for (std::unique_ptr<Bouton> &button : listButtonsChoices)
+			for (Bouton &button : listButtonsChoices)
 			{
-				if (button->isClicked(sf::Mouse::getPosition(*window->getWindow())))
+				if (button.isClicked(sf::Mouse::getPosition(*window->getWindow())))
 				{
 					//player.update(/*replique choisie*/*repliques[0]);
 				}

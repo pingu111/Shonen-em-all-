@@ -31,6 +31,11 @@ void WindowManager::addWithPeremption(std::unique_ptr<sf::Text> form , int perem
 	listTextWithPeremption.push_back(std::pair<std::unique_ptr<sf::Text>, int>(move(form), peremptionTime));
 }
 
+void WindowManager::add(std::unique_ptr<Bouton> button)
+{
+	listButtons.push_back(move(button));
+}
+
 void WindowManager::clearText()
 {
 	listText.clear();
@@ -43,6 +48,7 @@ void WindowManager::draw()
 {
 	window.clear(sf::Color::White);
 
+
 	for (auto &form : listSprites)
 	{
 		window.draw(*form);
@@ -51,6 +57,13 @@ void WindowManager::draw()
 	{
 		window.draw(*form);
 	}
+
+	for (auto &form : listButtons)
+	{
+		window.draw(*form->getSpriteAndMessage().first);
+		//listText.push_back(form->getSpriteAndMessage().second);
+	}
+
 	for (auto &form : listTextWithPeremption)
 	{
 		if(std::time(nullptr) <= form.second + lifeTimeText)
@@ -58,5 +71,7 @@ void WindowManager::draw()
 	}
 	window.display();
 	listSprites.clear();
+	listButtons.clear();
+
 }
 

@@ -3,6 +3,7 @@
 #include <SFML\Graphics.hpp>
 #include <iostream>
 #include <assert.h>
+#include <memory>
 
 
 class Bouton
@@ -10,10 +11,11 @@ class Bouton
 
 private:
 	/* Le sprite du bouton */
-	sf::Sprite sprite;
+	std::pair<sf::Sprite,sf::Texture> spriteTexture;
 
 	/* Le texte du bouton ,s'il yen a un */
-	sf::Text text;
+	std::pair<sf::Text, sf::Font> textFont;
+
 
 	sf::Font font;
 
@@ -24,15 +26,15 @@ public:
 
 	Bouton();
 	/* Constructeur : sette le sprite du bouton */
-	Bouton(sf::Sprite spriteToSet);
+	Bouton(sf::Sprite spriteToSet, sf::Texture textureToSet);
 
 	/* Change le sprite du bouton */
-	void setSprite(sf::Sprite spriteToSet);
+	void setSprite(sf::Sprite spriteToSet, sf::Texture textureToSet);
 
 	/* Change la position du sprite du bouton */
 	void setPosition(int posX, int posY);
 
-	void setText(std::string message);
+	void setText(std::string message, sf::Font font);
 
 	void setFont(sf::Font font);
 
@@ -49,7 +51,7 @@ public:
 	bool isClicked(sf::Vector2i mousePosition);
 
 	/* Renvoie le sprite et le message */
-	std::pair<sf::Sprite, sf::Text> getSpriteAndMessage();
+	std::pair< std::unique_ptr<sf::Sprite>, std::unique_ptr<sf::Text>> getSpriteAndMessage();
 
 
 };

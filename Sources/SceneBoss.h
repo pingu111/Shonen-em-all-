@@ -26,7 +26,7 @@ private:
 	Player& player;
 
 	/* La liste des boutons */
-	std::vector<std::unique_ptr<Bouton>> listButtonsChoices;
+	std::vector<Bouton> listButtonsChoices;
 	std::vector<std::pair<std::unique_ptr<sf::Sprite>, std::unique_ptr<sf::Texture>>> listSpritesButtonChoice;
 
 	/* Affiche le fond */

@@ -5,47 +5,54 @@ Bouton::Bouton()
 	defaultText();
 }
 
-Bouton::Bouton(sf::Sprite spriteToSet)
+Bouton::Bouton(sf::Sprite spriteToSet, sf::Texture textureToSet)
 {
-	setSprite(spriteToSet);
+	setSprite(spriteToSet , textureToSet);
 	defaultText();
 }
 
-void Bouton::setSprite(sf::Sprite spriteToSet)
+void Bouton::setSprite(sf::Sprite spriteToSet , sf::Texture textureToSet)
 {
-	sprite = spriteToSet;
+	spriteTexture.first = spriteToSet;
+	spriteTexture.second = textureToSet;
+	spriteTexture.first.setTexture(spriteTexture.second);
+
 }
 
-void Bouton::setText(std::string message)
+void Bouton::setText(std::string message , sf::Font font)
 {
-	text.setString(message);
+	textFont.second = font;
+	textFont.first.setFont(textFont.second);
+	textFont.first.setString(message);
 
-	while (text.getLocalBounds().width > sprite.getTextureRect().width
-		&& text.getLocalBounds().height > sprite.getTextureRect().height)
+	// Si on depasse le sprite, on diminue la taille
+	while (textFont.first.getLocalBounds().width > spriteTexture.first.getTextureRect().width
+		&& textFont.first.getLocalBounds().height >  spriteTexture.first.getTextureRect().height)
 	{
-		text.setCharacterSize(text.getCharacterSize() - 1);
+		textFont.first.setCharacterSize(textFont.first.getCharacterSize() - 1);
 	}
 }
 
 void Bouton::setFont(sf::Font font)
 {
-	text.setFont(font);
+	textFont.first.setFont(font);
 }
 
 sf::Sprite Bouton::getSprite()
 {
-	return sprite;
+	return spriteTexture.first;
 }
 
-std::pair<sf::Sprite, sf::Text> Bouton::getSpriteAndMessage()
+std::pair<std::unique_ptr<sf::Sprite>, std::unique_ptr<sf::Text>> Bouton::getSpriteAndMessage()
 {
-	return std::pair<sf::Sprite, sf::Text>(sprite, text);
+	return std::pair<std::unique_ptr<sf::Sprite>, std::unique_ptr<sf::Text>>
+		(std::make_unique<sf::Sprite>(spriteTexture.first), std::make_unique<sf::Text>(textFont.first));
 }
 
 void Bouton::setPosition(int posX, int posY)
 {
-	sprite.setPosition((float)posX, (float)posY);
-	text.setPosition((float)posX, (float)posY);
+	spriteTexture.first.setPosition((float)posX, (float)posY);
+	textFont.first.setPosition((float)posX, (float)posY);
 }
 
 void Bouton::setOnClick(void(*function)())
@@ -58,10 +65,10 @@ bool Bouton::isClicked(sf::Vector2i mousePosition)
 	//std::cout << "Sprite : " <<sprite.getPosition().x << " / " << sprite.getPosition().y << "\n";
 	//std::cout << "Mouse : " << mousePosition.x << " / " << mousePosition.x << "\n";
 
-	if ((int) sprite.getPosition().x < mousePosition.x &&
-		(int) (sprite.getPosition().x + sprite.getTextureRect().width) > mousePosition.x &&
-		(int) sprite.getPosition().y < mousePosition.y &&
-		(int) (sprite.getPosition().y + sprite.getTextureRect().height) > mousePosition.y)
+	if ((int)spriteTexture.first.getPosition().x < mousePosition.x &&
+		(int) (spriteTexture.first.getPosition().x + spriteTexture.first.getTextureRect().width) > mousePosition.x &&
+		(int)spriteTexture.first.getPosition().y < mousePosition.y &&
+		(int) (spriteTexture.first.getPosition().y + spriteTexture.first.getTextureRect().height) > mousePosition.y)
 		return true;
 	else
 		return false;
@@ -71,9 +78,12 @@ bool Bouton::isClicked(sf::Vector2i mousePosition)
 void Bouton::defaultText()
 {
 	assert(comicFont.loadFromFile("Ressources\\ComicSansMS.ttf") == true);
-	text.setFont(comicFont);
-	text.setString("");
-	text.setCharacterSize(1);
-	text.setColor(sf::Color::Red);
-	text.setStyle(sf::Text::Bold);
+	textFont.second = (comicFont);
+
+	textFont.first.setFont(textFont.second);
+
+	textFont.first.setString("");
+	textFont.first.setCharacterSize(5);
+	textFont.first.setColor(sf::Color::Red);
+	textFont.first.setStyle(sf::Text::Bold);
 }

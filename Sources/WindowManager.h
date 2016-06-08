@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include <memory>
 #include <Global.h>
+#include <Bouton.h>
 
 
 class WindowManager
@@ -29,6 +30,9 @@ public:
 	/* Ajoute l'argument dans le vector des textes qu'on dessinera et qui disparaitront */
 	void addWithPeremption(std::unique_ptr<sf::Text> form , int peremptionTime);
 
+	/* Affiche un bouton */
+	void add(std::unique_ptr<Bouton> button);
+
 
 	/* Enleve tous les textes affichés */
 	void clearText();
@@ -49,5 +53,8 @@ private:
 
 	/* La liste des textes qu'on dessinera */
 	std::vector<std::pair<std::unique_ptr<sf::Text>, int>> listTextWithPeremption;
+
+	/* La liste des boutons à dessiner */
+	std::vector<std::unique_ptr<Bouton>> listButtons;
 };
 
