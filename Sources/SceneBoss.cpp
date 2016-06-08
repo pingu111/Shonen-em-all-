@@ -24,11 +24,9 @@ void SceneBoss::printBackground()
 	// On ajoute tous les sprites qu'on veut afficher 
 	window->add(std::make_unique<sf::Sprite>(fondSprite));
 
-	for (int i = 0; i < 4; i++)
+	for (auto &button : listButtonsChoices)
 	{
-		std::cout << listButtonsChoices[i].getSpriteAndMessage().first->getTexture()->getSize().x << "\n";
-		window->add(std::make_unique<Bouton>(listButtonsChoices[i]));
-
+		window->add(std::make_unique<Bouton>(button));
 	}
 	window->draw();
 }
@@ -47,7 +45,9 @@ void SceneBoss::initSprite()
 		sf::Sprite boutonSpriteTmp;
 
 		assert(boutonTextTmp.loadFromFile("Ressources\\Boss\\TextBoxBlank.gif") == true);
-		boutonSpriteTmp.setTexture(boutonTextTmp);
+		std::unique_ptr<sf::Texture> ptrTexture = std::make_unique<sf::Texture>(boutonTextTmp);
+
+		boutonSpriteTmp.setTexture(*ptrTexture);
 
 		float sizeBetweenButtonsX = ((float)window->getWindow()->getSize().x -
 									(float)(2 * boutonSpriteTmp.getTextureRect().width)) / 3;
@@ -84,15 +84,12 @@ void SceneBoss::initSprite()
 
 		//std::cout << listSpritesButtonChoice[i].first.getPosition().x << "/" << listSpritesButtonChoice[i].first.getPosition().y << "\n";
 
-		boutonTmp.setSprite(boutonSpriteTmp , boutonTextTmp);
+		boutonTmp.setSprite(boutonSpriteTmp , move(ptrTexture));
 		boutonTmp.defaultText();
 		boutonTmp.setText("lol" , comicFont);
 
 		listButtonsChoices.push_back(boutonTmp);
-
 	}
-
-
 }
 
 void SceneBoss::initFonts()

@@ -11,7 +11,7 @@ class Bouton
 
 private:
 	/* Le sprite du bouton */
-	std::pair<sf::Sprite,sf::Texture> spriteTexture;
+	std::pair<sf::Sprite, std::unique_ptr<sf::Texture>> spriteTexture;
 
 	/* Le texte du bouton ,s'il yen a un */
 	std::pair<sf::Text, sf::Font> textFont;
@@ -26,10 +26,14 @@ public:
 
 	Bouton();
 	/* Constructeur : sette le sprite du bouton */
-	Bouton(sf::Sprite spriteToSet, sf::Texture textureToSet);
+	Bouton(sf::Sprite spriteToSet, std::unique_ptr<sf::Texture> textureToSet);
+
+	/* Constructeur de copie */
+	Bouton(const Bouton &buttonCopy);
+
 
 	/* Change le sprite du bouton */
-	void setSprite(sf::Sprite spriteToSet, sf::Texture textureToSet);
+	void setSprite(sf::Sprite spriteToSet, std::unique_ptr<sf::Texture> textureToSet);
 
 	/* Change la position du sprite du bouton */
 	void setPosition(int posX, int posY);
@@ -52,6 +56,4 @@ public:
 
 	/* Renvoie le sprite et le message */
 	std::pair< std::unique_ptr<sf::Sprite>, std::unique_ptr<sf::Text>> getSpriteAndMessage();
-
-
 };

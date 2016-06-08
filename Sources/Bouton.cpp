@@ -2,21 +2,26 @@
 
 Bouton::Bouton()
 {
-	defaultText();
+
 }
 
-Bouton::Bouton(sf::Sprite spriteToSet, sf::Texture textureToSet)
+Bouton::Bouton(const Bouton &buttonCopy)
 {
-	setSprite(spriteToSet , textureToSet);
-	defaultText();
+	setSprite(buttonCopy.spriteTexture.first, std::make_unique<sf::Texture>(*buttonCopy.spriteTexture.second));
+	setText(buttonCopy.textFont.first.getString(), buttonCopy.textFont.second);
+
 }
 
-void Bouton::setSprite(sf::Sprite spriteToSet , sf::Texture textureToSet)
+Bouton::Bouton(sf::Sprite spriteToSet, std::unique_ptr<sf::Texture> textureToSet)
+{
+	setSprite(spriteToSet , move(textureToSet));
+}
+
+void Bouton::setSprite(sf::Sprite spriteToSet , std::unique_ptr<sf::Texture> textureToSet)
 {
 	spriteTexture.first = spriteToSet;
-	spriteTexture.second = textureToSet;
-	spriteTexture.first.setTexture(spriteTexture.second);
-
+	spriteTexture.second = move(textureToSet);
+	spriteTexture.first.setTexture(*spriteTexture.second);
 }
 
 void Bouton::setText(std::string message , sf::Font font)
@@ -24,6 +29,7 @@ void Bouton::setText(std::string message , sf::Font font)
 	textFont.second = font;
 	textFont.first.setFont(textFont.second);
 	textFont.first.setString(message);
+	std::cout << "Texte = " << message << "\n";
 
 	// Si on depasse le sprite, on diminue la taille
 	while (textFont.first.getLocalBounds().width > spriteTexture.first.getTextureRect().width
