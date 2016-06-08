@@ -9,8 +9,11 @@ SceneBoss::SceneBoss(WindowManager *windowArg) : player(Player::Instance())
 
 void SceneBoss::launchScene()
 {
+	initFonts();
 	initSprite();
 	initFonts();
+	chargeButtons(randReplique());
+
 	// Boucle principale 
 	while (window->getWindow()->isOpen())
 	{
@@ -85,13 +88,24 @@ void SceneBoss::initSprite()
 		//std::cout << listSpritesButtonChoice[i].first.getPosition().x << "/" << listSpritesButtonChoice[i].first.getPosition().y << "\n";
 
 		boutonTmp.setSprite(boutonSpriteTmp , move(ptrTexture));
-		std::cout << "Copie ";
-		assert(comicFont.loadFromFile("Ressources\\ComicSansMS.ttf") == true);
-		boutonTmp.setText("lol" , comicFont);
+		boutonTmp.setText("TEST" , comicFont);
 
 		listButtonsChoices.push_back(boutonTmp);
 	}
 }
+
+void SceneBoss::chargeButtons(std::vector<Replique*> repliquesChosen)
+{
+	// On créé les boutons
+	for (int i = 0; i < 4; i++)
+	{
+		//std::cout << listSpritesButtonChoice[i].first.getPosition().x << "/" << listSpritesButtonChoice[i].first.getPosition().y << "\n";
+		std::cout << "Copie ";
+		assert(comicFont.loadFromFile("Ressources\\ComicSansMS.ttf") == true);
+		listButtonsChoices[i].setText(repliquesChosen[i]->text, comicFont);
+	}
+}
+
 
 void SceneBoss::initFonts()
 {

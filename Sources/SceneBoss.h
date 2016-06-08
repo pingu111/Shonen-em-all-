@@ -44,6 +44,9 @@ private:
 	/* La meilleure police au monde */
 	sf::Font comicFont;
 
+	void chargeButtons(std::vector<Replique*> repliquesChosen);
+
+
 public :
 	/* Le constructeur de la scene */
 	SceneBoss(WindowManager *windowArg);
