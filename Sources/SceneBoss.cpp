@@ -26,6 +26,7 @@ void SceneBoss::printBackground()
 
 	for (auto &button : listButtonsChoices)
 	{
+		std::cout << "Hop \n";
 		window->add(std::make_unique<Bouton>(button));
 	}
 	window->draw();
@@ -45,13 +46,12 @@ void SceneBoss::initSprite()
 		sf::Sprite boutonSpriteTmp;
 
 		assert(boutonTextTmp.loadFromFile("Ressources\\Boss\\TextBoxBlank.gif") == true);
-		std::unique_ptr<sf::Texture> ptrTexture = std::make_unique<sf::Texture>(boutonTextTmp);
 
+		std::unique_ptr<sf::Texture> ptrTexture = std::make_unique<sf::Texture>(boutonTextTmp);
 		boutonSpriteTmp.setTexture(*ptrTexture);
 
 		float sizeBetweenButtonsX = ((float)window->getWindow()->getSize().x -
 									(float)(2 * boutonSpriteTmp.getTextureRect().width)) / 3;
-		//std::cout << sizeBetweenButtonsX << "\n";
 
 		switch (i)
 		{
@@ -86,6 +86,7 @@ void SceneBoss::initSprite()
 
 		boutonTmp.setSprite(boutonSpriteTmp , move(ptrTexture));
 		std::cout << "Copie ";
+		assert(comicFont.loadFromFile("Ressources\\ComicSansMS.ttf") == true);
 		boutonTmp.setText("lol" , comicFont);
 
 		listButtonsChoices.push_back(boutonTmp);

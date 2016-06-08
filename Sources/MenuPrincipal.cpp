@@ -83,8 +83,7 @@ void MenuPrincipal::initTextures()
 	boutonRNB.setSprite(boutonGoToRNBSprite , std::make_unique<sf::Texture>(boutonGoToRNB));
 
 	sf::Font font;
-	font.loadFromFile("Ressources\\ComicSansMS.ttf");
-	std::cout << "Copie par set";
+	assert(font.loadFromFile("Ressources\\ComicSansMS.ttf") == true);
 	boutonRNB.setText("Commencer le jeu !", font);
 
 }
