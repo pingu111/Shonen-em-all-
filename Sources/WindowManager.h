@@ -3,6 +3,8 @@
 
 #include <SFML/Graphics.hpp>
 #include <memory>
+#include <iostream>
+
 #include <Global.h>
 #include <Bouton.h>
 

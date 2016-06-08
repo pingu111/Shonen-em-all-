@@ -13,7 +13,6 @@ MenuPrincipal::MenuPrincipal(WindowManager* windowArg)
 	initTextures();
 	printBackgroundAndButtons();
 	waitForUser();
-	boutonRNB = Bouton();
 }
 
 void MenuPrincipal::printBackgroundAndButtons()
@@ -81,7 +80,7 @@ void MenuPrincipal::initTextures()
 									(float) window->getWindow()->getSize().y * 5 / 6 - boutonGoToRNBSprite.getTextureRect().height / 2);
 
 	// On créé le bouton qui cible le Hack n slash
-	boutonRNB.setSprite(boutonGoToRNBSprite , boutonGoToRNB);
+	boutonRNB.setSprite(boutonGoToRNBSprite , std::make_unique<sf::Texture>(boutonGoToRNB));
 }
 
 

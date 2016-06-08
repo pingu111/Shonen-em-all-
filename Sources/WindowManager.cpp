@@ -61,7 +61,10 @@ void WindowManager::draw()
 	for (auto &form : listButtons)
 	{
 		window.draw(*form->getSpriteAndMessage().first);
-		//listText.push_back(form->getSpriteAndMessage().second);
+		std::string string = form->getSpriteAndMessage().second->getString();
+
+		std::cout << " Texte to print = " << string << "\n";
+		window.draw(*form->getSpriteAndMessage().second);
 	}
 
 	for (auto &form : listTextWithPeremption)
