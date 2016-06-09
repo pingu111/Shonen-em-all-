@@ -35,6 +35,8 @@ private:
 	/* Lance la scene */
 	void launchScene();
 
+	void initRepliques();
+
 	/* Ouvre les .ttf */
 	void initFonts();
 

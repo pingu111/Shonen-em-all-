@@ -43,10 +43,13 @@ void Bouton::setText(std::string message , sf::Font font)
 
 
 	// Si on depasse le sprite, on diminue la taille
-	while (textFont.first.getGlobalBounds().width >= spriteTexture.first.getTextureRect().width
-		| textFont.first.getGlobalBounds().height >=  spriteTexture.first.getTextureRect().height)
+	while (((textFont.first.getGlobalBounds().width*1.2f) >= spriteTexture.first.getTextureRect().width )
+		|  ((textFont.first.getGlobalBounds().height*1.2f) >=  spriteTexture.first.getTextureRect().height))
 	{
-		textFont.first.setCharacterSize(textFont.first.getCharacterSize() - 5);
+		if (textFont.first.getCharacterSize() - 5 > 0)
+			textFont.first.setCharacterSize(textFont.first.getCharacterSize() - 5);
+		else
+			break;
 	}
 
 	textFont.first.setPosition(

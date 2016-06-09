@@ -19,5 +19,5 @@ float Random::randFloat(float left, float right)
 
 	std::uniform_real_distribution<> dist(left, right);
 
-	return dist(e2);
+	return (float)dist(e2);
 }

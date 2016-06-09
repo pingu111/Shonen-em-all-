@@ -9,6 +9,7 @@ SceneBoss::SceneBoss(WindowManager *windowArg) : player(Player::Instance())
 
 void SceneBoss::launchScene()
 {
+	initRepliques();
 	initFonts();
 	initSprite();
 	initFonts();
@@ -33,6 +34,22 @@ void SceneBoss::printBackground()
 		window->add(std::make_unique<Bouton>(button));
 	}
 	window->draw();
+}
+
+void SceneBoss::initRepliques()
+{
+	for (int i = 0; i < 10; i++)
+	{
+		Replique rep;
+		std::string message = "Ceci est un\ntest, ?!\nnumero ";
+		message += std::to_string(i);
+
+		rep.text = message;
+		rep.damageMult = 1;
+		rep.scoreMult = 2;
+
+		repliques.push_back(std::make_unique<Replique>(rep));
+	}
 }
 
 void SceneBoss::initSprite()
@@ -62,22 +79,22 @@ void SceneBoss::initSprite()
 			case 0:
 				boutonSpriteTmp.setPosition(
 					sizeBetweenButtonsX,
-					(float)window->getWindow()->getSize().y - 2.02f * boutonSpriteTmp.getTextureRect().height);
+					(float)window->getWindow()->getSize().y - 2.1f * boutonSpriteTmp.getTextureRect().height);
 				break;
 			case 1:
 				boutonSpriteTmp.setPosition(
 					(float)window->getWindow()->getSize().x - sizeBetweenButtonsX - boutonSpriteTmp.getTextureRect().width,
-					(float)window->getWindow()->getSize().y - 2.02f * boutonSpriteTmp.getTextureRect().height);
+					(float)window->getWindow()->getSize().y - 2.1f * boutonSpriteTmp.getTextureRect().height);
 				break;
 			case 2:
 				boutonSpriteTmp.setPosition(
 					sizeBetweenButtonsX,
-					(float)window->getWindow()->getSize().y - 1.01f * boutonSpriteTmp.getTextureRect().height);
+					(float)window->getWindow()->getSize().y - 1.05f * boutonSpriteTmp.getTextureRect().height);
 				break;
 			case 3:
 				boutonSpriteTmp.setPosition(
 					(float)window->getWindow()->getSize().x - sizeBetweenButtonsX - boutonSpriteTmp.getTextureRect().width,
-					(float)window->getWindow()->getSize().y - 1.01f * boutonSpriteTmp.getTextureRect().height);
+					(float)window->getWindow()->getSize().y - 1.05f * boutonSpriteTmp.getTextureRect().height);
 				break;
 		}
 
@@ -153,20 +170,20 @@ std::vector<Replique*> SceneBoss::randReplique()
 
 	//ici on suppose qu'on beaucoup de repliques donc la probabilite de tomber sur une deja choisie est faible.
 	//on aurai aussi pu creer un liste de uint et la melanger. Ensuite prendre les 4 premiers elements de la liste (qui correspondront aux indices des repliques choisies)
-	rand1 = Random::randInt(0, repliques.size());
+	rand1 = Random::randInt(0, repliques.size()-1);
 	do 
 	{
-		rand2 = Random::randInt(0, repliques.size());
+		rand2 = Random::randInt(0, repliques.size()-1);
 	} while (rand2 == rand1);
 
 	do 
 	{
-		rand3 = Random::randInt(0, repliques.size());
+		rand3 = Random::randInt(0, repliques.size()-1);
 	} while (rand3 == rand1 || rand3 == rand2);
 
 	do 
 	{
-		rand4 = Random::randInt(0, repliques.size());
+		rand4 = Random::randInt(0, repliques.size()-1);
 	} while (rand4 == rand1 || rand4 == rand2 || rand4 == rand3);
 
 	std::vector<Replique*> vec(4);
