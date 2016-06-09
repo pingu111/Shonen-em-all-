@@ -31,6 +31,8 @@ void SceneManager::moveToScene(SceneNames name, WindowManager* window)
 		break;
 	case DEFEAT:
 		break;
+	case EXIT:
+		//TODO close la fenetre
 	default:
 		break;
 	}

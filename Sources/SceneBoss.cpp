@@ -38,7 +38,12 @@ void SceneBoss::printBackground()
 
 void SceneBoss::initRepliques()
 {
-	for (int i = 0; i < 10; i++)
+	for (Replique rep : ListReplique::repliques)
+	{
+		repliques.push_back(std::make_unique<Replique>(rep));
+		std::cout << rep.text << " n° " << repliques.size() << std::endl;
+	}
+	/*for (int i = 0; i < 10; i++)
 	{
 		Replique rep;
 		std::string message = "Ceci est un\ntest, ?!\nnumero ";
@@ -49,7 +54,7 @@ void SceneBoss::initRepliques()
 		rep.scoreMult = 2;
 
 		repliques.push_back(std::make_unique<Replique>(rep));
-	}
+	}*/
 }
 
 void SceneBoss::initSprite()
@@ -137,7 +142,8 @@ void SceneBoss::waitForUser()
 	{
 		if (event.type == sf::Event::Closed)
 		{
-			//TODO QUITTER PROPREMENT CAPSLOCKMAGGLE;
+			SceneManager::moveToScene(SceneNames::EXIT,window);
+			return;
 		}
 		else if (event.type == sf::Event::KeyPressed)
 		{
@@ -166,7 +172,7 @@ void SceneBoss::waitForUser()
 std::vector<Replique*> SceneBoss::randReplique()
 {
 	int rand1, rand2, rand3, rand4;
-	assert(repliques.size() > 4);
+	assert(repliques.size() >= 4);
 
 	//ici on suppose qu'on beaucoup de repliques donc la probabilite de tomber sur une deja choisie est faible.
 	//on aurai aussi pu creer un liste de uint et la melanger. Ensuite prendre les 4 premiers elements de la liste (qui correspondront aux indices des repliques choisies)

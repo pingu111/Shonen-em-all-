@@ -12,7 +12,8 @@ enum SceneNames
 	RNB2,
 	VILAIN,
 	WIN,
-	DEFEAT
+	DEFEAT,
+	EXIT
 };
 
 

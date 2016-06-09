@@ -89,6 +89,7 @@
     <ClCompile Include="Sources\DrawableVirtual.cpp" />
     <ClCompile Include="Sources\Ennemi.cpp" />
     <ClCompile Include="Sources\Random.cpp" />
+    <ClCompile Include="Sources\Replique.cpp" />
     <ClCompile Include="Sources\SceneBoss.cpp" />
     <ClCompile Include="Sources\SceneManager.cpp" />
     <ClCompile Include="Sources\MenuPrincipal.cpp" />

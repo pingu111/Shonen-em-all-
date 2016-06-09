@@ -7,6 +7,7 @@
 #include <Random.h>
 #include <assert.h>
 #include <Player.h>
+#include <SceneManager.h>
 
 class SceneBoss : VirtualScene
 {
