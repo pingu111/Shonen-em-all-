@@ -1,13 +1,17 @@
 #include <SceneBoss.h>
 
 /* Le constructeur de la scene */
-SceneBoss::SceneBoss(WindowManager *windowArg , int nbRepliquesArg, SceneNames nameArg) : player(Player::Instance())
+SceneBoss::SceneBoss() : player(Player::Instance())
 {
-	nameActualScene = nameArg;
-	nbRepliquesMax = nbRepliquesArg;
 	actualNbRepliques = 0;
-	window = windowArg;
-	launchScene();
+}
+
+SceneBoss SceneBoss::m_instance = SceneBoss();
+
+SceneBoss& SceneBoss::Instance(WindowManager* windowArg)
+{
+	m_instance.window = windowArg;
+	return m_instance;
 }
 
 void SceneBoss::launchScene()
@@ -166,7 +170,7 @@ void SceneBoss::waitForUser()
 					if(repSelected.scoreMult == 0)
 						SceneManager::moveToScene(SceneNames::DEFEAT, window);
 					else
-						SceneManager::moveToScene(SceneManager::fromScene(nameActualScene), window);
+						SceneManager::moveToScene(SceneNames::RNB, window);
 				}
 			}
 		}
@@ -201,4 +205,9 @@ std::vector<Replique*> SceneBoss::randReplique()
 	std::vector<Replique*> vec(4);
 	vec = { repliquesUPtr[rand1].get(),repliquesUPtr[rand2].get(),repliquesUPtr[rand3].get(),repliquesUPtr[rand4].get() };
 	return vec;
+}
+
+void SceneBoss::reload()
+{
+	launchScene();
 }

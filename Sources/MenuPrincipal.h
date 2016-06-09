@@ -20,11 +20,11 @@ private:
 
 	void initTextures();
 
-public:
+	MenuPrincipal();
+	static MenuPrincipal m_instance;
 
-	/* Constructeur  
-	* param : WindowManager windowArg la fenetre d'affichage */
-	MenuPrincipal(WindowManager* windowArg, SceneNames nameArg);
+public:
+	static MenuPrincipal& Instance(WindowManager* windowArg);
 
 	/* Fonction qui affiche et dessine le fond et les boutons du menu principal */
 	void printBackgroundAndButtons();
@@ -32,6 +32,8 @@ public:
 	/* Fonction bloquante qui attend un choix du l'utilisateur
 		return : le choix de l'utilisateur	*/
 	EnumChoicesUser waitForUser();
+
+	void reload() override;
 
 	
 

@@ -104,10 +104,17 @@ private:
 	/* Le temps entre 2 ennemis  */
 	float durationBetweenEnnemies;
 
-public:
 	/* Constructeur
 	* param : WindowManager windowArg la fenetre d'affichage */
-	RythmNBlood(WindowManager *windowArg, int nbEnnemies, float ennemySpeed, float durationBetweenEnnemies, SceneNames nameArg);
+	RythmNBlood();
+	RythmNBlood(const RythmNBlood& rnb);
+
+	static RythmNBlood m_instance;
+
+public:
+	static RythmNBlood& Instance(WindowManager* window);
+
+	void reload() override;
 
 	/* Destructeur */
 	~RythmNBlood();

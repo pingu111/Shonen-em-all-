@@ -1,19 +1,21 @@
 #include <RythmNBlood.h>
 
 
-RythmNBlood::RythmNBlood(WindowManager* windowArg, int nbEnnemies , float ennemySpeedArg, float durationBetweenEnnemiesArg , SceneNames nameArg) : player(Player::Instance(), 0)
+RythmNBlood::RythmNBlood() : player(Player::Instance(), 0)
 {
-	nameActualScene = nameArg;
-	nbEnnemiesMax = nbEnnemies;
-	durationBetweenEnnemies = durationBetweenEnnemiesArg;
-	ennemiSpeed = ennemySpeedArg;
-
 	//ennemis = std::vector<Ennemi>();
 	idEnnemi = 0;
-	window = windowArg;
 	isPlayerInHitAnimation = false;
 	isLastHitLeft = false;
-	launchScene();
+}
+
+RythmNBlood RythmNBlood::m_instance = RythmNBlood();
+
+
+RythmNBlood& RythmNBlood::Instance(WindowManager* windowArg)
+{
+	m_instance.window = windowArg;
+	return m_instance;
 }
 
 RythmNBlood::~RythmNBlood()
@@ -62,7 +64,7 @@ void RythmNBlood::waitForUser()
 			window->clearText();
 			window->draw();
 
-			SceneManager::moveToScene(SceneManager::fromScene(nameActualScene), window);
+			SceneManager::moveToScene(SceneNames::VILAIN,window);
 			return;
 		}
 	}
@@ -363,4 +365,9 @@ void RythmNBlood::printText(int hitValue)
 			window->addWithPeremption(std::make_unique<sf::Text>(textDamages), (int)std::time(nullptr));
 		}
 	}
+}
+
+void RythmNBlood::reload()
+{
+	launchScene();
 }

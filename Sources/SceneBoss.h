@@ -54,9 +54,10 @@ private:
 	sf::Font comicFont;
 
 	void chargeButtons(std::vector<Replique*> repliquesChosen);
-
-
-public :
 	/* Le constructeur de la scene */
-	SceneBoss(WindowManager *windowArg, int nbRepliquesArg, SceneNames nameArg);
+	SceneBoss();
+	static SceneBoss m_instance;
+public :
+	static SceneBoss& Instance(WindowManager* window);
+	void reload() override;
 };

@@ -22,6 +22,7 @@ protected:
 	SceneNames nameActualScene;
 
 public:
+	virtual void reload() = 0;
 	VirtualScene();
 	~VirtualScene();
 };

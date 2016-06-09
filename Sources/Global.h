@@ -12,10 +12,8 @@ static const int lifeTimeText = 2;
 enum SceneNames
 {
 	MENU,
-	RNB1,
-	RNB2,
-	VILAIN1,
-	VILAIN2,
+	RNB,
+	VILAIN,
 	WIN,
 	DEFEAT,
 	EXIT
