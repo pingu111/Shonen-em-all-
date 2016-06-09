@@ -11,6 +11,12 @@
 class SceneBoss : VirtualScene
 {
 private:
+	/* Le nombre de repliques echangées avant de changer de scene */
+	int nbRepliquesMax;
+
+	/* Le nombre actuel de repliques */
+	int actualNbRepliques; 
+
 	/* la liste de toutes les repliqes possibles */
 	std::vector<std::unique_ptr<Replique>> repliques;
 
@@ -51,5 +57,5 @@ private:
 
 public :
 	/* Le constructeur de la scene */
-	SceneBoss(WindowManager *windowArg);
+	SceneBoss(WindowManager *windowArg, int nbRepliquesArg);
 };

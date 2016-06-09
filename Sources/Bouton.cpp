@@ -98,7 +98,6 @@ bool Bouton::isClicked(sf::Vector2i mousePosition)
 		return false;
 }
 
-
 void Bouton::defaultText()
 {
 	assert(comicFont.loadFromFile("Ressources\\ComicSansMS.ttf") == true);

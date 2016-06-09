@@ -1,8 +1,10 @@
 #include <SceneBoss.h>
 
 /* Le constructeur de la scene */
-SceneBoss::SceneBoss(WindowManager *windowArg) : player(Player::Instance())
+SceneBoss::SceneBoss(WindowManager *windowArg , int nbRepliquesArg) : player(Player::Instance())
 {
+	nbRepliquesMax = nbRepliquesArg;
+	actualNbRepliques = 0;
 	window = windowArg;
 	launchScene();
 }
@@ -38,23 +40,27 @@ void SceneBoss::printBackground()
 
 void SceneBoss::initRepliques()
 {
-	for (int i = 0; i < 10; i++)
+	if (nbRepliquesMax < actualNbRepliques)
 	{
-		Replique rep;
-		std::string message = "Ceci est un\ntest, ?!\nnumero ";
-		message += std::to_string(i);
+		actualNbRepliques++;
+		for (int i = 0; i < 10; i++)
+		{
+			Replique rep;
+			std::string message = "Ceci est un\ntest, ?!\nnumero ";
+			message += std::to_string(i);
 
-		rep.text = message;
-		rep.damageMult = 1;
-		rep.scoreMult = 2;
+			rep.text = message;
+			rep.damageMult = 1;
+			rep.scoreMult = 2;
 
-		repliques.push_back(std::make_unique<Replique>(rep));
+			repliques.push_back(std::make_unique<Replique>(rep));
+		}
 	}
 }
 
 void SceneBoss::initSprite()
 {
-	assert(fond.loadFromFile("Ressources\\Boss\\FondNuit.jpg") == true);
+	assert(fond.loadFromFile("Ressources\\Boss\\Evil.jpg") == true);
 	fondSprite.setTexture(fond);
 	window->add(std::make_unique<sf::Sprite>(fondSprite));
 
@@ -105,7 +111,7 @@ void SceneBoss::initSprite()
 		//std::cout << listSpritesButtonChoice[i].first.getPosition().x << "/" << listSpritesButtonChoice[i].first.getPosition().y << "\n";
 
 		boutonTmp.setSprite(boutonSpriteTmp , move(ptrTexture));
-		boutonTmp.setText("TEST" , comicFont);
+		boutonTmp.setText("Ceci ne sera jamais affiche", comicFont);
 
 		listButtonsChoices.push_back(boutonTmp);
 	}
@@ -155,6 +161,9 @@ void SceneBoss::waitForUser()
 				if (button.isClicked(sf::Mouse::getPosition(*window->getWindow())))
 				{
 					//player.update(/*replique choisie*/*repliques[0]);
+
+					// Ici, gerer les consequences du clic 
+					initRepliques();
 				}
 			}
 		}
