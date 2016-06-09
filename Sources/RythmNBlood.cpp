@@ -1,8 +1,9 @@
 #include <RythmNBlood.h>
 
 
-RythmNBlood::RythmNBlood(WindowManager* windowArg, int nbEnnemies , float ennemySpeedArg, float durationBetweenEnnemiesArg) : player(Player::Instance(), 0)
+RythmNBlood::RythmNBlood(WindowManager* windowArg, int nbEnnemies , float ennemySpeedArg, float durationBetweenEnnemiesArg , SceneNames nameArg) : player(Player::Instance(), 0)
 {
+	nameActualScene = nameArg;
 	nbEnnemiesMax = nbEnnemies;
 	durationBetweenEnnemies = durationBetweenEnnemiesArg;
 	ennemiSpeed = ennemySpeedArg;
@@ -61,7 +62,7 @@ void RythmNBlood::waitForUser()
 			window->clearText();
 			window->draw();
 
-			SceneManager::moveToScene(SceneNames::VILAIN1, window);
+			SceneManager::moveToScene(SceneManager::fromScene(nameActualScene), window);
 			return;
 		}
 	}

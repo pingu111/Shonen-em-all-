@@ -107,7 +107,7 @@ private:
 public:
 	/* Constructeur
 	* param : WindowManager windowArg la fenetre d'affichage */
-	RythmNBlood(WindowManager *windowArg, int nbEnnemies, float ennemySpeed, float durationBetweenEnnemies);
+	RythmNBlood(WindowManager *windowArg, int nbEnnemies, float ennemySpeed, float durationBetweenEnnemies, SceneNames nameArg);
 
 	/* Destructeur */
 	~RythmNBlood();

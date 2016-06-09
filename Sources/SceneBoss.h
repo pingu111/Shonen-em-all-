@@ -58,5 +58,5 @@ private:
 
 public :
 	/* Le constructeur de la scene */
-	SceneBoss(WindowManager *windowArg, int nbRepliquesArg);
+	SceneBoss(WindowManager *windowArg, int nbRepliquesArg, SceneNames nameArg);
 };

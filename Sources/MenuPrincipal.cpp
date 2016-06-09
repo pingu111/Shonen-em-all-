@@ -1,14 +1,9 @@
 #include <MenuPrincipal.h>
 
-MenuPrincipal::MenuPrincipal()
-{
-	initTextures();
-	printBackgroundAndButtons();
-	waitForUser();
-}
 
-MenuPrincipal::MenuPrincipal(WindowManager* windowArg)
+MenuPrincipal::MenuPrincipal(WindowManager* windowArg, SceneNames nameArg)
 {
+	nameActualScene = nameArg;
 	window = windowArg;
 	initTextures();
 	printBackgroundAndButtons();
@@ -55,7 +50,7 @@ EnumChoicesUser MenuPrincipal::waitForUser()
 			if (boutonRNB.isClicked(sf::Mouse::getPosition(*window->getWindow())))
 			{
 				//std::cout << "Clique !\n";
-				SceneManager::moveToScene(SceneNames::RNB1, window);
+				SceneManager::moveToScene(SceneManager::fromScene(nameActualScene), window);
 				return RYTHM;
 			}
 		}

@@ -1,8 +1,9 @@
 #include <SceneBoss.h>
 
 /* Le constructeur de la scene */
-SceneBoss::SceneBoss(WindowManager *windowArg , int nbRepliquesArg) : player(Player::Instance())
+SceneBoss::SceneBoss(WindowManager *windowArg , int nbRepliquesArg, SceneNames nameArg) : player(Player::Instance())
 {
+	nameActualScene = nameArg;
 	nbRepliquesMax = nbRepliquesArg;
 	actualNbRepliques = 0;
 	window = windowArg;
@@ -162,7 +163,10 @@ void SceneBoss::waitForUser()
 						}
 					}
 					player.update(repSelected);
-					SceneManager::moveToScene(SceneNames::RNB2, window);
+					if(repSelected.scoreMult == 0)
+						SceneManager::moveToScene(SceneNames::DEFEAT, window);
+					else
+						SceneManager::moveToScene(SceneManager::fromScene(nameActualScene), window);
 				}
 			}
 		}

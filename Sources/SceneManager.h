@@ -4,23 +4,12 @@
 #include <RythmNBlood.h>
 #include <WindowManager.h>
 #include <SceneBoss.h>
-
-enum SceneNames
-{
-	MENU,
-	RNB1,
-	RNB2,
-	VILAIN1,
-	VILAIN2,
-	WIN,
-	DEFEAT,
-	EXIT
-};
+#include <Global.h>
 
 
 class SceneManager
 {
 public:
 	static void moveToScene(SceneNames name, WindowManager* window);
-
+	static SceneNames fromScene(SceneNames name);
 };

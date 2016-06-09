@@ -21,12 +21,10 @@ private:
 	void initTextures();
 
 public:
-	/* Constructeur sans arguments */
-	MenuPrincipal();
 
 	/* Constructeur  
 	* param : WindowManager windowArg la fenetre d'affichage */
-	MenuPrincipal(WindowManager* windowArg);
+	MenuPrincipal(WindowManager* windowArg, SceneNames nameArg);
 
 	/* Fonction qui affiche et dessine le fond et les boutons du menu principal */
 	void printBackgroundAndButtons();
