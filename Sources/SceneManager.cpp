@@ -10,26 +10,25 @@ void SceneManager::moveToScene(SceneNames name, WindowManager* window)
 	case MENU:
 	{
 		MenuPrincipal::Instance(window).reload();
-		break;
+		return;
 	}
 	case RNB:
 	{
 		RythmNBlood::Instance(window).reload();
-		break;
+		return;
 	}
 	case VILAIN:
 	{
 		SceneBoss::Instance(window).reload();
-		break;
+		return;
 	}
 	case WIN:
-		break;
+		return;
 	case DEFEAT:
-		break;
+		return;
 	case EXIT:
-		//TODO close la fenetre
+		return;
 	default:
-		break;
+		return;
 	}
-	//TODO a faire au debut de toutes les scenes
 }
