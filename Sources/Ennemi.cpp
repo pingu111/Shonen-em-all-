@@ -42,13 +42,13 @@ bool Ennemi::isDead()
 	return lifePoint <= 0;
 }
 
-float Ennemi::takeHit(float strenght)
+int Ennemi::takeHit(int strenght)
 {
-	float hit = strenght - armor;
+	int hit = strenght - armor;
 	if (hit < 0)
 		hit = 0;
 	lifePoint -= (int)std::round(hit);
-	std::cout << "Ennemi a pris un hit " << strenght << " reste " << lifePoint << " pv \n";
+	//std::cout << "Ennemi a pris un hit " << strenght << " reste " << lifePoint << " pv \n";
 
 	return hit;
 }

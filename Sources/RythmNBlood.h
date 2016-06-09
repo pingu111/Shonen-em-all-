@@ -93,7 +93,7 @@ private:
 	void initFonts();
 
 	/* Affiche un texte lorsque le joueur tape */
-	void printText(float hitValue);
+	void printText(int hitValue);
 
 	/* Le nombre d'ennemis dans cette scene */
 	int nbEnnemiesMax;

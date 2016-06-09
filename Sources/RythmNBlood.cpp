@@ -250,7 +250,7 @@ void RythmNBlood::listDeadAlive()
 std::vector<std::shared_ptr<Ennemi>> RythmNBlood::eventManager(std::vector<std::shared_ptr<Ennemi>> ennemiesHittables)
 {
 	sf::Event event;
-	float damages = 0;
+	int damages = 0;
 	while (window->getWindow()->pollEvent(event))
 	{
 		if (event.type == sf::Event::Closed)
@@ -336,7 +336,7 @@ void RythmNBlood::animationPlayer()
 	}
 }
 
-void RythmNBlood::printText(float hitValue)
+void RythmNBlood::printText(int hitValue)
 {
 	std::cout << hitValue << "\n";
 	if (hitValue >= 0)
@@ -348,7 +348,7 @@ void RythmNBlood::printText(float hitValue)
 			- textDamages.getLocalBounds().height / 2);
 
 		char stringDamage[250];
-		sprintf_s(stringDamage, "%d", (int)hitValue);
+		sprintf_s(stringDamage, "%d", hitValue);
 		strcat_s(stringDamage, " dommages !");
 		std::cout << stringDamage << "\n";
 		textDamages.setString(stringDamage);

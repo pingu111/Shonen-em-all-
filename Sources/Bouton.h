@@ -44,6 +44,8 @@ public:
 
 	void defaultText();
 
+	void setText(std::string message, sf::Font font, int sizeCharac);
+
 
 	/* Ajoute un fonction qui sera appelée lordqu'on clique sur le bouton */
 	void setOnClick(void(*function)());

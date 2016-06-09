@@ -99,7 +99,7 @@ void SceneBoss::initSprite()
 		//std::cout << listSpritesButtonChoice[i].first.getPosition().x << "/" << listSpritesButtonChoice[i].first.getPosition().y << "\n";
 
 		boutonTmp.setSprite(boutonSpriteTmp , move(ptrTexture));
-		boutonTmp.setText("Ceci ne sera jamais affiche", comicFont);
+		//boutonTmp.setText("Ceci ne sera jamais affiche", comicFont);
 
 		listButtonsChoices.push_back(boutonTmp);
 	}
@@ -111,11 +111,6 @@ void SceneBoss::chargeButtons(std::vector<Replique*> repliquesChosen)
 	for (int i = 0; i < 4; i++)
 	{
 		//std::cout << listSpritesButtonChoice[i].first.getPosition().x << "/" << listSpritesButtonChoice[i].first.getPosition().y << "\n";
-		//std::cout << "Copie ";
-
-		std::cout << comicFont.getInfo().family << "\n";
-
-		//assert(comicFont.loadFromFile("Ressources\\ComicSansMS.ttf") == true);
 		listButtonsChoices[i].setText(repliquesChosen[i]->text, comicFont);
 	}
 }
@@ -153,11 +148,10 @@ void SceneBoss::waitForUser()
 				if (button.isClicked(sf::Mouse::getPosition(*window->getWindow())))
 				{
 
-					//player.update(/*replique choisie*/*repliques[0]);
+					//player.update(/*replique choisie*/repliques[0]);
 
 					// Ici, gerer les consequences du clic 
-					//initRepliques();
-					chargeButtons(randReplique());
+					//chargeButtons(randReplique());
 
 					printBackground();
 

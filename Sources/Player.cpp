@@ -33,20 +33,19 @@ void Player::increaseStrenght()
 
 
 
-float Player::hit(Ennemi &enn)
+int Player::hit(Ennemi &enn)
 {
 	//assert(cooldownTime <= 0);
 	cooldownTime = cooldown;
 
 	float bonus = Random::randFloat(0, 2);
-	float hitValue = enn.takeHit(bonus*strenght*damageMult);
+	int hitValue = enn.takeHit((int)bonus*(int)strenght*(int)damageMult);
 
 	if (hitValue > maxHit)
 		maxHit = hitValue;
 	if (enn.isDead())
 		score += scoreForKill*scoreMult;
 	return hitValue;
-
 }
 
 void Player::update(Replique replique)

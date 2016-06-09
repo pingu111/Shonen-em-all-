@@ -82,7 +82,6 @@ void MenuPrincipal::initTextures()
 	sf::Font font;
 	assert(font.loadFromFile("Ressources\\ComicSansMS.ttf") == true);
 	boutonRNB.setText("Commencer le jeu !", font);
-
 }
 
 

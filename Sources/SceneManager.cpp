@@ -24,12 +24,12 @@ void SceneManager::moveToScene(SceneNames name, WindowManager* window)
 	}
 	case VILAIN1:
 	{
-		SceneBoss scene(window, 10);
+		SceneBoss scene(window, 2);
 		break;
 	}
 	case VILAIN2:
 	{
-		SceneBoss scene(window, 20);
+		SceneBoss scene(window, 2);
 		break;
 	}
 	case WIN:

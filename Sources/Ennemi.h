@@ -40,7 +40,7 @@ public :
 	bool isHitable();
 
 	bool isDead();
-	float takeHit(float strenght);
+	int takeHit(int strenght);
 
 	float getXPosition();
 

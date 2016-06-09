@@ -9,42 +9,42 @@ Bouton::Bouton(const Bouton &buttonCopy)
 {
 	setSprite(buttonCopy.spriteTexture.first, std::make_unique<sf::Texture>(*buttonCopy.spriteTexture.second));
 	//std::cout << "Copie par constructeur --> ";
-	setText(buttonCopy.textFont.first.getString(), buttonCopy.textFont.second);
+	setText(buttonCopy.textFont.first.getString(), buttonCopy.textFont.second , buttonCopy.textFont.first.getCharacterSize());
 }
 
 Bouton::Bouton(sf::Sprite spriteToSet, std::unique_ptr<sf::Texture> textureToSet)
 {
-	setSprite(spriteToSet , move(textureToSet));
+	setSprite(spriteToSet, move(textureToSet));
 }
 
-void Bouton::setSprite(sf::Sprite spriteToSet , std::unique_ptr<sf::Texture> textureToSet)
+void Bouton::setSprite(sf::Sprite spriteToSet, std::unique_ptr<sf::Texture> textureToSet)
 {
 	spriteTexture.first = spriteToSet;
 	spriteTexture.second = move(textureToSet);
 	spriteTexture.first.setTexture(*spriteTexture.second);
 }
 
-void Bouton::setText(std::string message , sf::Font font)
+
+void Bouton::setText(std::string message, sf::Font font, int sizeCharac)
 {
 	if (font.getInfo().family == "")
 	{
-		std::cout << "FONT VIDE !";
+		//std::cout << "FONT VIDE !";
 		font = comicFont;
 	}
 	textFont.second = font;
 	textFont.first.setFont(textFont.second);
-	textFont.first.setCharacterSize(100);
+	textFont.first.setCharacterSize(sizeCharac);
 	textFont.first.setString(message);
 
 	// On centre
-	
 	textFont.first.setColor(sf::Color::Red);
 
-
 	// Si on depasse le sprite, on diminue la taille
-	while (((textFont.first.getGlobalBounds().width*1.2f) >= spriteTexture.first.getTextureRect().width )
-		|  ((textFont.first.getGlobalBounds().height*1.2f) >=  spriteTexture.first.getTextureRect().height))
+	while (((textFont.first.getGlobalBounds().width*1.2f) >= spriteTexture.first.getTextureRect().width)
+		| ((textFont.first.getGlobalBounds().height*1.2f) >= spriteTexture.first.getTextureRect().height))
 	{
+		//std::cout << textFont.first.getCharacterSize() << "\n";
 		if (textFont.first.getCharacterSize() - 5 > 0)
 			textFont.first.setCharacterSize(textFont.first.getCharacterSize() - 5);
 		else
@@ -54,6 +54,12 @@ void Bouton::setText(std::string message , sf::Font font)
 	textFont.first.setPosition(
 		spriteTexture.first.getPosition().x + spriteTexture.first.getTextureRect().width / 2 - textFont.first.getGlobalBounds().width / 2,
 		spriteTexture.first.getPosition().y + spriteTexture.first.getTextureRect().height / 2 - textFont.first.getGlobalBounds().height / 2);
+}
+
+
+void Bouton::setText(std::string message, sf::Font font)
+{
+	setText(message, font, 100);
 }
 
 void Bouton::setFont(sf::Font font)

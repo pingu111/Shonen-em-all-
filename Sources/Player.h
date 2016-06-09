@@ -22,7 +22,7 @@ private:
 	float damageMult;
 	int scoreMult;
 	int score;
-	float maxHit;
+	int maxHit;
 	/* augment la force du hero apres sa rencontre avec le grand mechant */
 	void increaseStrenght();
 	Player();
@@ -32,7 +32,7 @@ public :
 	static Player& Instance();
 
 	/*frappe un ennemi hitable et ajuste le score*/
-	float hit(Ennemi &enn);
+	int hit(Ennemi &enn);
 	/* apres une replique, le hero garde sa super replique en memoire */
 	void update(Replique rep);
 	/* une fois la scene de combat chargee, stocke les nouvelles capacités de hero. Et augmente sa force */
