@@ -26,7 +26,6 @@ void Bouton::setSprite(sf::Sprite spriteToSet , std::unique_ptr<sf::Texture> tex
 
 void Bouton::setText(std::string message , sf::Font font)
 {
-	//std::cout << font.getInfo().family << "\n";
 	if (font.getInfo().family == "")
 	{
 		std::cout << "FONT VIDE !";

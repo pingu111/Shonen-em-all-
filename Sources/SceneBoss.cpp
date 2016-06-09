@@ -112,7 +112,10 @@ void SceneBoss::chargeButtons(std::vector<Replique*> repliquesChosen)
 	{
 		//std::cout << listSpritesButtonChoice[i].first.getPosition().x << "/" << listSpritesButtonChoice[i].first.getPosition().y << "\n";
 		//std::cout << "Copie ";
-		assert(comicFont.loadFromFile("Ressources\\ComicSansMS.ttf") == true);
+
+		std::cout << comicFont.getInfo().family << "\n";
+
+		//assert(comicFont.loadFromFile("Ressources\\ComicSansMS.ttf") == true);
 		listButtonsChoices[i].setText(repliquesChosen[i]->text, comicFont);
 	}
 }
@@ -153,7 +156,9 @@ void SceneBoss::waitForUser()
 					//player.update(/*replique choisie*/*repliques[0]);
 
 					// Ici, gerer les consequences du clic 
-					initRepliques();
+					//initRepliques();
+					chargeButtons(randReplique());
+
 					printBackground();
 
 				}
