@@ -10,7 +10,8 @@ enum SceneNames
 	MENU,
 	RNB1,
 	RNB2,
-	VILAIN,
+	VILAIN1,
+	VILAIN2,
 	WIN,
 	DEFEAT,
 	EXIT

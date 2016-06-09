@@ -61,7 +61,7 @@ void RythmNBlood::waitForUser()
 			window->clearText();
 			window->draw();
 
-			SceneManager::moveToScene(SceneNames::VILAIN, window);
+			SceneManager::moveToScene(SceneNames::VILAIN1, window);
 			return;
 		}
 	}

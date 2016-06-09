@@ -19,7 +19,7 @@ private:
 	int actualNbRepliques; 
 
 	/* la liste de toutes les repliqes possibles */
-	std::vector<std::unique_ptr<Replique>> repliques;
+	std::vector<std::unique_ptr<Replique>> repliquesUPtr;
 
 	/* la liste des 4 repliqes courantes et leur bouton */
 	std::vector<std::pair<Replique*,Bouton*>> SeletedRepliques;

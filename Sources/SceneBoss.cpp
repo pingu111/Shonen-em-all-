@@ -14,13 +14,12 @@ void SceneBoss::launchScene()
 	initRepliques();
 	initFonts();
 	initSprite();
-	initFonts();
 	chargeButtons(randReplique());
+	printBackground();
 
 	// Boucle principale 
 	while (window->getWindow()->isOpen())
 	{
-		printBackground();
 		waitForUser();
 	}
 }
@@ -32,7 +31,7 @@ void SceneBoss::printBackground()
 
 	for (auto &button : listButtonsChoices)
 	{
-		std::cout << "Hop \n";
+		//std::cout << "Hop \n";
 		window->add(std::make_unique<Bouton>(button));
 	}
 	window->draw();
@@ -42,8 +41,8 @@ void SceneBoss::initRepliques()
 {
 	for (Replique rep : ListReplique::repliques)
 	{
-		repliques.push_back(std::make_unique<Replique>(rep));
-		std::cout << rep.text << " n° " << repliques.size() << std::endl;
+		repliquesUPtr.push_back(std::make_unique<Replique>(rep));
+		//std::cout << rep.text << " n° " << repliques.size() << std::endl;
 	}
 }
 
@@ -112,7 +111,7 @@ void SceneBoss::chargeButtons(std::vector<Replique*> repliquesChosen)
 	for (int i = 0; i < 4; i++)
 	{
 		//std::cout << listSpritesButtonChoice[i].first.getPosition().x << "/" << listSpritesButtonChoice[i].first.getPosition().y << "\n";
-		std::cout << "Copie ";
+		//std::cout << "Copie ";
 		assert(comicFont.loadFromFile("Ressources\\ComicSansMS.ttf") == true);
 		listButtonsChoices[i].setText(repliquesChosen[i]->text, comicFont);
 	}
@@ -150,10 +149,13 @@ void SceneBoss::waitForUser()
 			{
 				if (button.isClicked(sf::Mouse::getPosition(*window->getWindow())))
 				{
+
 					//player.update(/*replique choisie*/*repliques[0]);
 
 					// Ici, gerer les consequences du clic 
 					initRepliques();
+					printBackground();
+
 				}
 			}
 		}
@@ -165,27 +167,27 @@ void SceneBoss::waitForUser()
 std::vector<Replique*> SceneBoss::randReplique()
 {
 	int rand1, rand2, rand3, rand4;
-	assert(repliques.size() >= 4);
+	assert(repliquesUPtr.size() >= 4);
 
 	//ici on suppose qu'on beaucoup de repliques donc la probabilite de tomber sur une deja choisie est faible.
 	//on aurai aussi pu creer un liste de uint et la melanger. Ensuite prendre les 4 premiers elements de la liste (qui correspondront aux indices des repliques choisies)
-	rand1 = Random::randInt(0, repliques.size()-1);
+	rand1 = Random::randInt(0, repliquesUPtr.size()-1);
 	do 
 	{
-		rand2 = Random::randInt(0, repliques.size()-1);
+		rand2 = Random::randInt(0, repliquesUPtr.size()-1);
 	} while (rand2 == rand1);
 
 	do 
 	{
-		rand3 = Random::randInt(0, repliques.size()-1);
+		rand3 = Random::randInt(0, repliquesUPtr.size()-1);
 	} while (rand3 == rand1 || rand3 == rand2);
 
 	do 
 	{
-		rand4 = Random::randInt(0, repliques.size()-1);
+		rand4 = Random::randInt(0, repliquesUPtr.size()-1);
 	} while (rand4 == rand1 || rand4 == rand2 || rand4 == rand3);
 
 	std::vector<Replique*> vec(4);
-	vec = { repliques[rand1].get(),repliques[rand2].get(),repliques[rand3].get(),repliques[rand4].get() };
+	vec = { repliquesUPtr[rand1].get(),repliquesUPtr[rand2].get(),repliquesUPtr[rand3].get(),repliquesUPtr[rand4].get() };
 	return vec;
 }

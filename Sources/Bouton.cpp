@@ -8,7 +8,7 @@ Bouton::Bouton()
 Bouton::Bouton(const Bouton &buttonCopy)
 {
 	setSprite(buttonCopy.spriteTexture.first, std::make_unique<sf::Texture>(*buttonCopy.spriteTexture.second));
-	std::cout << "Copie par constructeur --> ";
+	//std::cout << "Copie par constructeur --> ";
 	setText(buttonCopy.textFont.first.getString(), buttonCopy.textFont.second);
 }
 
@@ -26,7 +26,7 @@ void Bouton::setSprite(sf::Sprite spriteToSet , std::unique_ptr<sf::Texture> tex
 
 void Bouton::setText(std::string message , sf::Font font)
 {
-	std::cout << font.getInfo().family << "\n";
+	//std::cout << font.getInfo().family << "\n";
 	if (font.getInfo().family == "")
 	{
 		std::cout << "FONT VIDE !";

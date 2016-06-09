@@ -62,12 +62,12 @@ void WindowManager::draw()
 	{
 		window.draw(*form->getSpriteAndMessage().first);
 
-		std::string string = form->getSpriteAndMessage().second->getString();
+		/*std::string string = form->getSpriteAndMessage().second->getString();
 		std::cout << " Texte to print = " << string << "\n";
 		std::cout << " Font to print = " << form->getSpriteAndMessage().second->getFont()->getInfo().family << "\n";
 		std::cout << " Size to print = " << form->getSpriteAndMessage().second->getCharacterSize() << "\n";
 		std::cout << " Pos to print = " << form->getSpriteAndMessage().second->getPosition().x << "/"<<form->getSpriteAndMessage().second->getPosition().y<<"\n";
-		
+		*/
 		window.draw(*form->getSpriteAndMessage().second);
 	}
 
