@@ -112,6 +112,7 @@ void SceneBoss::chargeButtons(std::vector<Replique*> repliquesChosen)
 	{
 		//std::cout << listSpritesButtonChoice[i].first.getPosition().x << "/" << listSpritesButtonChoice[i].first.getPosition().y << "\n";
 		listButtonsChoices[i].setText(repliquesChosen[i]->text, comicFont);
+		seletedRepliques.push_back(std::pair<Replique*, Bouton>(repliquesChosen[i], listButtonsChoices[i]));
 	}
 }
 
@@ -147,14 +148,21 @@ void SceneBoss::waitForUser()
 			{
 				if (button.isClicked(sf::Mouse::getPosition(*window->getWindow())))
 				{
+					/*std::string message = button.getSpriteAndMessage().second->getString();
+					std::cout << message << "\n";*/
 
-					//player.update(/*replique choisie*/repliques[0]);
-
+					Replique repSelected;
 					// Ici, gerer les consequences du clic 
-					//chargeButtons(randReplique());
-
-					printBackground();
-
+					for (int i = 0; i < seletedRepliques.size(); i++)
+					{
+						if (seletedRepliques[i].second.getSpriteAndMessage().second->getString() == button.getSpriteAndMessage().second->getString())
+						{
+							repSelected = *seletedRepliques[i].first;
+							break;
+						}
+					}
+					player.update(repSelected);
+					SceneManager::moveToScene(SceneNames::RNB2, window);
 				}
 			}
 		}

@@ -22,7 +22,7 @@ private:
 	std::vector<std::unique_ptr<Replique>> repliquesUPtr;
 
 	/* la liste des 4 repliqes courantes et leur bouton */
-	std::vector<std::pair<Replique*,Bouton*>> SeletedRepliques;
+	std::vector<std::pair<Replique*,Bouton>> seletedRepliques;
 
 	/* selectionne aleatoirement 4 repliqes parmis toutes celles connues. Il doit y en avoir plus de 4 */
 	std::vector<Replique*> randReplique();
