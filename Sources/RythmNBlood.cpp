@@ -7,6 +7,8 @@ RythmNBlood::RythmNBlood() : player(Player::Instance(), 0)
 	idEnnemi = 0;
 	isPlayerInHitAnimation = false;
 	isLastHitLeft = false;
+	initSprite();
+	initFonts();
 }
 
 RythmNBlood RythmNBlood::m_instance = RythmNBlood();
@@ -24,8 +26,9 @@ RythmNBlood::~RythmNBlood()
 
 void RythmNBlood::launchScene()
 {
-	initSprite();
-	initFonts();
+	//on recupere les infos du level en cours (nombre d'ennemis, points de vie, armure ...)
+	//TODO
+
 	waitForUser();
 }
 

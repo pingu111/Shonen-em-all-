@@ -3,7 +3,9 @@
 /* Le constructeur de la scene */
 SceneBoss::SceneBoss() : player(Player::Instance())
 {
-	actualNbRepliques = 0;
+	initRepliques();
+	initFonts();
+	initSprite();
 }
 
 SceneBoss SceneBoss::m_instance = SceneBoss();
@@ -16,9 +18,6 @@ SceneBoss& SceneBoss::Instance(WindowManager* windowArg)
 
 void SceneBoss::launchScene()
 {
-	initRepliques();
-	initFonts();
-	initSprite();
 	chargeButtons(randReplique());
 	printBackground();
 
@@ -112,6 +111,8 @@ void SceneBoss::initSprite()
 
 void SceneBoss::chargeButtons(std::vector<Replique*> repliquesChosen)
 {
+	//on vide la liste des repliques
+	seletedRepliques.clear();
 	// On créé les boutons
 	for (int i = 0; i < 4; i++)
 	{

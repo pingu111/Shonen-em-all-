@@ -4,6 +4,7 @@ WindowManager::WindowManager()
 {
 	window.create(sf::VideoMode(1200, 900), "Shonen'em all");
 	window.setActive(false);
+	listSprites = std::vector<std::unique_ptr<sf::Sprite>>();
 }
 
 sf::RenderWindow* WindowManager::getWindow()
