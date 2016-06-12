@@ -97,6 +97,7 @@
     <ClCompile Include="Sources\RythmNBlood.cpp" />
     <ClCompile Include="Sources\VirtualScene.cpp" />
     <ClCompile Include="Sources\WindowManager.cpp" />
+    <ClCompile Include="Sources\YouDied.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Shonen%27em all\Sources\WindowManager.h" />
@@ -114,6 +115,7 @@
     <ClInclude Include="Sources\RythmNBlood.h" />
     <ClInclude Include="Sources\VirtualScene.h" />
     <ClInclude Include="Sources\WindowManager.h" />
+    <ClInclude Include="Sources\YouDied.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

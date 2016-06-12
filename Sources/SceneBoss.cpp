@@ -22,10 +22,7 @@ void SceneBoss::launchScene()
 	printBackground();
 
 	// Boucle principale 
-	while (window->getWindow()->isOpen())
-	{
-		waitForUser();
-	}
+	waitForUser();
 }
 
 void SceneBoss::printBackground()
@@ -131,47 +128,56 @@ void SceneBoss::initFonts()
 /* attend l'appui sur un bouton */
 void SceneBoss::waitForUser()
 {
-	sf::Event event;
-	while (window->getWindow()->pollEvent(event))
+	while (window->getWindow()->isOpen())
 	{
-		if (event.type == sf::Event::Closed)
+		sf::Event event;
+		while (window->getWindow()->pollEvent(event))
 		{
-			SceneManager::moveToScene(SceneNames::EXIT,window);
-			return;
-		}
-		else if (event.type == sf::Event::KeyPressed)
-		{
-			if (event.key.code == sf::Keyboard::Escape)
+			if (event.type == sf::Event::Closed)
 			{
-				std::cout << " sf::Keyboard::Escape\n";
-				system("pause");
+				SceneManager::moveToScene(SceneNames::EXIT, window);
+				return;
 			}
-		}
-		else if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
-		{
-			//On parcours les boutons et on verifie s'ils sont cliqués
-			for (Bouton &button : listButtonsChoices)
+			else if (event.type == sf::Event::KeyPressed)
 			{
-				if (button.isClicked(sf::Mouse::getPosition(*window->getWindow())))
+				if (event.key.code == sf::Keyboard::Escape)
 				{
-					/*std::string message = button.getSpriteAndMessage().second->getString();
-					std::cout << message << "\n";*/
-
-					Replique repSelected;
-					// Ici, gerer les consequences du clic 
-					for (int i = 0; i < seletedRepliques.size(); i++)
+					std::cout << " sf::Keyboard::Escape\n";
+					system("pause");
+				}
+			}
+			else if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+			{
+				//On parcours les boutons et on verifie s'ils sont cliqués
+				for (Bouton &button : listButtonsChoices)
+				{
+					if (button.isClicked(sf::Mouse::getPosition(*window->getWindow())))
 					{
-						if (seletedRepliques[i].second.getSpriteAndMessage().second->getString() == button.getSpriteAndMessage().second->getString())
+						/*std::string message = button.getSpriteAndMessage().second->getString();
+						std::cout << message << "\n";*/
+
+						Replique repSelected;
+						// Ici, gerer les consequences du clic 
+						for (int i = 0; i < seletedRepliques.size(); i++)
 						{
-							repSelected = *seletedRepliques[i].first;
-							break;
+							if (seletedRepliques[i].second.getSpriteAndMessage().second->getString() == button.getSpriteAndMessage().second->getString())
+							{
+								repSelected = *seletedRepliques[i].first;
+								break;
+							}
+						}
+						player.update(repSelected);
+						if (repSelected.scoreMult == 0)
+						{
+							SceneManager::moveToScene(SceneNames::DEFEAT, window);
+							return;
+						}
+						else
+						{
+							SceneManager::moveToScene(SceneNames::RNB, window);
+							return;
 						}
 					}
-					player.update(repSelected);
-					if(repSelected.scoreMult == 0)
-						SceneManager::moveToScene(SceneNames::DEFEAT, window);
-					else
-						SceneManager::moveToScene(SceneNames::RNB, window);
 				}
 			}
 		}

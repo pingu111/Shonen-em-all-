@@ -26,36 +26,37 @@ void MenuPrincipal::printBackgroundAndButtons()
 
 EnumChoicesUser MenuPrincipal::waitForUser()
 {
-	sf::Event event;
-	while (window->getWindow()->pollEvent(event))
+	while (window->getWindow()->isOpen())
 	{
-		if (event.type == sf::Event::Closed)
+		sf::Event event;
+		while (window->getWindow()->pollEvent(event))
 		{
-			std::cout << "sf::Event::Closed\n";
-			system("pause");
-			return QUIT;
-		}
-		else if (event.type == sf::Event::KeyPressed)
-		{
-			if (event.key.code == sf::Keyboard::Escape)
+			if (event.type == sf::Event::Closed)
 			{
-				std::cout << " sf::Keyboard::Escape\n";
+				std::cout << "sf::Event::Closed\n";
 				system("pause");
 				return QUIT;
 			}
-		}
-		else if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
-		{
-			if (boutonRNB.isClicked(sf::Mouse::getPosition(*window->getWindow())))
+			else if (event.type == sf::Event::KeyPressed)
 			{
-				//std::cout << "Clique !\n";
-				SceneManager::moveToScene(SceneNames::RNB,window);
-				return RYTHM;
+				if (event.key.code == sf::Keyboard::Escape)
+				{
+					std::cout << " sf::Keyboard::Escape\n";
+					system("pause");
+					return QUIT;
+				}
+			}
+			else if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+			{
+				if (boutonRNB.isClicked(sf::Mouse::getPosition(*window->getWindow())))
+				{
+					//std::cout << "Clique !\n";
+					SceneManager::moveToScene(SceneNames::RNB, window);
+					return RYTHM;
+				}
 			}
 		}
-	}		
-
-	return QUIT;
+	}
 }
 
 void MenuPrincipal::initTextures()
@@ -89,9 +90,6 @@ void MenuPrincipal::reload()
 	initTextures();
 	printBackgroundAndButtons();
 	// Boucle verifiant les evenements
-	while (window->getWindow()->isOpen())
-	{
-		waitForUser();
-	}
+	waitForUser();
 }
 

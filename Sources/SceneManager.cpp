@@ -28,6 +28,7 @@ void SceneManager::moveToScene(SceneNames name, WindowManager* window)
 	}
 	case DEFEAT:
 	{
+		YouDied::Instance(window).reload();
 		return;
 	}
 	case EXIT:
