@@ -7,8 +7,7 @@ RythmNBlood::RythmNBlood() : player(Player::Instance(), 0)
 	idEnnemi = 0;
 	isPlayerInHitAnimation = false;
 	isLastHitLeft = false;
-	initSprite();
-	initFonts();
+
 }
 
 RythmNBlood RythmNBlood::m_instance = RythmNBlood();
@@ -17,6 +16,8 @@ RythmNBlood RythmNBlood::m_instance = RythmNBlood();
 RythmNBlood& RythmNBlood::Instance(WindowManager* windowArg)
 {
 	m_instance.window = windowArg;
+	m_instance.initSprite();
+	m_instance.initFonts();
 	return m_instance;
 }
 

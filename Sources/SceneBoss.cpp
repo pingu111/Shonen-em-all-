@@ -5,7 +5,6 @@ SceneBoss::SceneBoss() : player(Player::Instance())
 {
 	initRepliques();
 	initFonts();
-	initSprite();
 }
 
 SceneBoss SceneBoss::m_instance = SceneBoss();
@@ -13,6 +12,7 @@ SceneBoss SceneBoss::m_instance = SceneBoss();
 SceneBoss& SceneBoss::Instance(WindowManager* windowArg)
 {
 	m_instance.window = windowArg;
+	m_instance.initSprite();
 	return m_instance;
 }
 
