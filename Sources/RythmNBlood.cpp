@@ -373,5 +373,10 @@ void RythmNBlood::printText(int hitValue)
 
 void RythmNBlood::reload()
 {
+	if (player.first.getHasSomethingToSay())
+	{
+		std::string repliqueText = player.first.sayReplique();
+		//TODO afficher la replique du player
+	}
 	launchScene();
 }

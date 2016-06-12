@@ -23,11 +23,17 @@ void SceneManager::moveToScene(SceneNames name, WindowManager* window)
 		return;
 	}
 	case WIN:
+	{
 		return;
+	}
 	case DEFEAT:
+	{
 		return;
+	}
 	case EXIT:
+	{
 		return;
+	}
 	default:
 		return;
 	}

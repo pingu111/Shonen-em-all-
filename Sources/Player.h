@@ -31,6 +31,8 @@ private:
 public :
 	static Player& Instance();
 
+	/* has the payer something to say */
+	bool getHasSomethingToSay();
 	/*frappe un ennemi hitable et ajuste le score*/
 	int hit(Ennemi &enn);
 	/* apres une replique, le hero garde sa super replique en memoire */

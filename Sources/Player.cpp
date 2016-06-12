@@ -64,3 +64,8 @@ std::string Player::sayReplique()
 	hasSomethingToSay = false;
 	return repWaiting.text;
 }
+
+bool Player::getHasSomethingToSay()
+{
+	return hasSomethingToSay;
+}
