@@ -64,7 +64,7 @@ public:
 	void draw();
 
 	WindowManager(const WindowManager& wm) = delete;
-	void operator=(const WindowManager& wm) = delete ;
+	void operator=(const WindowManager& wm) = delete;
 
 public:
 

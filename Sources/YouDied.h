@@ -7,7 +7,10 @@ class YouDied : VirtualScene
 private:
 	YouDied();
 	static YouDied m_instance;
-	YouDied(const YouDied& yd);
+
+	YouDied(const YouDied& yd) = delete;
+	void operator=(const YouDied& yd) = delete;
+
 
 public :
 	static YouDied& Instance();

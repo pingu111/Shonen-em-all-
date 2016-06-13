@@ -2,20 +2,17 @@
 
 Bouton::Bouton()
 {
-	//defaultText();
 }
 
 Bouton::Bouton(const Bouton &buttonCopy)
 {
-	//defaultText();
 	setSprite(buttonCopy.spriteTexture.first, std::make_unique<sf::Texture>(*buttonCopy.spriteTexture.second));
-	//std::cout << "Copie par constructeur --> ";
+	//std::cout << "Copie par constructeur --> \n";
 	setText(buttonCopy.textFont.first.getString(), buttonCopy.textFont.second , buttonCopy.textFont.first.getCharacterSize());
 }
 
 Bouton::Bouton(sf::Sprite spriteToSet, std::unique_ptr<sf::Texture> textureToSet)
 {
-	//defaultText();
 	setSprite(spriteToSet, move(textureToSet));
 }
 
@@ -29,12 +26,12 @@ void Bouton::setSprite(sf::Sprite spriteToSet, std::unique_ptr<sf::Texture> text
 
 void Bouton::setText(std::string message, sf::Font font, int sizeCharac)
 {
-	std::cout << font.getInfo().family <<  "\n";
-	std::cout << message << "\n";
+	/*std::cout << font.getInfo().family <<  "\n";
+	std::cout << message << "\n";*/
 
 	if (font.getInfo().family == "")
 	{
-		std::cout << "FONT VIDE !";
+		//std::cout << "FONT VIDE !";
 		font = comicFont;
 	}
 	textFont.second = font;

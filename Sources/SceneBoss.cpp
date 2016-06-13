@@ -154,8 +154,8 @@ void SceneBoss::waitForUser()
 				{
 					if (button.isClicked(sf::Mouse::getPosition(*WindowManager::Instance().getWindow())))
 					{
-						std::string message = button.getSpriteAndMessage().second->getString();
-						std::cout << message << "\n";
+						/*std::string message = button.getSpriteAndMessage().second->getString();
+						std::cout << message << "\n";*/
 
 						Replique repSelected;
 						// Ici, gerer les consequences du clic 

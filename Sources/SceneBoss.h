@@ -57,6 +57,7 @@ private:
 	SceneBoss();
 
 	SceneBoss(const SceneBoss& sceneCopy) = delete;
+	void operator=(const SceneBoss& wm) = delete;
 
 	static SceneBoss m_instance;
 
