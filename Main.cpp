@@ -5,7 +5,6 @@
 
 int main()
 {
-	WindowManager windowManager;
 	SceneManager::moveToScene(SceneNames::MENU);
 	return 0;
 }

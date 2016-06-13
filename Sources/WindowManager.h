@@ -12,37 +12,12 @@
 class WindowManager
 {
 
-
-public:
-	static WindowManager& Instance();
-
-
-	/* Retourne la RenderWinow* */
-	sf::RenderWindow* getWindow();
-
-	/* Ajoute l'argument dans le vector des sprites qu'on dessinera */
-	void add(std::unique_ptr<sf::Sprite> form);
-
-	/* Ajoute l'argument dans le vector des textes qu'on dessinera */
-	void add(std::unique_ptr<sf::Text> form);
-
-	/* Ajoute l'argument dans le vector des textes qu'on dessinera et qui disparaitront */
-	void addWithPeremption(std::unique_ptr<sf::Text> form , int peremptionTime);
-
-	/* Affiche un bouton */
-	void add(std::unique_ptr<Bouton> button);
-
-
-	/* Enleve tous les textes affichés */
-	void clearText();
-
-	/* Dessine la liste des sprites de listSprites 
-	 Et vide la liste des sprites à dessiner */
-	void draw();
-
 private:
 
-	static WindowManager m_instance;
+	/* Constructeur : créé la RenderWindow */
+	WindowManager();
+	//static WindowManager m_instance;
+
 
 	/* La RenderWindow d'affichage pour tout le programme */
 	sf::RenderWindow window;
@@ -59,10 +34,41 @@ private:
 	/* La liste des boutons à dessiner */
 	std::vector<std::unique_ptr<Bouton>> listButtons;
 
-	/* Constructeur : créé la RenderWindow */
-	WindowManager();
-
 	/* Destructeur*/
 	~WindowManager();
+
+
+public:
+
+	/* Retourne la RenderWinow* */
+	sf::RenderWindow* getWindow();
+
+	/* Ajoute l'argument dans le vector des sprites qu'on dessinera */
+	void add(std::unique_ptr<sf::Sprite> form);
+
+	/* Ajoute l'argument dans le vector des textes qu'on dessinera */
+	void add(std::unique_ptr<sf::Text> form);
+
+	/* Ajoute l'argument dans le vector des textes qu'on dessinera et qui disparaitront */
+	void addWithPeremption(std::unique_ptr<sf::Text> form , int peremptionTime);
+
+	/* Ajoute un bouton à la liste des choses à dessiner */
+	void add(std::unique_ptr<Bouton> button);
+
+
+	/* Enleve tous les textes affichés */
+	void clearText();
+
+	/* Dessine la liste des sprites de listSprites 
+	 Et vide la liste des sprites à dessiner */
+	void draw();
+
+	WindowManager(const WindowManager& wm) = delete;
+	void operator=(const WindowManager& wm) = delete ;
+
+public:
+
+	static WindowManager& Instance();
+
 };
 

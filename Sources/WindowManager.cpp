@@ -7,10 +7,11 @@ WindowManager::WindowManager()
 	window.setActive(false);
 }
 
-WindowManager WindowManager::m_instance = WindowManager();
+//WindowManager WindowManager::m_instance = WindowManager();
 
 WindowManager& WindowManager::Instance()
 {
+	static WindowManager m_instance;
 	return m_instance;
 }
 

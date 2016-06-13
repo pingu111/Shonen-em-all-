@@ -3,7 +3,6 @@
 /* Le constructeur de la scene */
 YouDied::YouDied()
 {
-	m_instance.window = WindowManager::Instance();
 
 }
 

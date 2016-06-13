@@ -3,16 +3,17 @@
 /* Le constructeur de la scene */
 SceneBoss::SceneBoss() : player(Player::Instance())
 {
-	m_instance.window = WindowManager::Instance();
 	initSprite();
 	initRepliques();
 	initFonts();
 }
 
-SceneBoss SceneBoss::m_instance = SceneBoss();
+//SceneBoss SceneBoss::m_instance = SceneBoss();
 
 SceneBoss& SceneBoss::Instance()
 {
+	static SceneBoss m_instance;
+
 	return m_instance;
 }
 
@@ -28,14 +29,14 @@ void SceneBoss::launchScene()
 void SceneBoss::printBackground()
 {
 	// On ajoute tous les sprites qu'on veut afficher 
-	window.add(std::make_unique<sf::Sprite>(fondSprite));
+	WindowManager::Instance().add(std::make_unique<sf::Sprite>(fondSprite));
 
 	for (auto &button : listButtonsChoices)
 	{
 		//std::cout << "Hop \n";
-		window.add(std::make_unique<Bouton>(button));
+		WindowManager::Instance().add(std::make_unique<Bouton>(button));
 	}
-	window.draw();
+	WindowManager::Instance().draw();
 }
 
 void SceneBoss::initRepliques()
@@ -51,7 +52,7 @@ void SceneBoss::initSprite()
 {
 	assert(fond.loadFromFile("Ressources\\Boss\\Evil.jpg") == true);
 	fondSprite.setTexture(fond);
-	window.add(std::make_unique<sf::Sprite>(fondSprite));
+	WindowManager::Instance().add(std::make_unique<sf::Sprite>(fondSprite));
 
 	// On créé les boutons
 	for (int i = 0; i < 4; i++)
@@ -65,7 +66,7 @@ void SceneBoss::initSprite()
 		std::unique_ptr<sf::Texture> ptrTexture = std::make_unique<sf::Texture>(boutonTextTmp);
 		boutonSpriteTmp.setTexture(*ptrTexture);
 
-		float sizeBetweenButtonsX = ((float)window.getWindow()->getSize().x -
+		float sizeBetweenButtonsX = ((float)WindowManager::Instance().getWindow()->getSize().x -
 									(float)(2 * boutonSpriteTmp.getTextureRect().width)) / 3;
 
 		switch (i)
@@ -74,22 +75,22 @@ void SceneBoss::initSprite()
 			case 0:
 				boutonSpriteTmp.setPosition(
 					sizeBetweenButtonsX,
-					(float)window.getWindow()->getSize().y - 2.1f * boutonSpriteTmp.getTextureRect().height);
+					(float)WindowManager::Instance().getWindow()->getSize().y - 2.1f * boutonSpriteTmp.getTextureRect().height);
 				break;
 			case 1:
 				boutonSpriteTmp.setPosition(
-					(float)window.getWindow()->getSize().x - sizeBetweenButtonsX - boutonSpriteTmp.getTextureRect().width,
-					(float)window.getWindow()->getSize().y - 2.1f * boutonSpriteTmp.getTextureRect().height);
+					(float)WindowManager::Instance().getWindow()->getSize().x - sizeBetweenButtonsX - boutonSpriteTmp.getTextureRect().width,
+					(float)WindowManager::Instance().getWindow()->getSize().y - 2.1f * boutonSpriteTmp.getTextureRect().height);
 				break;
 			case 2:
 				boutonSpriteTmp.setPosition(
 					sizeBetweenButtonsX,
-					(float)window.getWindow()->getSize().y - 1.05f * boutonSpriteTmp.getTextureRect().height);
+					(float)WindowManager::Instance().getWindow()->getSize().y - 1.05f * boutonSpriteTmp.getTextureRect().height);
 				break;
 			case 3:
 				boutonSpriteTmp.setPosition(
-					(float)window.getWindow()->getSize().x - sizeBetweenButtonsX - boutonSpriteTmp.getTextureRect().width,
-					(float)window.getWindow()->getSize().y - 1.05f * boutonSpriteTmp.getTextureRect().height);
+					(float)WindowManager::Instance().getWindow()->getSize().x - sizeBetweenButtonsX - boutonSpriteTmp.getTextureRect().width,
+					(float)WindowManager::Instance().getWindow()->getSize().y - 1.05f * boutonSpriteTmp.getTextureRect().height);
 				break;
 		}
 
@@ -128,10 +129,10 @@ void SceneBoss::initFonts()
 /* attend l'appui sur un bouton */
 void SceneBoss::waitForUser()
 {
-	while (window.getWindow()->isOpen())
+	while (WindowManager::Instance().getWindow()->isOpen())
 	{
 		sf::Event event;
-		while (window.getWindow()->pollEvent(event))
+		while (WindowManager::Instance().getWindow()->pollEvent(event))
 		{
 			if (event.type == sf::Event::Closed)
 			{
@@ -151,7 +152,7 @@ void SceneBoss::waitForUser()
 				//On parcours les boutons et on verifie s'ils sont cliqués
 				for (Bouton &button : listButtonsChoices)
 				{
-					if (button.isClicked(sf::Mouse::getPosition(*window.getWindow())))
+					if (button.isClicked(sf::Mouse::getPosition(*WindowManager::Instance().getWindow())))
 					{
 						std::string message = button.getSpriteAndMessage().second->getString();
 						std::cout << message << "\n";

@@ -3,27 +3,29 @@
 
 RythmNBlood::RythmNBlood() : player(Player::Instance(), 0)
 {
+
 	//ennemis = std::vector<Ennemi>();
 	idEnnemi = 0;
 	isPlayerInHitAnimation = false;
 	isLastHitLeft = false;
 
-	m_instance.window = WindowManager::Instance();
-	m_instance.initSprite();
-	m_instance.initFonts();
+	initSprite();
+	initFonts();
 
 }
 
-RythmNBlood RythmNBlood::m_instance = RythmNBlood();
+//RythmNBlood RythmNBlood::m_instance = RythmNBlood();
 
 
 RythmNBlood& RythmNBlood::Instance()
 {
+	static RythmNBlood m_instance;
 	return m_instance;
 }
 
 RythmNBlood::~RythmNBlood()
 {
+
 }
 
 void RythmNBlood::launchScene()
@@ -37,14 +39,14 @@ void RythmNBlood::launchScene()
 void RythmNBlood::printBackgroundAndButtons()
 {
 	// On ajoute tous les sprites qu'on veut afficher 
-	window.add(std::make_unique<sf::Sprite>(fondSprite));
+	WindowManager::Instance().add(std::make_unique<sf::Sprite>(fondSprite));
 }
 
 void RythmNBlood::waitForUser()
 {
 	std::time_t timeLastAdd = std::time(nullptr);
 
-	while (window.getWindow()->isOpen() )
+	while (WindowManager::Instance().getWindow()->isOpen() )
 	{
 		printBackgroundAndButtons();
 
@@ -61,13 +63,13 @@ void RythmNBlood::waitForUser()
 			// On gere les evenements et leurs consequences
 			ennemiesHittables = eventManager(ennemiesHittables);
 
-			window.draw();
+			WindowManager::Instance().draw();
 		}
 		else
 		{
 			// Alors, fin de la scene
-			window.clearText();
-			window.draw();
+			WindowManager::Instance().clearText();
+			WindowManager::Instance().draw();
 
 			SceneManager::moveToScene(SceneNames::VILAIN);
 			return;
@@ -98,9 +100,9 @@ void RythmNBlood::initSprite()
 		texture.loadFromImage(image);
 		sprite.setTexture(texture);
 
-		sprite.setPosition((float)window.getWindow()->getSize().x * playerPosition / 100
+		sprite.setPosition((float)WindowManager::Instance().getWindow()->getSize().x * playerPosition / 100
 							- (float)sprite.getTextureRect().width / 2,
-							(float)window.getWindow()->getSize().y *0.715f
+							(float)WindowManager::Instance().getWindow()->getSize().y *0.715f
 							- (float)sprite.getTextureRect().height / 2);
 
 		// On les stocke
@@ -154,9 +156,9 @@ void RythmNBlood::initFonts()
 	textDamages.setColor(sf::Color::Red);
 	textDamages.setStyle(sf::Text::Bold);
 	textDamages.setPosition(
-		(float)window.getWindow()->getSize().x/2 
+		(float)WindowManager::Instance().getWindow()->getSize().x/2
 		- textDamages.getLocalBounds().width / 2,
-		(float)window.getWindow()->getSize().y/4
+		(float)WindowManager::Instance().getWindow()->getSize().y/4
 		- textDamages.getLocalBounds().height / 2);
 
 }
@@ -223,12 +225,12 @@ std::vector<std::shared_ptr<Ennemi>> RythmNBlood::animationsEnnemies()
 
 		// On le deplace
 		mapSpriteEnnemi.at(enn).second.setPosition(
-			(float)window.getWindow()->getSize().x * enn->getXPosition() / 100
+			(float)WindowManager::Instance().getWindow()->getSize().x * enn->getXPosition() / 100
 			- mapSpriteEnnemi.at(enn).second.getTextureRect().width / 2,
-			(float)window.getWindow()->getSize().y * 3 / 4
+			(float)WindowManager::Instance().getWindow()->getSize().y * 3 / 4
 			- mapSpriteEnnemi.at(enn).second.getTextureRect().height / 2);
 
-		window.add(std::make_unique<sf::Sprite>(mapSpriteEnnemi.at(enn).second));
+		WindowManager::Instance().add(std::make_unique<sf::Sprite>(mapSpriteEnnemi.at(enn).second));
 
 	}
 	return ennemiesHittables;
@@ -259,7 +261,7 @@ std::vector<std::shared_ptr<Ennemi>> RythmNBlood::eventManager(std::vector<std::
 {
 	sf::Event event;
 	int damages = 0;
-	while (window.getWindow()->pollEvent(event))
+	while (WindowManager::Instance().getWindow()->pollEvent(event))
 	{
 		if (event.type == sf::Event::Closed)
 		{
@@ -327,19 +329,19 @@ void RythmNBlood::animationPlayer()
 			isPlayerInHitAnimation = false;
 		}
 		if (!isLastHitLeft)
-			window.add(std::make_unique<sf::Sprite>(flipSprite(listSpritePlayerHitting[player.second].first)));
+			WindowManager::Instance().add(std::make_unique<sf::Sprite>(flipSprite(listSpritePlayerHitting[player.second].first)));
 		else
-			window.add(std::make_unique<sf::Sprite>(listSpritePlayerHitting[player.second].first));
+			WindowManager::Instance().add(std::make_unique<sf::Sprite>(listSpritePlayerHitting[player.second].first));
 	}
 	else
 	{
 		if (!isLastHitLeft)
 		{
-			window.add(std::make_unique<sf::Sprite>(flipSprite(playerWaitingSprite.first)));
+			WindowManager::Instance().add(std::make_unique<sf::Sprite>(flipSprite(playerWaitingSprite.first)));
 		}
 		else
 		{
-			window.add(std::make_unique<sf::Sprite>(playerWaitingSprite.first));
+			WindowManager::Instance().add(std::make_unique<sf::Sprite>(playerWaitingSprite.first));
 		}
 	}
 }
@@ -350,9 +352,9 @@ void RythmNBlood::printText(int hitValue)
 	if (hitValue >= 0)
 	{
 		textDamages.setPosition(
-			(float)window.getWindow()->getSize().x * Random::randInt(3,7)/10
+			(float)WindowManager::Instance().getWindow()->getSize().x * Random::randInt(3,7)/10
 			- textDamages.getLocalBounds().height / 2,
-			(float)window.getWindow()->getSize().y * Random::randInt(3, 7)/10
+			(float)WindowManager::Instance().getWindow()->getSize().y * Random::randInt(3, 7)/10
 			- textDamages.getLocalBounds().height / 2);
 
 		char stringDamage[250];
@@ -360,14 +362,14 @@ void RythmNBlood::printText(int hitValue)
 		strcat_s(stringDamage, " dommages !");
 		std::cout << stringDamage << "\n";
 		textDamages.setString(stringDamage);
-		window.addWithPeremption(std::make_unique<sf::Text>(textDamages), (int)std::time(nullptr));
+		WindowManager::Instance().addWithPeremption(std::make_unique<sf::Text>(textDamages), (int)std::time(nullptr));
 	}
 	else
 	{
 		if (textDamages.getString() != "")
 		{
 			textDamages.setString("");
-			window.addWithPeremption(std::make_unique<sf::Text>(textDamages), (int)std::time(nullptr));
+			WindowManager::Instance().addWithPeremption(std::make_unique<sf::Text>(textDamages), (int)std::time(nullptr));
 		}
 	}
 }

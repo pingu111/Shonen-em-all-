@@ -3,13 +3,14 @@
 
 MenuPrincipal::MenuPrincipal()
 {
-	window = WindowManager::Instance();
+	initTextures();
 }
 
 MenuPrincipal MenuPrincipal::m_instance = MenuPrincipal();
 
 MenuPrincipal& MenuPrincipal::Instance()
 {
+	static MenuPrincipal m_instance;
 	return m_instance;
 }
 
@@ -17,19 +18,19 @@ void MenuPrincipal::printBackgroundAndButtons()
 {
 
 	// On ajoute tous les sprites qu'on veut afficher 
-	window.add(std::make_unique<sf::Sprite>(fondSprite));
-	window.add(std::make_unique<Bouton>(boutonRNB));
+	WindowManager::Instance().add(std::make_unique<sf::Sprite>(fondSprite));
+	WindowManager::Instance().add(std::make_unique<Bouton>(boutonRNB));
 
 	// On les affiche
-	window.draw();
+	WindowManager::Instance().draw();
 }
 
 EnumChoicesUser MenuPrincipal::waitForUser()
 {
-	while (window.getWindow()->isOpen())
+	while (WindowManager::Instance().getWindow()->isOpen())
 	{
 		sf::Event event;
-		while (window.getWindow()->pollEvent(event))
+		while (WindowManager::Instance().getWindow()->pollEvent(event))
 		{
 			if (event.type == sf::Event::Closed)
 			{
@@ -48,7 +49,7 @@ EnumChoicesUser MenuPrincipal::waitForUser()
 			}
 			else if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 			{
-				if (boutonRNB.isClicked(sf::Mouse::getPosition(*window.getWindow())))
+				if (boutonRNB.isClicked(sf::Mouse::getPosition(*WindowManager::Instance().getWindow())))
 				{
 					//std::cout << "Clique !\n";
 					SceneManager::moveToScene(SceneNames::RNB);
@@ -68,8 +69,8 @@ void MenuPrincipal::initTextures()
 	assert(boutonGoToRNB.loadFromFile("Ressources\\Menuprincipal\\TextBoxBlank.gif") == true);
 	boutonGoToRNBSprite.setTexture(boutonGoToRNB);
 
-	boutonGoToRNBSprite.setPosition((float) window.getWindow()->getSize().x / 2	 - boutonGoToRNBSprite.getTextureRect().width  / 2,
-									(float) window.getWindow()->getSize().y * 5 / 6 - boutonGoToRNBSprite.getTextureRect().height / 2);
+	boutonGoToRNBSprite.setPosition((float)WindowManager::Instance().getWindow()->getSize().x / 2	 - boutonGoToRNBSprite.getTextureRect().width  / 2,
+									(float)WindowManager::Instance().getWindow()->getSize().y * 5 / 6 - boutonGoToRNBSprite.getTextureRect().height / 2);
 
 	// On créé le bouton qui cible le Hack n slash
 	boutonRNB.setSprite(boutonGoToRNBSprite , std::make_unique<sf::Texture>(boutonGoToRNB));
@@ -79,7 +80,6 @@ void MenuPrincipal::initTextures()
 	boutonRNB.setText("Commencer le jeu !", font);
 }
 
-
 MenuPrincipal::~MenuPrincipal()
 {
 	;
@@ -87,7 +87,6 @@ MenuPrincipal::~MenuPrincipal()
 
 void MenuPrincipal::reload()
 {
-	initTextures();
 	printBackgroundAndButtons();
 	// Boucle verifiant les evenements
 	waitForUser();
