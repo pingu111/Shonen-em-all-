@@ -18,7 +18,6 @@ private:
 	float strenght;
 	void destroy();
 	bool isSpriteLeft;
-	float cooldownTime;
 	float damageMult;
 	int scoreMult;
 	int score;
