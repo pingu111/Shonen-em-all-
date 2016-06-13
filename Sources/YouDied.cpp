@@ -3,8 +3,8 @@
 /* Le constructeur de la scene */
 YouDied::YouDied()
 {
-	initSprite();
 	initFonts();
+	initSprite();
 }
 
 YouDied& YouDied::Instance()
@@ -40,21 +40,27 @@ void YouDied::initSprite()
 
 	textFont.second = comicFont;
 	textFont.first.setFont(textFont.second);
-	textFont.first.setCharacterSize(100);
+	textFont.first.setCharacterSize(80);
 
 	std::string message;
 	int score = Player::Instance().getScore();
 	message += "Score : ";
-	message += score;
-	message += "\nBravo !";
+	message += std::to_string(score);
 	std::cout << message << "\n";
 
 	textFont.first.setString(message);
+	textFont.first.setPosition
+	(
+		fondSprite.getTextureRect().width / 2 - textFont.first.getGlobalBounds().width / 2,
+		fondSprite.getTextureRect().height * 5/6 - textFont.first.getGlobalBounds().height / 2
+	);
 }
 
 void YouDied::waitForUser()
 {
 	printBackground();
+	std::string input;
+
 	nbSix = 0;
 	while (WindowManager::Instance().getWindow()->isOpen())
 	{
@@ -66,23 +72,29 @@ void YouDied::waitForUser()
 			{
 				return;
 			}
-			else if (event.type == sf::Event::KeyPressed)
+			else if (event.type == sf::Event::TextEntered)
+			{
+				if (event.text.unicode < 128)
+				{
+					input += static_cast<char>(event.text.unicode);
+					if (input.find("666") != std::string::npos)
+						SceneManager::moveToScene(SceneNames::RNB);
+					if (input.find("trump") != std::string::npos)
+						SceneManager::moveToScene(SceneNames::RNB);
+					if (input.find("lol") != std::string::npos)
+						SceneManager::moveToScene(SceneNames::DEFEAT);
+					if (input.find("reset") != std::string::npos)
+						SceneManager::moveToScene(SceneNames::MENU);
+				}
+			}
+			if (event.type == sf::Event::KeyPressed)
 			{
 				if (event.key.code == sf::Keyboard::Escape)
 				{
 					// On quitte
 					return;
 				}
-				if (event.key.code == sf::Keyboard::Num6)
-				{
-					// Easter egg ici
-					nbSix++;
-					if (nbSix == 3)
-					{
-						SceneManager::moveToScene(SceneNames::RNB);
-					}
-				}
-			};
+			}
 		}
 	}
 }

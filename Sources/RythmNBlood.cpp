@@ -6,6 +6,8 @@ RythmNBlood::RythmNBlood() : player(Player::Instance(), 0)
 
 	//ennemis = std::vector<Ennemi>();
 	idEnnemi = 0;
+	nbEnnemiDead = 1;
+
 	isPlayerInHitAnimation = false;
 	isLastHitLeft = false;
 
