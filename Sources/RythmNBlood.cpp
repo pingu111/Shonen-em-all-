@@ -36,7 +36,7 @@ void RythmNBlood::launchScene()
 	waitForUser();
 }
 
-void RythmNBlood::printBackgroundAndButtons()
+void RythmNBlood::printBackground()
 {
 	// On ajoute tous les sprites qu'on veut afficher 
 	WindowManager::Instance().add(std::make_unique<sf::Sprite>(fondSprite));
@@ -48,7 +48,7 @@ void RythmNBlood::waitForUser()
 
 	while (WindowManager::Instance().getWindow()->isOpen() )
 	{
-		printBackgroundAndButtons();
+		printBackground();
 
 		animationPlayer();
 

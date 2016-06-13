@@ -27,15 +27,15 @@ public:
 	static MenuPrincipal& Instance();
 
 	/* Fonction qui affiche et dessine le fond et les boutons du menu principal */
-	void printBackgroundAndButtons();
+	void printBackground() override;
 
 	/* Fonction bloquante qui attend un choix du l'utilisateur
 		return : le choix de l'utilisateur	*/
-	EnumChoicesUser waitForUser();
+	void waitForUser();
 
 	void reload() override;
+	void launchScene() override;
 
-	
 
 	/* Destructeur*/
 	~MenuPrincipal();

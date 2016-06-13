@@ -121,11 +121,6 @@ void SceneBoss::chargeButtons(std::vector<Replique*> repliquesChosen)
 }
 
 
-void SceneBoss::initFonts()
-{
-	assert(comicFont.loadFromFile("Ressources\\ComicSansMS.ttf") == true);
-}
-
 /* attend l'appui sur un bouton */
 void SceneBoss::waitForUser()
 {

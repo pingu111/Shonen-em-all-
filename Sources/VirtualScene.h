@@ -19,9 +19,23 @@ protected:
 
 	SceneNames nameActualScene;
 
+
+	/* La meilleure police au monde */
+	sf::Font comicFont;
+
+	void initFonts();
+
+
 public:
 	virtual void reload() = 0;
+	virtual void launchScene() = 0;
+	virtual void printBackground() = 0;
+	virtual void waitForUser() = 0;
+
+
 	VirtualScene();
 	~VirtualScene();
+
+
 };
 

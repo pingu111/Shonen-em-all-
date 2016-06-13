@@ -14,7 +14,7 @@ MenuPrincipal& MenuPrincipal::Instance()
 	return m_instance;
 }
 
-void MenuPrincipal::printBackgroundAndButtons()
+void MenuPrincipal::printBackground()
 {
 
 	// On ajoute tous les sprites qu'on veut afficher 
@@ -25,7 +25,7 @@ void MenuPrincipal::printBackgroundAndButtons()
 	WindowManager::Instance().draw();
 }
 
-EnumChoicesUser MenuPrincipal::waitForUser()
+void MenuPrincipal::waitForUser()
 {
 	while (WindowManager::Instance().getWindow()->isOpen())
 	{
@@ -36,7 +36,7 @@ EnumChoicesUser MenuPrincipal::waitForUser()
 			{
 				std::cout << "sf::Event::Closed\n";
 				system("pause");
-				return QUIT;
+				return;
 			}
 			else if (event.type == sf::Event::KeyPressed)
 			{
@@ -44,7 +44,7 @@ EnumChoicesUser MenuPrincipal::waitForUser()
 				{
 					std::cout << " sf::Keyboard::Escape\n";
 					system("pause");
-					return QUIT;
+					return;
 				}
 			}
 			else if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
@@ -53,7 +53,7 @@ EnumChoicesUser MenuPrincipal::waitForUser()
 				{
 					//std::cout << "Clique !\n";
 					SceneManager::moveToScene(SceneNames::RNB);
-					return RYTHM;
+					return;
 				}
 			}
 		}
@@ -87,7 +87,12 @@ MenuPrincipal::~MenuPrincipal()
 
 void MenuPrincipal::reload()
 {
-	printBackgroundAndButtons();
+	launchScene();
+	
+}
+void MenuPrincipal::launchScene()
+{
+	printBackground();
 	// Boucle verifiant les evenements
 	waitForUser();
 }

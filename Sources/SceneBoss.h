@@ -35,21 +35,17 @@ private:
 	std::vector<std::pair<std::unique_ptr<sf::Sprite>, std::unique_ptr<sf::Texture>>> listSpritesButtonChoice;
 
 	/* Affiche le fond */
-	void printBackground();
+	void printBackground() override;
 
 	/* Lance la scene */
-	void launchScene();
+	void launchScene() override;
 
 	void initRepliques();
 
-	/* Ouvre les .ttf */
-	void initFonts();
 
 	/* Ouvre les sprites */
 	void initSprite();
 
-	/* La meilleure police au monde */
-	sf::Font comicFont;
 
 	void chargeButtons(std::vector<Replique*> repliquesChosen);
 

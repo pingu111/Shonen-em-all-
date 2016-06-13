@@ -71,7 +71,7 @@ private:
 	void waitForUser();
 
 	/* Affiche les images de fond et les boutons initiaux de la scene */
-	void printBackgroundAndButtons();
+	void printBackground();
 
 	/* Ajoute des ennemis 
 	   Retourne le nouveau timer */
