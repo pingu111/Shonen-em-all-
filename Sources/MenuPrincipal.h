@@ -24,7 +24,7 @@ private:
 	static MenuPrincipal m_instance;
 
 public:
-	static MenuPrincipal& Instance(WindowManager* windowArg);
+	static MenuPrincipal& Instance();
 
 	/* Fonction qui affiche et dessine le fond et les boutons du menu principal */
 	void printBackgroundAndButtons();

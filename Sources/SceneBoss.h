@@ -12,6 +12,11 @@
 class SceneBoss : VirtualScene
 {
 private:
+	/* Le constructeur de la scene */
+	SceneBoss();
+
+	static SceneBoss m_instance;
+
 	/* Le nombre de repliques echangées avant de changer de scene */
 	int nbRepliquesMax;
 
@@ -51,10 +56,8 @@ private:
 	sf::Font comicFont;
 
 	void chargeButtons(std::vector<Replique*> repliquesChosen);
-	/* Le constructeur de la scene */
-	SceneBoss();
-	static SceneBoss m_instance;
+
 public :
-	static SceneBoss& Instance(WindowManager* window);
+	static SceneBoss& Instance();
 	void reload() override;
 };

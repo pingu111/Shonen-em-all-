@@ -14,11 +14,8 @@ class WindowManager
 
 
 public:
-	/* Constructeur : créé la RenderWindow */
-	WindowManager();
+	static WindowManager& Instance();
 
-	/* Destructeur*/
-	~WindowManager();
 
 	/* Retourne la RenderWinow* */
 	sf::RenderWindow* getWindow();
@@ -44,6 +41,9 @@ public:
 	void draw();
 
 private:
+
+	static WindowManager m_instance;
+
 	/* La RenderWindow d'affichage pour tout le programme */
 	sf::RenderWindow window;
 
@@ -58,5 +58,11 @@ private:
 
 	/* La liste des boutons à dessiner */
 	std::vector<std::unique_ptr<Bouton>> listButtons;
+
+	/* Constructeur : créé la RenderWindow */
+	WindowManager();
+
+	/* Destructeur*/
+	~WindowManager();
 };
 

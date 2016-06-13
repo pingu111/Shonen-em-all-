@@ -8,6 +8,6 @@ private:
 	YouDied();
 	static YouDied m_instance;
 public :
-	static YouDied& Instance(WindowManager* winMan);
+	static YouDied& Instance();
 	void reload() override;
 };

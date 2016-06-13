@@ -3,14 +3,14 @@
 /* Le constructeur de la scene */
 YouDied::YouDied()
 {
+	m_instance.window = WindowManager::Instance();
 
 }
 
 YouDied YouDied::m_instance = YouDied();
 
-YouDied& YouDied::Instance(WindowManager* windowArg)
+YouDied& YouDied::Instance()
 {
-	m_instance.window = windowArg;
 	return m_instance;
 }
 

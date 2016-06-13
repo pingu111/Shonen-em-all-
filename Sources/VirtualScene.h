@@ -13,7 +13,7 @@ class VirtualScene
 
 protected:
 	/* La fenetre d'affichage */
-	WindowManager* window;
+	WindowManager window;
 
 	/* Les sprites et textures pour le background */
 	sf::Sprite fondSprite;

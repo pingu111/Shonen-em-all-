@@ -1,9 +1,17 @@
 #include "WindowManager.h"
 
+
 WindowManager::WindowManager()
 {
 	window.create(sf::VideoMode(1200, 900), "Shonen'em all");
 	window.setActive(false);
+}
+
+WindowManager WindowManager::m_instance = WindowManager();
+
+WindowManager& WindowManager::Instance()
+{
+	return m_instance;
 }
 
 sf::RenderWindow* WindowManager::getWindow()

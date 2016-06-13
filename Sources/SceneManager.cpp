@@ -1,6 +1,6 @@
 #include <SceneManager.h>
 
-void SceneManager::moveToScene(SceneNames name, WindowManager* window)
+void SceneManager::moveToScene(SceneNames name)
 {
 	//TODO a faire avant de quitter une scene
 	
@@ -9,17 +9,17 @@ void SceneManager::moveToScene(SceneNames name, WindowManager* window)
 	{
 	case MENU:
 	{
-		MenuPrincipal::Instance(window).reload();
+		MenuPrincipal::Instance().reload();
 		return;
 	}
 	case RNB:
 	{
-		RythmNBlood::Instance(window).reload();
+		RythmNBlood::Instance().reload();
 		return;
 	}
 	case VILAIN:
 	{
-		SceneBoss::Instance(window).reload();
+		SceneBoss::Instance().reload();
 		return;
 	}
 	case WIN:
@@ -28,7 +28,7 @@ void SceneManager::moveToScene(SceneNames name, WindowManager* window)
 	}
 	case DEFEAT:
 	{
-		YouDied::Instance(window).reload();
+		YouDied::Instance().reload();
 		return;
 	}
 	case EXIT:

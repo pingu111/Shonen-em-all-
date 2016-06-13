@@ -9,5 +9,5 @@
 class SceneManager
 {
 public :
-	static void moveToScene(SceneNames name, WindowManager* window);
+	static void moveToScene(SceneNames name);
 };

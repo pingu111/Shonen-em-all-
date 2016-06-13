@@ -112,7 +112,7 @@ private:
 	static RythmNBlood m_instance;
 
 public:
-	static RythmNBlood& Instance(WindowManager* window);
+	static RythmNBlood& Instance();
 
 	void reload() override;
 
