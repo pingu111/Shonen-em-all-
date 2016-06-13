@@ -64,6 +64,12 @@ void WindowManager::draw()
 	}
 	for (auto &form : listText)
 	{
+		std::string string = form->getString();
+		std::cout << " Texte to print = " << string << "\n";
+		std::cout << " Font to print = " << form->getFont()->getInfo().family << "\n";
+		std::cout << " Size to print = " << form->getCharacterSize() << "\n";
+		std::cout << " Pos to print = " << form->getPosition().x << "/"<<form->getPosition().y<<"\n";
+		
 		window.draw(*form);
 	}
 

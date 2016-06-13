@@ -39,4 +39,7 @@ public :
 	void update(Replique rep);
 	/* une fois la scene de combat chargee, stocke les nouvelles capacités de hero. Et augmente sa force */
 	std::string sayReplique();
+
+	/* Renvoie le scoree du joueur */
+	int getScore();
 };
