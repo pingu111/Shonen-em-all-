@@ -169,6 +169,16 @@ void RythmNBlood::initFonts()
 		(float)WindowManager::Instance().getWindow()->getSize().y/4
 		- textDamages.getLocalBounds().height / 2);
 
+	textReplique.setFont(comicFont);
+	textReplique.setString("");
+	textReplique.setCharacterSize(24);
+	textReplique.setColor(sf::Color::White);
+	textReplique.setStyle(sf::Text::Bold);
+	textReplique.setPosition(
+		(float)WindowManager::Instance().getWindow()->getSize().x / 2
+		- textDamages.getLocalBounds().width / 2,
+		(float)WindowManager::Instance().getWindow()->getSize().y / 4
+		- textDamages.getLocalBounds().height / 2);
 }
 
 std::time_t RythmNBlood::addEnnemies(std::time_t timeLastAdd)
@@ -397,12 +407,25 @@ void RythmNBlood::printText(int hitValue)
 	}
 }
 
+void RythmNBlood::printReplique(std::string repliqueText)
+{
+	textReplique.setPosition(
+		(float)WindowManager::Instance().getWindow()->getSize().x / 2
+		- textDamages.getLocalBounds().width / 2,
+		(float)WindowManager::Instance().getWindow()->getSize().y / 3
+		- textDamages.getLocalBounds().height / 2);
+
+	textDamages.setString(repliqueText);
+	WindowManager::Instance().addWithPeremption(std::make_unique<sf::Text>(textDamages), (int)std::time(nullptr));
+}
+
+
 void RythmNBlood::reload()
 {
 	if (player.first.getHasSomethingToSay())
 	{
 		std::string repliqueText = player.first.sayReplique();
-		//TODO afficher la replique du player
+		printReplique(repliqueText);
 	}
 	Level lv = LevelManager::nextLevel();
 
@@ -413,3 +436,4 @@ void RythmNBlood::reload()
 
 	launchScene();
 }
+

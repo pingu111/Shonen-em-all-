@@ -57,6 +57,8 @@ private:
 	/* Le texte des degats faits par le joueur */
 	sf::Text textDamages;
 
+	/* Le texte de la replique dite par le joueur */
+	sf::Text textReplique;
 
 	/************ Fonctions ************/
 
@@ -116,6 +118,10 @@ private:
 
 	/* probabilité que l'ennemi ait plus de points de vie */
 	float probaSuperEnnemi;
+
+	/* Affiche la derniere replique dite par le joueur  */
+	void printReplique(std::string repliqueText);
+
 
 public:
 	static RythmNBlood& Instance();
