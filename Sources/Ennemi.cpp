@@ -7,8 +7,6 @@ Ennemi::Ennemi(bool isSpawLeft , int idEnnemi)
 	isHittable = false;
 	speed = 0;
 	isSuper = false;
-	strenght = 1;
-	armor = 0;
 	isLeft = isSpawLeft;
 	if (isSpawLeft)
 		position = 0;
@@ -25,6 +23,7 @@ void Ennemi::initSpeed(float speed_)
 void Ennemi::makeSuper()
 {
 	assert(isSuper == false);
+	lifePoint = 2;
 	//TODO definir un super ennemi
 }
 
@@ -42,15 +41,9 @@ bool Ennemi::isDead()
 	return lifePoint <= 0;
 }
 
-int Ennemi::takeHit(int strenght)
+void Ennemi::takeHit()
 {
-	int hit = strenght - armor;
-	if (hit < 0)
-		hit = 0;
-	lifePoint -= (int)std::round(hit);
-	//std::cout << "Ennemi a pris un hit " << strenght << " reste " << lifePoint << " pv \n";
-
-	return hit;
+	lifePoint -= 1;
 }
 
 void Ennemi::destroy()

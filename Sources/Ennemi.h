@@ -15,8 +15,6 @@ class Ennemi
 private :
 	float position;
 	int lifePoint;
-	int strenght;
-	int armor;
 	bool isHittable;
 	float speed;
 	bool isSuper;
@@ -40,7 +38,7 @@ public :
 	bool isHitable();
 
 	bool isDead();
-	int takeHit(int strenght);
+	void takeHit();
 
 	float getXPosition();
 

@@ -8,7 +8,6 @@ Player::Player()
 	lifePoint = startingLifePoints;
 	score = 0;
 	isSpriteLeft = true;
-	cooldownTime = 0;
 	damageMult = 1;
 	scoreMult = 1;
 	score = 0;
@@ -36,15 +35,11 @@ int Player::getScore()
 	return score;
 }
 
-
 int Player::hit(Ennemi &enn)
 {
-	//assert(cooldownTime <= 0);
-	cooldownTime = cooldown;
-
 	float bonus = Random::randFloat(0, 2);
-	int hitValue = enn.takeHit((int)bonus*(int)strenght*(int)damageMult);
-
+	enn.takeHit();
+	int hitValue = (int)(bonus * strenght * damageMult);
 	if (hitValue > maxHit)
 		maxHit = hitValue;
 	if (enn.isDead())
