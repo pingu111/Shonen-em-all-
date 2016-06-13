@@ -20,6 +20,7 @@ private :
 	bool isSuper;
 	bool isLeft;
 	void destroy();
+
 	
 public :
 	Ennemi(bool isSpawnLeft , int idEnnemi);
@@ -45,6 +46,8 @@ public :
 	bool getIsLeft();
 
 	int id;
+
+	void suicide();
 };
 
 bool  operator< (const  Ennemi a, const Ennemi b);

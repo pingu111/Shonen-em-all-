@@ -9,7 +9,7 @@
 #include <Player.h>
 #include <Bouton.h>
 #include <SceneManager.h>
-
+#include <Level.h>
 
 class RythmNBlood : VirtualScene
 {
@@ -113,6 +113,9 @@ private:
 	RythmNBlood(const RythmNBlood& rnb);
 
 	static RythmNBlood m_instance;
+
+	/* probabilité que l'ennemi ait plus de points de vie */
+	float probaSuperEnnemi;
 
 public:
 	static RythmNBlood& Instance();

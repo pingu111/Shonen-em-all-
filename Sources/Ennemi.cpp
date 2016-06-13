@@ -46,6 +46,11 @@ void Ennemi::takeHit()
 	lifePoint -= 1;
 }
 
+void Ennemi::suicide()
+{
+	lifePoint = 0;
+}
+
 void Ennemi::destroy()
 {
 	isHittable = false;

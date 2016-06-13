@@ -10,7 +10,7 @@ float probaSuper;
 
 bool isFirstLevel = true;
 
-Level LevelManager::currentLevel = { 1, 1, 5, 0 };
+Level LevelManager::currentLevel = { 0.15f, 1, 5, 0 };
 
 static float min(float a, float b)
 {
