@@ -114,7 +114,7 @@ void SceneBoss::chargeButtons(std::vector<Replique*> repliquesChosen)
 	// On créé les boutons
 	for (int i = 0; i < 4; i++)
 	{
-		std::cout << repliquesChosen[i]->text << "/" << comicFont.getInfo().family << "\n";
+		//std::cout << repliquesChosen[i]->text << "/" << comicFont.getInfo().family << "\n";
 		listButtonsChoices[i].setText(repliquesChosen[i]->text, comicFont);
 		seletedRepliques.push_back(std::pair<Replique*, Bouton>(repliquesChosen[i], listButtonsChoices[i]));
 	}

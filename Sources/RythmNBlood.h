@@ -25,7 +25,10 @@ private:
 	/* Booleen : true si la derniere frappe est à gauche false si à droite */
 	bool isLastHitLeft;
 
-	/* Le numero de l'ennemi, et donc, le nombre */
+	/* Le nombre d'ennemis morts */
+	int nbEnnemiDead;
+
+	/* Le nombre d'ennemis spwané*/
 	int idEnnemi;
 
 	/* La liste d'ennemis en vie */

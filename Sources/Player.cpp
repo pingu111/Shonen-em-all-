@@ -31,6 +31,10 @@ void Player::increaseStrenght()
 	strenght += 1;
 }
 
+int Player::getScore()
+{
+	return score;
+}
 
 
 int Player::hit(Ennemi &enn)

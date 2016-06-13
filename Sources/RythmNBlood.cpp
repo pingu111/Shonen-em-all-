@@ -53,7 +53,7 @@ void RythmNBlood::waitForUser()
 		animationPlayer();
 
 		timeLastAdd = addEnnemies(timeLastAdd);
-		if (idEnnemi <= nbEnnemiesMax)
+		if (nbEnnemiDead <= nbEnnemiesMax)
 		{
 			// Parcours des listes d'ennemis en vie ou morts
 			listDeadAlive();
@@ -165,30 +165,32 @@ void RythmNBlood::initFonts()
 
 std::time_t RythmNBlood::addEnnemies(std::time_t timeLastAdd)
 {
-
-	//std::cout << " addEnnemies "<< timeLastAdd << " vs "<< std::time(nullptr) << "\n";
-	if (std::time(nullptr) - timeLastAdd > durationBetweenEnnemies)
+	if (idEnnemi <= nbEnnemiesMax)
 	{
-		timeLastAdd = std::time(nullptr);
-
-		// Cree un ennemi
-		Ennemi newEnnemi(Random::randInt(0, 1) == 1, ++idEnnemi);
-		newEnnemi.initSpeed((float)ennemiSpeed);
-		std::shared_ptr<Ennemi> newEnn = std::make_shared<Ennemi>(newEnnemi);
-
-		// Cree son sprite
-
-
-		sf::Sprite spriteNewEnnemi = listSpriteEnnemyMoving[0].first;
-		if (!newEnnemi.getIsLeft())
+		//std::cout << " addEnnemies "<< timeLastAdd << " vs "<< std::time(nullptr) << "\n";
+		if (std::time(nullptr) - timeLastAdd > durationBetweenEnnemies)
 		{
-			spriteNewEnnemi = flipSprite(spriteNewEnnemi);
-		}
-		std::pair<int, sf::Sprite> pair(Random::randInt(0, 10), spriteNewEnnemi);
-		mapSpriteEnnemi.insert(std::pair<std::shared_ptr<Ennemi>, std::pair<int, sf::Sprite>>
-			(newEnn, pair));
+			timeLastAdd = std::time(nullptr);
 
-		ennemisAlive.push_back(newEnn);
+			// Cree un ennemi
+			Ennemi newEnnemi(Random::randInt(0, 1) == 1, ++idEnnemi);
+			newEnnemi.initSpeed((float)ennemiSpeed);
+			std::shared_ptr<Ennemi> newEnn = std::make_shared<Ennemi>(newEnnemi);
+
+			// Cree son sprite
+
+
+			sf::Sprite spriteNewEnnemi = listSpriteEnnemyMoving[0].first;
+			if (!newEnnemi.getIsLeft())
+			{
+				spriteNewEnnemi = flipSprite(spriteNewEnnemi);
+			}
+			std::pair<int, sf::Sprite> pair(Random::randInt(0, 10), spriteNewEnnemi);
+			mapSpriteEnnemi.insert(std::pair<std::shared_ptr<Ennemi>, std::pair<int, sf::Sprite>>
+				(newEnn, pair));
+
+			ennemisAlive.push_back(newEnn);
+		}
 	}
 	return timeLastAdd;
 }
@@ -243,6 +245,7 @@ void RythmNBlood::listDeadAlive()
 	{
 		if (ennemisAlive[i]->isDead())
 		{
+
 			std::cout << "ennemi mort a la position " << i << "\n";
 
 			ennemisDead.push_back(ennemisAlive[i]);
@@ -253,8 +256,7 @@ void RythmNBlood::listDeadAlive()
 	{
 		ennemisAlive.erase(ennemisAlive.begin() + listEnnemiesDeadPosition[i]);
 	}
-	//std::cout <<"\n";
-	//system("pause");
+
 }
 
 std::vector<std::shared_ptr<Ennemi>> RythmNBlood::eventManager(std::vector<std::shared_ptr<Ennemi>> ennemiesHittables)
