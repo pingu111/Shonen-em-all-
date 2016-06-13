@@ -71,6 +71,9 @@
     <ClCompile Include="Sources\YouDied.cpp">
       <Filter>Source Files\Scenes</Filter>
     </ClCompile>
+    <ClCompile Include="Sources\Level.cpp">
+      <Filter>Source Files\Utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\VirtualScene.h">
@@ -120,6 +123,9 @@
     </ClInclude>
     <ClInclude Include="Sources\YouDied.h">
       <Filter>Source Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Level.h">
+      <Filter>Source Files\Utils</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

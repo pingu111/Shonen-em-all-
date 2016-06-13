@@ -154,7 +154,7 @@ void SceneBoss::waitForUser()
 
 						Replique repSelected;
 						// Ici, gerer les consequences du clic 
-						for (int i = 0; i < seletedRepliques.size(); i++)
+						for (uint16_t i = 0; i < seletedRepliques.size(); i++)
 						{
 							if (seletedRepliques[i].second.getSpriteAndMessage().second->getString() == button.getSpriteAndMessage().second->getString())
 							{

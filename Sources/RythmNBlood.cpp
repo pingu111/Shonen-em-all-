@@ -50,6 +50,11 @@ void RythmNBlood::waitForUser()
 
 	while (WindowManager::Instance().getWindow()->isOpen() )
 	{
+		if (player.first.isDead())
+		{
+			SceneManager::moveToScene(SceneNames::DEFEAT);
+			return;
+		}
 		printBackground();
 
 		animationPlayer();
@@ -210,7 +215,11 @@ std::vector<std::shared_ptr<Ennemi>> RythmNBlood::animationsEnnemies()
 	std::vector<std::shared_ptr<Ennemi>> ennemiesHittables;
 	for (auto &enn : ennemisAlive)
 	{
-		enn->update();
+		if (enn->update())
+		{
+			player.first.takeHit();
+			//TODO si le player est mort !!!
+		}
 		if (enn->isHitable())
 			ennemiesHittables.push_back(enn);
 

@@ -52,7 +52,7 @@ void Ennemi::destroy()
 	//TODO annimation de mort + clean
 }
 
-void Ennemi::update()
+bool Ennemi::update()
 {
 	assert(!isDead());
 	//deplacement de l'ennemi
@@ -63,6 +63,7 @@ void Ennemi::update()
 		if (position >= playerPosition - hitDistance)
 		{
 			position = playerPosition - hitDistance;
+			return true;
 		}
 
 	}
@@ -73,8 +74,10 @@ void Ennemi::update()
 		if (position <= playerPosition + hitDistance)
 		{
 			position = playerPosition + hitDistance;
+			return true;
 		}
 	}
+	return false;
 }
 
 float Ennemi::getXPosition()

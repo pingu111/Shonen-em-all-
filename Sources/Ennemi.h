@@ -31,8 +31,8 @@ public :
 	 */
 	void initSpeed(float speed);
 
-	/* update la position de l'ennemi et frappe l'ennemi si necessaire*/
-	void update();
+	/* update la position de l'ennemi, return true si l'ennemi frappe le joueur*/
+	bool update();
 
 	/*l'ennemi est-il assez proche pour se prendre un coup*/
 	bool isHitable();

@@ -88,6 +88,7 @@
     <ClCompile Include="Sources\DrawableFixed.cpp" />
     <ClCompile Include="Sources\DrawableVirtual.cpp" />
     <ClCompile Include="Sources\Ennemi.cpp" />
+    <ClCompile Include="Sources\Level.cpp" />
     <ClCompile Include="Sources\Random.cpp" />
     <ClCompile Include="Sources\Replique.cpp" />
     <ClCompile Include="Sources\SceneBoss.cpp" />
@@ -106,6 +107,7 @@
     <ClInclude Include="Sources\DrawableVirtual.h" />
     <ClInclude Include="Sources\Ennemi.h" />
     <ClInclude Include="Sources\Global.h" />
+    <ClInclude Include="Sources\Level.h" />
     <ClInclude Include="Sources\Random.h" />
     <ClInclude Include="Sources\Replique.h" />
     <ClInclude Include="Sources\SceneBoss.h" />

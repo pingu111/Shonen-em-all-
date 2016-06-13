@@ -59,6 +59,7 @@ std::string Player::sayReplique()
 	assert(hasSomethingToSay);
 	damageMult = repWaiting.damageMult;
 	scoreMult = repWaiting.scoreMult;
+	lifePoint = startingLifePoints;
 	increaseStrenght();
 	hasSomethingToSay = false;
 	return repWaiting.text;
@@ -67,4 +68,14 @@ std::string Player::sayReplique()
 bool Player::getHasSomethingToSay()
 {
 	return hasSomethingToSay;
+}
+
+void Player::takeHit()
+{
+	lifePoint -= 1;
+}
+
+bool Player::isDead()
+{
+	return lifePoint < 0;
 }
