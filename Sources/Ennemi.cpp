@@ -44,7 +44,7 @@ bool Ennemi::isDead()
 
 void Ennemi::takeHit()
 {
-	std::cout << "ennemi take hit " << isSuper << "\n";
+	//std::cout << "ennemi take hit " << isSuper << "\n";
 	lifePoint -= 1;
 }
 

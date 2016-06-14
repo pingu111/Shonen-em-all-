@@ -1,6 +1,7 @@
 #include <memory>
 #include <iostream>
 #include <SceneManager.h>
+#pragma comment(linker, "/SUBSYSTEM:windows /ENTRY:mainCRTStartup")
 
 
 int main()

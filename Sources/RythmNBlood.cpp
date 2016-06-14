@@ -352,12 +352,15 @@ std::vector<std::shared_ptr<Ennemi>> RythmNBlood::eventManager(std::vector<std::
 		if (event.type == sf::Event::Closed)
 		{
 			//TODO QUITTER PROPREMENT 
+			WindowManager::Instance().getWindow()->close();
+
 		}
 		else if (event.type == sf::Event::KeyPressed)
 		{
 			if (event.key.code == sf::Keyboard::Escape)
 			{
-				std::cout << " sf::Keyboard::Escape\n";
+				//std::cout << " sf::Keyboard::Escape\n";
+				WindowManager::Instance().getWindow()->close();
 			}
 		}
 		else if (event.key.code == sf::Keyboard::Left && !isPlayerInHitAnimation)
