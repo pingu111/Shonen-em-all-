@@ -46,7 +46,6 @@ void YouDied::initSprite()
 	int score = Player::Instance().getScore();
 	message += "Score : ";
 	message += std::to_string(score);
-	std::cout << message << "\n";
 
 	textFont.first.setString(message);
 	textFont.first.setPosition

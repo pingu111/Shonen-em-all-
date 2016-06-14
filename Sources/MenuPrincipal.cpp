@@ -34,14 +34,14 @@ void MenuPrincipal::waitForUser()
 		{
 			if (event.type == sf::Event::Closed)
 			{
-				std::cout << "sf::Event::Closed\n";
+				WindowManager::Instance().getWindow()->close();
 				return;
 			}
 			else if (event.type == sf::Event::KeyPressed)
 			{
 				if (event.key.code == sf::Keyboard::Escape)
 				{
-					std::cout << " sf::Keyboard::Escape\n";
+					WindowManager::Instance().getWindow()->close();
 					return;
 				}
 			}
