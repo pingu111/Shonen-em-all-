@@ -77,6 +77,7 @@ void YouDied::waitForUser()
 				if (event.text.unicode < 128)
 				{
 					input += static_cast<char>(event.text.unicode);
+
 					if (input.find("666") != std::string::npos)
 						SceneManager::moveToScene(SceneNames::RNB);
 					if (input.find("trump") != std::string::npos)

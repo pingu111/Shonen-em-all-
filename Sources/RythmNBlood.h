@@ -39,6 +39,7 @@ private:
 
 	/* La liste des sprites contenant l'ennmi en train de courir */
 	std::vector<std::pair<sf::Sprite,std::unique_ptr<sf::Texture>>> listSpriteEnnemyMoving;
+	std::vector<std::pair<sf::Sprite, std::unique_ptr<sf::Texture>>> listSpriteSuperMoving;
 
 	/* La liste des sprites du joueur en train de taper */
 	std::vector<std::pair<sf::Sprite, std::unique_ptr<sf::Texture>>> listSpritePlayerHitting;

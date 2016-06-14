@@ -11,7 +11,7 @@ Player::Player()
 	damageMult = 1;
 	scoreMult = 1;
 	score = 0;
-	strenght = 1;
+	strenght = 10;
 	maxHit = 0;
 }
 
@@ -27,7 +27,7 @@ void Player::destroy()
 
 void Player::increaseStrenght()
 {
-	strenght += 1;
+	strenght *= 2;
 }
 
 int Player::getScore()
@@ -37,7 +37,7 @@ int Player::getScore()
 
 int Player::hit(Ennemi &enn)
 {
-	float bonus = Random::randFloat(0, 2);
+	float bonus = Random::randFloat(1, 2);
 	enn.takeHit();
 	int hitValue = (int)(bonus * strenght * damageMult);
 	if (hitValue > maxHit)

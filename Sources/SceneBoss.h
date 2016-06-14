@@ -16,6 +16,9 @@ private:
 	/* Le nombre de repliques echangées avant de changer de scene */
 	int nbRepliquesMax;
 
+	/* Replique du mechant */
+	sf::Text evilSays;
+
 	/* la liste de toutes les repliqes possibles */
 	std::vector<std::unique_ptr<Replique>> repliquesUPtr;
 
@@ -41,7 +44,6 @@ private:
 	void launchScene() override;
 
 	void initRepliques();
-
 
 	/* Ouvre les sprites */
 	void initSprite();

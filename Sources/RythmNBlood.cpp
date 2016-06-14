@@ -3,15 +3,8 @@
 
 RythmNBlood::RythmNBlood() : player(Player::Instance(), 0)
 {
-	idEnnemi = 0;
-	nbEnnemiDead = 1;
-
-	isPlayerInHitAnimation = false;
-	isLastHitLeft = false;
-
 	initSprite();
 	initFonts();
-
 }
 
 //RythmNBlood RythmNBlood::m_instance = RythmNBlood();
@@ -32,6 +25,12 @@ void RythmNBlood::launchScene()
 {
 	//on recupere les infos du level en cours (nombre d'ennemis, points de vie, armure ...)
 	//TODO
+	printBackground();
+
+	idEnnemi = 0;
+	isPlayerInHitAnimation = false;
+	isLastHitLeft = false;
+	nbEnnemiDead = 0;
 
 	waitForUser();
 }
@@ -61,7 +60,9 @@ void RythmNBlood::waitForUser()
 		animationPlayer();
 
 		timeLastAdd = addEnnemies(timeLastAdd);
-		if (nbEnnemiDead <= nbEnnemiesMax)
+		std::cout << "nb morts : " << nbEnnemiDead << " / "<< nbEnnemiesMax <<"\n";
+
+		if (nbEnnemiDead < nbEnnemiesMax)
 		{
 			// Parcours des listes d'ennemis en vie ou morts
 			listDeadAlive();
@@ -103,7 +104,7 @@ void RythmNBlood::initSprite()
 		placeFile += "_delay-0.03s.gif";
 
 		assert(image.loadFromFile(placeFile) == true);
-		image.createMaskFromColor(sf::Color(0,255,0));
+		//image.createMaskFromColor(sf::Color(0,255,0));
 		
 		texture.loadFromImage(image);
 		sprite.setTexture(texture);
@@ -141,7 +142,7 @@ void RythmNBlood::initSprite()
 		placeFile += "_delay-0.03s.gif";
 
 		assert(image.loadFromFile(placeFile) == true);
-		image.createMaskFromColor(sf::Color::Green);
+		//image.createMaskFromColor(sf::Color::Green);
 		texture.loadFromImage(image);
 		
 		// On les stocke
@@ -151,6 +152,30 @@ void RythmNBlood::initSprite()
 			listSpriteEnnemyMoving.back().first.setTexture(*listSpriteEnnemyMoving.back().second);
 		}
 	}
+
+	for (int i = 0; i < 13; i++)
+	{
+		// On charge les images des super ennemis qui courent
+		sf::Image image;
+		sf::Texture texture;
+		sf::Sprite sprite;
+
+		std::string placeFile = "Ressources\\RNB\\SuperEnnemiCours\\frame_";
+		placeFile += std::to_string(i);
+		placeFile += "_delay-0.03s.gif";
+
+		assert(image.loadFromFile(placeFile) == true);
+		//image.createMaskFromColor(sf::Color::Green);
+		texture.loadFromImage(image);
+
+		// On les stocke
+		for (int i = 0; i < 5; i++)
+		{
+			listSpriteSuperMoving.push_back(std::pair<sf::Sprite, std::unique_ptr<sf::Texture>>(sprite, std::make_unique<sf::Texture>(texture)));
+			listSpriteSuperMoving.back().first.setTexture(*listSpriteSuperMoving.back().second);
+		}
+	}
+
 
 }
 
@@ -185,6 +210,8 @@ std::time_t RythmNBlood::addEnnemies(std::time_t timeLastAdd)
 {
 	if (idEnnemi <= nbEnnemiesMax)
 	{
+		//std::cout << "add ennemi " << nbEnnemiesMax <<  "/" << idEnnemi << "\n";
+
 		//std::cout << " addEnnemies "<< timeLastAdd << " vs "<< std::time(nullptr) << "\n";
 		if (std::time(nullptr) - timeLastAdd > durationBetweenEnnemies)
 		{
@@ -195,13 +222,27 @@ std::time_t RythmNBlood::addEnnemies(std::time_t timeLastAdd)
 			newEnnemi.initSpeed((float)ennemiSpeed);
 
 			if (Random::randFloat(0, 1) <= probaSuperEnnemi)
+			{
+				std::cout << "SUPER \n";
 				newEnnemi.makeSuper();
+			}
 
 			std::shared_ptr<Ennemi> newEnn = std::make_shared<Ennemi>(newEnnemi);
 
 			// Cree son sprite
 			int nbSprite = Random::randInt(0, 10);
-			sf::Sprite spriteNewEnnemi = listSpriteEnnemyMoving[nbSprite].first;
+			sf::Sprite spriteNewEnnemi;
+			
+			if (!newEnn->getIsSuper())
+			{
+				spriteNewEnnemi = listSpriteEnnemyMoving[nbSprite].first;
+			}
+			else
+			{
+				spriteNewEnnemi = listSpriteSuperMoving[nbSprite].first;
+			}
+
+
 			if (!newEnnemi.getIsLeft())
 			{
 				spriteNewEnnemi = flipSprite(spriteNewEnnemi);
@@ -244,11 +285,25 @@ std::vector<std::shared_ptr<Ennemi>> RythmNBlood::animationsEnnemies()
 				ennemiesHittables.push_back(enn);
 
 			// On change le sprite de l'ennemi 
-			if (mapSpriteEnnemi.at(enn).first + 1 < (int)listSpriteEnnemyMoving.size())
-				mapSpriteEnnemi.at(enn).first++;
+			if (!enn->getIsSuper())
+			{
+				if (mapSpriteEnnemi.at(enn).first + 1 < (int)listSpriteEnnemyMoving.size())
+					mapSpriteEnnemi.at(enn).first++;
+				else
+					mapSpriteEnnemi.at(enn).first = 0;
+
+				mapSpriteEnnemi.at(enn).second = listSpriteEnnemyMoving[mapSpriteEnnemi.at(enn).first].first;
+			}
 			else
-				mapSpriteEnnemi.at(enn).first = 0;
-			mapSpriteEnnemi.at(enn).second = listSpriteEnnemyMoving[mapSpriteEnnemi.at(enn).first].first;
+			{
+				if (mapSpriteEnnemi.at(enn).first + 1 < (int)listSpriteSuperMoving.size())
+					mapSpriteEnnemi.at(enn).first++;
+				else
+					mapSpriteEnnemi.at(enn).first = 0;
+
+				mapSpriteEnnemi.at(enn).second = listSpriteSuperMoving[mapSpriteEnnemi.at(enn).first].first;
+			}
+
 
 			// On retourne les sprites si necessaire
 			if (!enn->getIsLeft())
@@ -296,14 +351,13 @@ std::vector<std::shared_ptr<Ennemi>> RythmNBlood::eventManager(std::vector<std::
 	{
 		if (event.type == sf::Event::Closed)
 		{
-			//TODO QUITTER PROPREMENT CAPSLOCKMAGGLE;
+			//TODO QUITTER PROPREMENT 
 		}
 		else if (event.type == sf::Event::KeyPressed)
 		{
 			if (event.key.code == sf::Keyboard::Escape)
 			{
 				std::cout << " sf::Keyboard::Escape\n";
-				system("pause");
 			}
 		}
 		else if (event.key.code == sf::Keyboard::Left && !isPlayerInHitAnimation)
@@ -315,9 +369,11 @@ std::vector<std::shared_ptr<Ennemi>> RythmNBlood::eventManager(std::vector<std::
 			{
 				if (enn->getIsLeft())
 				{
-					nbEnnemiDead++;
 					damages = player.first.hit(*enn);
 					printText(damages);
+					if(enn->isDead())
+						nbEnnemiDead++;
+
 				}
 			}
 		}
@@ -330,9 +386,10 @@ std::vector<std::shared_ptr<Ennemi>> RythmNBlood::eventManager(std::vector<std::
 			{
 				if (!enn->getIsLeft())
 				{
-					nbEnnemiDead++;
 					damages = player.first.hit(*enn);
 					printText(damages);
+					if (enn->isDead())
+						nbEnnemiDead++;
 				}
 			}
 		}
@@ -381,7 +438,6 @@ void RythmNBlood::animationPlayer()
 
 void RythmNBlood::printText(int hitValue)
 {
-	std::cout << hitValue << "\n";
 	if (hitValue >= 0)
 	{
 		textDamages.setPosition(
@@ -393,7 +449,6 @@ void RythmNBlood::printText(int hitValue)
 		char stringDamage[250];
 		sprintf_s(stringDamage, "%d", hitValue);
 		strcat_s(stringDamage, " dommages !");
-		std::cout << stringDamage << "\n";
 		textDamages.setString(stringDamage);
 		WindowManager::Instance().addWithPeremption(std::make_unique<sf::Text>(textDamages), (int)std::time(nullptr));
 	}
@@ -434,6 +489,7 @@ void RythmNBlood::reload()
 	ennemiSpeed = lv.ennemiSpeed;
 	probaSuperEnnemi = lv.probaSuper;
 
+	std::cout << "nb : " << nbEnnemiesMax << "\n";
 	launchScene();
 }
 

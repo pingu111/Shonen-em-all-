@@ -3,9 +3,9 @@
 /* Le constructeur de la scene */
 SceneBoss::SceneBoss() : player(Player::Instance())
 {
+	initFonts();
 	initSprite();
 	initRepliques();
-	initFonts();
 }
 
 //SceneBoss SceneBoss::m_instance = SceneBoss();
@@ -30,6 +30,8 @@ void SceneBoss::printBackground()
 {
 	// On ajoute tous les sprites qu'on veut afficher 
 	WindowManager::Instance().add(std::make_unique<sf::Sprite>(fondSprite));
+	WindowManager::Instance().add(std::make_unique<sf::Text>(evilSays));
+
 
 	for (auto &button : listButtonsChoices)
 	{
@@ -41,6 +43,18 @@ void SceneBoss::printBackground()
 
 void SceneBoss::initRepliques()
 {
+	evilSays.setFont(comicFont);
+	evilSays.setString("Mwahaha, abandonne,\n tu n'as aucune chance !\n[Super Monologue]");
+	evilSays.setCharacterSize(24);
+	evilSays.setColor(sf::Color::Red);
+	evilSays.setStyle(sf::Text::Bold);
+	evilSays.setPosition(
+		(float)WindowManager::Instance().getWindow()->getSize().x * 5/6
+		- evilSays.getLocalBounds().width / 2,
+		(float)WindowManager::Instance().getWindow()->getSize().y / 5
+		- evilSays.getLocalBounds().height / 2);
+	
+
 	for (Replique rep : ListReplique::repliques)
 	{
 		repliquesUPtr.push_back(std::make_unique<Replique>(rep));
@@ -131,6 +145,9 @@ void SceneBoss::waitForUser()
 		{
 			if (event.type == sf::Event::Closed)
 			{
+				// Alors, fin de la scene
+				WindowManager::Instance().clearText();
+				WindowManager::Instance().draw();
 				SceneManager::moveToScene(SceneNames::EXIT);
 				return;
 			}
@@ -138,8 +155,7 @@ void SceneBoss::waitForUser()
 			{
 				if (event.key.code == sf::Keyboard::Escape)
 				{
-					std::cout << " sf::Keyboard::Escape\n";
-					system("pause");
+					return;
 				}
 			}
 			else if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
@@ -165,11 +181,17 @@ void SceneBoss::waitForUser()
 						player.update(repSelected);
 						if (repSelected.scoreMult == 0)
 						{
+							// Alors, fin de la scene
+							WindowManager::Instance().clearText();
+							WindowManager::Instance().draw();
 							SceneManager::moveToScene(SceneNames::DEFEAT);
 							return;
 						}
 						else
 						{
+							// Alors, fin de la scene
+							WindowManager::Instance().clearText();
+							WindowManager::Instance().draw();
 							SceneManager::moveToScene(SceneNames::RNB);
 							return;
 						}

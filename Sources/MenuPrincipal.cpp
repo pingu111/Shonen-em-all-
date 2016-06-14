@@ -35,7 +35,6 @@ void MenuPrincipal::waitForUser()
 			if (event.type == sf::Event::Closed)
 			{
 				std::cout << "sf::Event::Closed\n";
-				system("pause");
 				return;
 			}
 			else if (event.type == sf::Event::KeyPressed)
@@ -43,7 +42,6 @@ void MenuPrincipal::waitForUser()
 				if (event.key.code == sf::Keyboard::Escape)
 				{
 					std::cout << " sf::Keyboard::Escape\n";
-					system("pause");
 					return;
 				}
 			}
@@ -52,6 +50,9 @@ void MenuPrincipal::waitForUser()
 				if (boutonRNB.isClicked(sf::Mouse::getPosition(*WindowManager::Instance().getWindow())))
 				{
 					//std::cout << "Clique !\n";
+					// Alors, fin de la scene
+					WindowManager::Instance().clearText();
+					WindowManager::Instance().draw();
 					SceneManager::moveToScene(SceneNames::RNB);
 					return;
 				}
