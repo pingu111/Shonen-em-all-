@@ -61,6 +61,9 @@ private:
 	/* Le texte de la replique dite par le joueur */
 	sf::Text textReplique;
 
+	/* Le texte du score du joueur */
+	sf::Text textScore;
+
 	/************ Fonctions ************/
 
 	/* Initialise les sprites du joueur et des ennemis*/
@@ -99,7 +102,14 @@ private:
 	void initFonts();
 
 	/* Affiche un texte lorsque le joueur tape */
-	void printText(int hitValue);
+	void printDamages(int hitValue);
+
+	/* Affiche que le joueur a mal */
+	void printPlayerHit();
+
+	/* Affiche le score */
+	void printScore();
+
 
 	/* Le nombre d'ennemis dans cette scene */
 	int nbEnnemiesMax;

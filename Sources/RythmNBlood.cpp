@@ -7,9 +7,6 @@ RythmNBlood::RythmNBlood() : player(Player::Instance(), 0)
 	initFonts();
 }
 
-//RythmNBlood RythmNBlood::m_instance = RythmNBlood();
-
-
 RythmNBlood& RythmNBlood::Instance()
 {
 	static RythmNBlood m_instance;
@@ -35,11 +32,6 @@ void RythmNBlood::launchScene()
 	waitForUser();
 }
 
-void RythmNBlood::printBackground()
-{
-	// On ajoute tous les sprites qu'on veut afficher 
-	WindowManager::Instance().add(std::make_unique<sf::Sprite>(fondSprite));
-}
 
 void RythmNBlood::waitForUser()
 {
@@ -60,8 +52,6 @@ void RythmNBlood::waitForUser()
 		animationPlayer();
 
 		timeLastAdd = addEnnemies(timeLastAdd);
-		std::cout << "nb morts : " << nbEnnemiDead << " / "<< nbEnnemiesMax <<"\n";
-
 		if (nbEnnemiDead < nbEnnemiesMax)
 		{
 			// Parcours des listes d'ennemis en vie ou morts
@@ -85,6 +75,7 @@ void RythmNBlood::waitForUser()
 		}
 	}
 }
+
 
 void RythmNBlood::initSprite()
 {
@@ -194,6 +185,18 @@ void RythmNBlood::initFonts()
 		(float)WindowManager::Instance().getWindow()->getSize().y/4
 		- textDamages.getLocalBounds().height / 2);
 
+	textScore.setFont(comicFont);
+	textScore.setString("");
+	textScore.setCharacterSize(24);
+	textScore.setColor(sf::Color::Blue);
+	textScore.setStyle(sf::Text::Bold);
+	textScore.setPosition(
+		(float)WindowManager::Instance().getWindow()->getSize().x / 2
+		- textDamages.getLocalBounds().width / 2,
+		(float)WindowManager::Instance().getWindow()->getSize().y / 4
+		- textDamages.getLocalBounds().height / 2);
+
+
 	textReplique.setFont(comicFont);
 	textReplique.setString("");
 	textReplique.setCharacterSize(24);
@@ -206,13 +209,11 @@ void RythmNBlood::initFonts()
 		- textDamages.getLocalBounds().height / 2);
 }
 
+
 std::time_t RythmNBlood::addEnnemies(std::time_t timeLastAdd)
 {
 	if (idEnnemi <= nbEnnemiesMax)
 	{
-		//std::cout << "add ennemi " << nbEnnemiesMax <<  "/" << idEnnemi << "\n";
-
-		//std::cout << " addEnnemies "<< timeLastAdd << " vs "<< std::time(nullptr) << "\n";
 		if (std::time(nullptr) - timeLastAdd > durationBetweenEnnemies)
 		{
 			timeLastAdd = std::time(nullptr);
@@ -223,7 +224,6 @@ std::time_t RythmNBlood::addEnnemies(std::time_t timeLastAdd)
 
 			if (Random::randFloat(0, 1) <= probaSuperEnnemi)
 			{
-				std::cout << "SUPER \n";
 				newEnnemi.makeSuper();
 			}
 
@@ -275,9 +275,9 @@ std::vector<std::shared_ptr<Ennemi>> RythmNBlood::animationsEnnemies()
 		{
 			enn->suicide();
 			nbEnnemiDead++;
-
 			ennemisDead.push_back(enn);
 			player.first.takeHit();
+			printPlayerHit();
 		}
 		else
 		{
@@ -370,10 +370,9 @@ std::vector<std::shared_ptr<Ennemi>> RythmNBlood::eventManager(std::vector<std::
 				if (enn->getIsLeft())
 				{
 					damages = player.first.hit(*enn);
-					printText(damages);
+					printDamages(damages);
 					if(enn->isDead())
 						nbEnnemiDead++;
-
 				}
 			}
 		}
@@ -387,7 +386,7 @@ std::vector<std::shared_ptr<Ennemi>> RythmNBlood::eventManager(std::vector<std::
 				if (!enn->getIsLeft())
 				{
 					damages = player.first.hit(*enn);
-					printText(damages);
+					printDamages(damages);
 					if (enn->isDead())
 						nbEnnemiDead++;
 				}
@@ -396,7 +395,6 @@ std::vector<std::shared_ptr<Ennemi>> RythmNBlood::eventManager(std::vector<std::
 		else if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && !isPlayerInHitAnimation)
 		{
 			//playerHittingAnimation = true;
-
 			//On parcours les boutons et on verifie s'ils sont cliqués
 		}
 	}
@@ -436,20 +434,25 @@ void RythmNBlood::animationPlayer()
 	}
 }
 
-void RythmNBlood::printText(int hitValue)
+
+void RythmNBlood::printDamages(int hitValue)
 {
+	WindowManager::Instance().clearText();
+
+	printScore();
+
 	if (hitValue >= 0)
 	{
+		std::string stringDamage = std::to_string(hitValue);
+		stringDamage += " dommages !";
+		textDamages.setString(stringDamage);
+
 		textDamages.setPosition(
-			(float)WindowManager::Instance().getWindow()->getSize().x * Random::randInt(3,7)/10
+			(float)WindowManager::Instance().getWindow()->getSize().x * Random::randInt(3, 7) / 10
 			- textDamages.getLocalBounds().height / 2,
-			(float)WindowManager::Instance().getWindow()->getSize().y * Random::randInt(3, 7)/10
+			(float)WindowManager::Instance().getWindow()->getSize().y * Random::randInt(3, 7) / 10
 			- textDamages.getLocalBounds().height / 2);
 
-		char stringDamage[250];
-		sprintf_s(stringDamage, "%d", hitValue);
-		strcat_s(stringDamage, " dommages !");
-		textDamages.setString(stringDamage);
 		WindowManager::Instance().addWithPeremption(std::make_unique<sf::Text>(textDamages), (int)std::time(nullptr));
 	}
 	else
@@ -460,6 +463,26 @@ void RythmNBlood::printText(int hitValue)
 			WindowManager::Instance().addWithPeremption(std::make_unique<sf::Text>(textDamages), (int)std::time(nullptr));
 		}
 	}
+}
+
+void RythmNBlood::printPlayerHit()
+{
+	textDamages.setPosition(
+		(float)WindowManager::Instance().getWindow()->getSize().x * Random::randInt(3, 7) / 10
+		- textDamages.getLocalBounds().height / 2,
+		(float)WindowManager::Instance().getWindow()->getSize().y * Random::randInt(1, 5) / 10
+		- textDamages.getLocalBounds().height / 2);
+	textDamages.setCharacterSize(100);
+	int random = Random::randInt(1, 3);
+	if(random == 1)
+		textDamages.setString("Ouille !");
+	else if (random == 2)
+		textDamages.setString("Aïe !");
+	else if (random == 3)
+		textDamages.setString("Ouch !");
+
+	WindowManager::Instance().addWithPeremption(std::make_unique<sf::Text>(textDamages), (int)std::time(nullptr));
+	textDamages.setCharacterSize(24);
 }
 
 void RythmNBlood::printReplique(std::string repliqueText)
@@ -474,6 +497,29 @@ void RythmNBlood::printReplique(std::string repliqueText)
 	WindowManager::Instance().addWithPeremption(std::make_unique<sf::Text>(textDamages), (int)std::time(nullptr));
 }
 
+void RythmNBlood::printScore()
+{
+	std::string stringScore = "Score : ";
+	stringScore += std::to_string(player.first.getScore());
+	stringScore += "\nDegats maximums : ";
+	stringScore += std::to_string(player.first.getMaxHit());
+
+
+	textScore.setString(stringScore);
+	textScore.setPosition(
+		(float)WindowManager::Instance().getWindow()->getSize().x / 2
+		- textScore.getLocalBounds().height / 2,
+		(float)WindowManager::Instance().getWindow()->getSize().y / 5
+		- textScore.getLocalBounds().height / 2);
+	WindowManager::Instance().add(std::make_unique<sf::Text>(textScore));
+
+}
+
+void RythmNBlood::printBackground()
+{
+	// On ajoute tous les sprites qu'on veut afficher 
+	WindowManager::Instance().add(std::make_unique<sf::Sprite>(fondSprite));
+}
 
 void RythmNBlood::reload()
 {
@@ -489,7 +535,5 @@ void RythmNBlood::reload()
 	ennemiSpeed = lv.ennemiSpeed;
 	probaSuperEnnemi = lv.probaSuper;
 
-	std::cout << "nb : " << nbEnnemiesMax << "\n";
 	launchScene();
 }
-

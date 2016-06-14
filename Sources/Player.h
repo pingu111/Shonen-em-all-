@@ -41,6 +41,8 @@ public :
 
 	void takeHit();
 
+	int getMaxHit();
+
 	bool isDead();
 
 	/* Renvoie le scoree du joueur */

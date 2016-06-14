@@ -51,8 +51,6 @@ void MenuPrincipal::waitForUser()
 				{
 					//std::cout << "Clique !\n";
 					// Alors, fin de la scene
-					WindowManager::Instance().clearText();
-					WindowManager::Instance().draw();
 					SceneManager::moveToScene(SceneNames::RNB);
 					return;
 				}

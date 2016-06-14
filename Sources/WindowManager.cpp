@@ -52,7 +52,6 @@ void WindowManager::clearText()
 }
 
 
-
 void WindowManager::draw()
 {
 	window.clear(sf::Color::White);
@@ -91,8 +90,6 @@ void WindowManager::draw()
 		if (std::time(nullptr) <= form.second + lifeTimeText)
 			window.draw(*form.first);
 	}
-
-
 
 	window.display();
 	listSprites.clear();

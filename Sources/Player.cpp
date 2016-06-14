@@ -75,6 +75,11 @@ void Player::takeHit()
 	lifePoint -= 1;
 }
 
+int Player::getMaxHit()
+{
+	return maxHit;
+}
+
 bool Player::isDead()
 {
 	return lifePoint < 0;

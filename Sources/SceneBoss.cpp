@@ -134,7 +134,6 @@ void SceneBoss::chargeButtons(std::vector<Replique*> repliquesChosen)
 	}
 }
 
-
 /* attend l'appui sur un bouton */
 void SceneBoss::waitForUser()
 {
