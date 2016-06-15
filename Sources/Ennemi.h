@@ -39,17 +39,24 @@ public :
 	/*l'ennemi est-il assez proche pour se prendre un coup*/
 	bool isHitable();
 
+	/* est-il mort ? */
 	bool isDead();
+	/* le sbire se fait frapper */
 	void takeHit();
 
+	/* retourne la position en X actuelle du sbire */
 	float getXPosition();
 
+	/* le sbire est-il a la gauche de hero ? */
 	bool getIsLeft();
 
-	int id;
+	/* l'id du sbire, il n'a rien a dire dessus, et ne bouge pas */
+	static int id;
 
+	/* depressif apres avoir reussi sa mission (frapper le hero), le sbire se suiide car il ne sert plus a rien pour le grand mechant (c'est triste :'( ) */
 	void suicide();
 
+	/* suis-je un super sbire ? */
 	bool getIsSuper();
 
 };

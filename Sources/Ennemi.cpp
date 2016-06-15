@@ -25,7 +25,6 @@ void Ennemi::makeSuper()
 	assert(isSuper == false);
 	lifePoint = 2;
 	isSuper = true;
-	//TODO definir un super ennemi
 }
 
 bool Ennemi::isHitable()

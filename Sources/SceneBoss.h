@@ -54,6 +54,7 @@ private:
 	/* Le constructeur de la scene */
 	SceneBoss();
 
+	/* on a un sigleton, on ne veut pas de copie ! */
 	SceneBoss(const SceneBoss& sceneCopy) = delete;
 	void operator=(const SceneBoss& wm) = delete;
 

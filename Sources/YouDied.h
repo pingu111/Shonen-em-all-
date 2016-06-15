@@ -18,7 +18,7 @@ private:
 	void initSprite();
 	void waitForUser() override;
 
-
+	/* Error 404, int unknown ! */
 	int nbSix;
 
 	std::pair<sf::Text, sf::Font> textFont;

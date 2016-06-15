@@ -20,11 +20,6 @@ Player& Player::Instance()
 	return m_instance;
 }
 
-void Player::destroy()
-{
-	//TODO fonction
-}
-
 void Player::increaseStrenght()
 {
 	strenght *= 2;

@@ -13,10 +13,10 @@ class Player
 {
 private:
 	Replique repWaiting;
+	/* le joueur a t il quelque chose a dire apres sa rencontre avec le grand mechant ? */
 	bool hasSomethingToSay;
 	int lifePoint;
 	float strenght;
-	void destroy();
 	bool isSpriteLeft;
 	float damageMult;
 	int scoreMult;
@@ -34,17 +34,20 @@ public :
 	bool getHasSomethingToSay();
 	/*frappe un ennemi hitable et ajuste le score*/
 	int hit(Ennemi &enn);
-	/* apres une replique, le hero garde sa super replique en memoire */
+	/* apres une rencontre avec le grand mechant, le hero garde sa super replique en memoire (sauf si elle est suffisament nulle pour qu'il perde)*/
 	void update(Replique rep);
-	/* une fois la scene de combat chargee, stocke les nouvelles capacités de hero. Et augmente sa force */
+	/* une fois la scene de combat chargee le hero clame sa replique (valeur de retour), stocke les nouvelles capacites de hero. Et augmente sa force */
 	std::string sayReplique();
 
+	/* le hero se fait frapper et perd un point de vie */
 	void takeHit();
 
+	/* renvoie le melleur coup du joueur */
 	int getMaxHit();
 
+	/* suis-je mort ? */
 	bool isDead();
 
-	/* Renvoie le scoree du joueur */
+	/* Renvoie le score du joueur */
 	int getScore();
 };
