@@ -51,7 +51,7 @@ public :
 	bool getIsLeft();
 
 	/* l'id du sbire, il n'a rien a dire dessus, et ne bouge pas */
-	static int id;
+	int id;
 
 	/* depressif apres avoir reussi sa mission (frapper le hero), le sbire se suiide car il ne sert plus a rien pour le grand mechant (c'est triste :'( ) */
 	void suicide();
