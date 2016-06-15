@@ -12,7 +12,12 @@ struct Level
 class LevelManager
 {
 private:
+	/* le niveau en cours */
 	static Level currentLevel;
 public :
+	/* 
+	  calcul les valeurs du nouveau level à partir du precedent
+	  retourne les valeurs du nouveau level
+	 */
 	static Level nextLevel();
 };

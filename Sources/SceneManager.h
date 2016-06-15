@@ -9,5 +9,6 @@
 class SceneManager
 {
 public :
+	/* va a la scene choisie, une fois l'appel terminé la scene courante reprendra. */
 	static void moveToScene(SceneNames name);
 };

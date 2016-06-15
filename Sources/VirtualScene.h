@@ -27,9 +27,13 @@ protected:
 
 
 public:
+	/* lance a chaque debut de scene. Permet de mettre de place les constantes et de reinitialiser la scene */
 	virtual void reload() = 0;
+	/* lance la scene, initialise les textures et lance la boucle d'evenements */
 	virtual void launchScene() = 0;
+	/* affiche l'image de fond */
 	virtual void printBackground() = 0;
+	/* boucle d'evenements */
 	virtual void waitForUser() = 0;
 
 

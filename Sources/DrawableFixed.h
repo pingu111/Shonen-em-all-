@@ -2,6 +2,7 @@
 
 #include "DrawableVirtual.h"
 
+//unused
 class DrawableFixed : DrawableVirtual
 {
 public:
