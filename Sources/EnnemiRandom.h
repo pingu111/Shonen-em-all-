@@ -6,8 +6,9 @@
 class EnnemiRandom : public Ennemi
 {
 public:
-	EnnemiRandom(bool isSpawnLeft, int idEnnemi , int percentageBack) : Ennemi( isSpawnLeft, idEnnemi)
+	EnnemiRandom(bool isSpawnLeft, int idEnnemi , int percentageBack , int changementSpeedArg) : Ennemi( isSpawnLeft, idEnnemi)
 	{
+		changementSpeed = changementSpeedArg;
 		setPercentageBack(percentageBack);
 	}
 
@@ -20,4 +21,7 @@ public:
 private : 
 	/* La probabilité qu'a l'ennemi de reculer */
 	int percentageBack;
+
+	/* La changement brutal de vitesse quand l'ennemi recule */
+	int changementSpeed;
 };

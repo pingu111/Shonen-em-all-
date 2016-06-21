@@ -116,6 +116,9 @@ private:
 	/* Le nombre d'ennemis dans cette scene */
 	int nbEnnemiesMax;
 
+	/* La probabilité qu'un ennemi ait un mouvement aleatoire */
+	int percentageRandomEnnemi;
+
 	/* La vitesse des ennemis */
 	float ennemiSpeed;
 

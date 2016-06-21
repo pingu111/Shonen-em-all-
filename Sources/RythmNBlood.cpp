@@ -24,6 +24,7 @@ void RythmNBlood::launchScene()
 	//TODO
 	printBackground();
 
+	percentageRandomEnnemi = 30;
 	idEnnemi = 0;
 	isPlayerInHitAnimation = false;
 	isLastHitLeft = false;
@@ -218,8 +219,8 @@ std::time_t RythmNBlood::addEnnemies(std::time_t timeLastAdd)
 		{
 			timeLastAdd = std::time(nullptr);
 
-			// Cree un ennemi, avec 25% de chance qu'il avance aleatoirement
-			std::unique_ptr<Ennemi> newEnnemi{createEnnemi(idEnnemi)};
+			// Cree un ennemi, avec x% de chance qu'il avance aleatoirement
+			std::shared_ptr<Ennemi> newEnnemi{createEnnemi(idEnnemi)};
 			idEnnemi++;
 
 			newEnnemi->initSpeed((float)ennemiSpeed);
@@ -229,17 +230,11 @@ std::time_t RythmNBlood::addEnnemies(std::time_t timeLastAdd)
 				newEnnemi->makeSuper();
 			}
 
-			// Ici, newEnnemi->update() appelle bien celui des classes filles 
-
-			std::shared_ptr<Ennemi> newEnn = std::make_shared<Ennemi>(*move(newEnnemi));
-
-			// Ici, newEnn->update() appelle celui de la mere =(
-
 			// Cree son sprite
 			int nbSprite = Random::randInt(0, 10);
 			sf::Sprite spriteNewEnnemi;
 			
-			if (!newEnn->getIsSuper())
+			if (!newEnnemi->getIsSuper())
 			{
 				spriteNewEnnemi = listSpriteEnnemyMoving[nbSprite].first;
 			}
@@ -252,15 +247,13 @@ std::time_t RythmNBlood::addEnnemies(std::time_t timeLastAdd)
 			{
 				spriteNewEnnemi = flipSprite(spriteNewEnnemi);
 			}
+
 			std::pair<int, sf::Sprite> pair(nbSprite, spriteNewEnnemi);
 
 			mapSpriteEnnemi.insert(std::pair<std::shared_ptr<Ennemi>, std::pair<int, sf::Sprite>>
-				(newEnn, pair));
+				(newEnnemi, pair));
 
-			newEnn->update();
-			ennemisAlive.push_back(newEnn);
-			ennemisAlive[ennemisAlive.size()-1]->update();
-			
+			ennemisAlive.push_back(newEnnemi);
 		}
 	}
 	return timeLastAdd;
@@ -268,13 +261,13 @@ std::time_t RythmNBlood::addEnnemies(std::time_t timeLastAdd)
 
 Ennemi* RythmNBlood::createEnnemi(int idEnnemi)
 {
-	if (Random::randInt(0, 3) > 12)
+	if (Random::randInt(0, 100) > percentageRandomEnnemi)
 	{
 		return new EnnemiClassic(Random::randInt(0, 1) == 1, idEnnemi);
 	}
 	else
 	{
-		return new EnnemiRandom(Random::randInt(0, 1) == 1, idEnnemi , 20);
+		return new EnnemiRandom(Random::randInt(0, 1) == 1, idEnnemi , 10 , 3);
 	}
 }
 

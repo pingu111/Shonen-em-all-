@@ -4,10 +4,9 @@
 
 bool EnnemiClassic::update()
 {
-	std::cout << "CA MARCHE BIEN \n";
-
-
 	assert(!isDead());
+
+	//std::cout << "classic position " << position << " speed " << speed <<  "\n";
 	//deplacement de l'ennemi
 	if (isLeft)
 	{
@@ -21,7 +20,7 @@ bool EnnemiClassic::update()
 	}
 	else
 	{
-		position += speed;
+		position -= speed;
 		isHittable = position <= playerPosition + playerHitDistance;
 		if (position <= playerPosition + hitDistance)
 		{
