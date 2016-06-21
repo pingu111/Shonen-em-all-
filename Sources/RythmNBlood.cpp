@@ -219,17 +219,21 @@ std::time_t RythmNBlood::addEnnemies(std::time_t timeLastAdd)
 			timeLastAdd = std::time(nullptr);
 
 			// Cree un ennemi, avec 25% de chance qu'il avance aleatoirement
-			Ennemi newEnnemi = createEnnemi(idEnnemi);
+			std::unique_ptr<Ennemi> newEnnemi{createEnnemi(idEnnemi)};
 			idEnnemi++;
-			
-			newEnnemi.initSpeed((float)ennemiSpeed);
+
+			newEnnemi->initSpeed((float)ennemiSpeed);
 
 			if (Random::randFloat(0, 1) <= probaSuperEnnemi)
 			{
-				newEnnemi.makeSuper();
+				newEnnemi->makeSuper();
 			}
 
-			std::shared_ptr<Ennemi> newEnn = std::make_shared<Ennemi>(newEnnemi);
+			// Ici, newEnnemi->update() appelle bien celui des classes filles 
+
+			std::shared_ptr<Ennemi> newEnn = std::make_shared<Ennemi>(*move(newEnnemi));
+
+			// Ici, newEnn->update() appelle celui de la mere =(
 
 			// Cree son sprite
 			int nbSprite = Random::randInt(0, 10);
@@ -244,8 +248,7 @@ std::time_t RythmNBlood::addEnnemies(std::time_t timeLastAdd)
 				spriteNewEnnemi = listSpriteSuperMoving[nbSprite].first;
 			}
 
-
-			if (!newEnnemi.getIsLeft())
+			if (!newEnnemi->getIsLeft())
 			{
 				spriteNewEnnemi = flipSprite(spriteNewEnnemi);
 			}
@@ -254,24 +257,24 @@ std::time_t RythmNBlood::addEnnemies(std::time_t timeLastAdd)
 			mapSpriteEnnemi.insert(std::pair<std::shared_ptr<Ennemi>, std::pair<int, sf::Sprite>>
 				(newEnn, pair));
 
+			newEnn->update();
 			ennemisAlive.push_back(newEnn);
+			ennemisAlive[ennemisAlive.size()-1]->update();
+			
 		}
 	}
 	return timeLastAdd;
 }
 
-Ennemi RythmNBlood::createEnnemi(int idEnnemi)
+Ennemi* RythmNBlood::createEnnemi(int idEnnemi)
 {
 	if (Random::randInt(0, 3) > 12)
 	{
-		EnnemiClassic newEnnemi = EnnemiClassic(Random::randInt(0, 1) == 1, idEnnemi);
-		return newEnnemi;
+		return new EnnemiClassic(Random::randInt(0, 1) == 1, idEnnemi);
 	}
 	else
 	{
-		EnnemiRandom newEnnemi = EnnemiRandom(Random::randInt(0, 1) == 1, idEnnemi);
-		newEnnemi.setPercentageBack(20);
-		return newEnnemi;
+		return new EnnemiRandom(Random::randInt(0, 1) == 1, idEnnemi , 20);
 	}
 }
 

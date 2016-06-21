@@ -6,7 +6,10 @@
 class EnnemiRandom : public Ennemi
 {
 public:
-	EnnemiRandom(bool isSpawnLeft, int idEnnemi) : Ennemi( isSpawnLeft, idEnnemi) {}
+	EnnemiRandom(bool isSpawnLeft, int idEnnemi , int percentageBack) : Ennemi( isSpawnLeft, idEnnemi)
+	{
+		setPercentageBack(percentageBack);
+	}
 
 	/* Met  à jour la position de l'ennemi */
 	bool update() override;

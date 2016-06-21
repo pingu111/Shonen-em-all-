@@ -4,6 +4,9 @@
 
 bool EnnemiClassic::update()
 {
+	std::cout << "CA MARCHE BIEN \n";
+
+
 	assert(!isDead());
 	//deplacement de l'ennemi
 	if (isLeft)

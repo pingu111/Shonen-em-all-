@@ -60,6 +60,8 @@ void Ennemi::destroy()
 
 bool Ennemi::update()
 {
+	std::cout << "noooon \n";
+
 	assert(!isDead());
 	//deplacement de l'ennemi
 	if (isLeft)

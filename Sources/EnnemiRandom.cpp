@@ -3,7 +3,7 @@
 
 bool EnnemiRandom::update()
 {
-	std::cout << "Loul\n";
+	std::cout << "CA MARCHE\n";
 
 	assert(!isDead());
 	//deplacement de l'ennemi
