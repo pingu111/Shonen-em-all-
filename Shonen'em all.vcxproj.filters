@@ -74,6 +74,12 @@
     <ClCompile Include="Sources\Level.cpp">
       <Filter>Source Files\Utils</Filter>
     </ClCompile>
+    <ClCompile Include="..\Shonen%27em all\Sources\EnnemiClassic.cpp">
+      <Filter>Source Files\Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Shonen%27em all\Sources\EnnemiRandom.cpp">
+      <Filter>Source Files\Characters</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\VirtualScene.h">
@@ -126,6 +132,12 @@
     </ClInclude>
     <ClInclude Include="Sources\Level.h">
       <Filter>Source Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Shonen%27em all\Sources\EnnemiRandom.h">
+      <Filter>Source Files\Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\EnnemiClassic.h">
+      <Filter>Source Files\Characters</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

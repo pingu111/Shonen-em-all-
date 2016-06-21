@@ -110,6 +110,8 @@ private:
 	/* Affiche le score */
 	void printScore();
 
+	/* Rnevoie un nouvel ennemi, qui vient d'une des classes heritées d'ennemi */
+	Ennemi createEnnemi(int idEnnemi);
 
 	/* Le nombre d'ennemis dans cette scene */
 	int nbEnnemiesMax;

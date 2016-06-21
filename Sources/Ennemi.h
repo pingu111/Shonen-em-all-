@@ -12,7 +12,7 @@ static float hitDistance = 5;
 
 class Ennemi
 {
-private :
+protected :
 	float position;
 	int lifePoint;
 	bool isHittable;
@@ -33,14 +33,15 @@ public :
 	 */
 	void initSpeed(float speed);
 
-	/* update la position de l'ennemi, return true si l'ennemi frappe le joueur*/
-	bool update();
+	/* update la position de l'ennemi, return true si l'ennemi frappe le joueur */
+	virtual bool update();
 
 	/*l'ennemi est-il assez proche pour se prendre un coup*/
 	bool isHitable();
 
 	/* est-il mort ? */
 	bool isDead();
+
 	/* le sbire se fait frapper */
 	void takeHit();
 
@@ -58,7 +59,6 @@ public :
 
 	/* suis-je un super sbire ? */
 	bool getIsSuper();
-
 };
 
 bool  operator< (const  Ennemi a, const Ennemi b);

@@ -218,8 +218,10 @@ std::time_t RythmNBlood::addEnnemies(std::time_t timeLastAdd)
 		{
 			timeLastAdd = std::time(nullptr);
 
-			// Cree un ennemi
-			Ennemi newEnnemi(Random::randInt(0, 1) == 1, ++idEnnemi);
+			// Cree un ennemi, avec 25% de chance qu'il avance aleatoirement
+			Ennemi newEnnemi = createEnnemi(idEnnemi);
+			idEnnemi++;
+			
 			newEnnemi.initSpeed((float)ennemiSpeed);
 
 			if (Random::randFloat(0, 1) <= probaSuperEnnemi)
@@ -257,6 +259,22 @@ std::time_t RythmNBlood::addEnnemies(std::time_t timeLastAdd)
 	}
 	return timeLastAdd;
 }
+
+Ennemi RythmNBlood::createEnnemi(int idEnnemi)
+{
+	if (Random::randInt(0, 3) > 12)
+	{
+		EnnemiClassic newEnnemi = EnnemiClassic(Random::randInt(0, 1) == 1, idEnnemi);
+		return newEnnemi;
+	}
+	else
+	{
+		EnnemiRandom newEnnemi = EnnemiRandom(Random::randInt(0, 1) == 1, idEnnemi);
+		newEnnemi.setPercentageBack(20);
+		return newEnnemi;
+	}
+}
+
 
 sf::Sprite RythmNBlood::flipSprite(sf::Sprite spriteToFlip)
 {

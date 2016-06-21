@@ -85,6 +85,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\Shonen%27em all\Sources\EnnemiClassic.cpp" />
+    <ClCompile Include="..\Shonen%27em all\Sources\EnnemiRandom.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Sources\Bouton.cpp" />
     <ClCompile Include="Sources\DrawableFixed.cpp" />
@@ -103,6 +105,8 @@
     <ClCompile Include="Sources\YouDied.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Sources\EnnemiClassic.h" />
+    <ClInclude Include="..\Shonen%27em all\Sources\EnnemiRandom.h" />
     <ClInclude Include="..\Shonen%27em all\Sources\WindowManager.h" />
     <ClInclude Include="Sources\Bouton.h" />
     <ClInclude Include="Sources\DrawableFixed.h" />

@@ -4,7 +4,10 @@
 #include <assert.h>
 #include <Replique.h>
 #include <Global.h>
-#include <Ennemi.h>
+
+#include <EnnemiRandom.h>
+#include <EnnemiClassic.h>
+
 #include <Random.h>
 #include <Replique.h>
 #include <string>
