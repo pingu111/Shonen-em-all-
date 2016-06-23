@@ -4,21 +4,17 @@
 bool EnnemiRandom::update()
 {
 	assert(!isDead());
+
 	//deplacement de l'ennemi
 	if (isLeft)
 	{
 		if (Random::randInt(0, 100) > percentageBack)
 		{
-			/*	std::cout << "go position " << position << " speed " << speed << 
-				" percentageBack " << percentageBack << " isLeft " << isLeft << "\n";*/
-
-			position += speed;// *Random::randInt(0, 2);
+			position += speed;
 		}
 		else
 		{
-			/*std::cout << "BAK position " << position << " speed " << speed <<
-				" percentageBack " << percentageBack << " isLeft " << isLeft << "\n";*/
-
+			// On fait un bond en arrière
 			position -= ( speed * changementSpeed);
 		}
 
@@ -33,16 +29,11 @@ bool EnnemiRandom::update()
 	{
 		if (Random::randInt(0, 100) > percentageBack)
 		{
-			/*std::cout << "go position " << position << " speed " << speed << 
-				" percentageBack " << percentageBack << " isLeft " << isLeft << "\n";*/
-
-			position -= speed;//*Random::randInt(0, 2);
+			position -= speed;
 		}
 		else
 		{
-			/*std::cout << "BAK position " << position << " speed " << speed <<
-				" percentageBack " << percentageBack << " isLeft " << isLeft << "\n";*/
-
+			// On fait un bond en arrière
 			position += (speed * changementSpeed);
 		}
 
